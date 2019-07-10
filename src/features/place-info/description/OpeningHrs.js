@@ -47,8 +47,6 @@ export class OpenOrClosed extends Component {
   }
   
   render() {
-    
-    
     const {openingHr, closingHr, customStyle} = this.props;
     const {currHr} = this.state;
     const isOpen = ((currHr >= openingHr) && (currHr <= closingHr));

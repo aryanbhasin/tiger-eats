@@ -4,8 +4,8 @@ import {View, Text, StyleSheet, Image,
 import {getDistance} from 'geolib';
 
 import {styles} from './styles';
-import Rating from '../PlaceInfo/Frontal/Rating';
-import {OpenOrClosed} from '../PlaceInfo/Description/OpeningHrs';
+import {Rating} from '../place-info/frontal';
+import {OpenOrClosed} from '../place-info/description/OpeningHrs';
 
 
 export default class CardList extends Component {

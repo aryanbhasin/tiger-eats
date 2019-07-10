@@ -3,9 +3,9 @@ import {View, Text, StyleSheet, Platform, ScrollView, StatusBar} from 'react-nat
 
 import {PLACES_DATA} from 'TigerEats/src/assets/data/places-data.js';
 
-import Frontal from './Frontal';
-import Description from './Description';
-import Details from './Details';
+import Frontal from './frontal';
+import Description from './description';
+import Details from './details';
 
 const data = PLACES_DATA;
 

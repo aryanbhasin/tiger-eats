@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-import PlaceInfo from '../features/PlaceInfo';
-import Explore from '../features/Explore';
+import PlaceInfo from '../features/place-info';
+import Explore from '../features/explore';
 
 export default createStackNavigator(
   {

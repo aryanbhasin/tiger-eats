@@ -17,6 +17,7 @@ export default function SortByDistance(placesData) {
     }
     const dist1 = getDistance(currPosition2, place1.destCoords); // currPosition2 is just for testing
     const dist2 = getDistance(currPosition2, place2.destCoords); // replace it with currPosition on actual device
+    // comparison method returns -ve if place1 closer, +ve if place2 closer
     return (dist1 - dist2);
   });
     
