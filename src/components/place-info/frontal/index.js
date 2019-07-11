@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 
 import {styles} from './styles'
-import {defaultStyles} from '../index.js'
+import {placeInfoStyles} from 'TigerEats/src/styles/index.js'
 
 export default class Frontal extends Component {
   render() {
@@ -12,19 +12,18 @@ export default class Frontal extends Component {
         <CoverImage uri={uri} />
         <Title name={name} />
         <Rating ratingNum={ratingNum} customStyle={styles.rating} />
+        
       </View>
     );
   }
 }
 
-class CoverImage extends Component {
-  render() {
-    return (
-      <View>
-        <Image style={styles.image} source={uri}/>
-      </View>
-    );
-  }
+function CoverImage ({uri}){
+  return (
+    <View>
+      <Image style={styles.image} source={uri}/>
+    </View>
+  );
 }
 
 export class Rating extends Component {
@@ -32,19 +31,17 @@ export class Rating extends Component {
     let {ratingNum, customStyle} = this.props;
     return (
       <View style={[styles.ratingContainer, customStyle]}>
-        <Text style={styles.rating}>{ratingNum}</Text>
+        <Text style={styles.ratingText}>{ratingNum}</Text>
       </View>
     );
   }
 }
 
-class Title extends Component {
-  render() {
-    let {name} = this.props;
-    return(
-      <View style={styles.titleContainer}>
-        <Text style={[styles.name, defaultStyles.defaultFont]}>{name}</Text>
-      </View>
-    );
-  }
+function Title ({name}) {
+  return(
+    <View style={styles.titleContainer}>
+      <Text style={[styles.name, placeInfoStyles.defaultFont]}>{name}</Text>
+    </View>
+  );
 }
+

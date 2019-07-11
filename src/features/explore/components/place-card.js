@@ -1,39 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, 
-        ScrollView, KeyboardAvoidingView, TouchableOpacity, StatusBar} from 'react-native';
+import {View, Text, TouchableOpacity, StatusBar, Image} from 'react-native';
 import {getDistance} from 'geolib';
 
-import {styles} from './styles';
-import {Rating} from '../place-info/frontal';
-import {OpenOrClosed} from '../place-info/description/OpeningHrs';
+import {Rating} from 'TigerEats/src/components/place-info/frontal';
+import {OpenOrClosed} from 'TigerEats/src/components/place-info/description/OpeningHrs';
+import {styles} from '../styles';
 
 
-export default class CardList extends Component {
-  
-  render() {
-    console.log(this.props.dataResults);
-    const {dataResults, navigation} = this.props;
-    
-    return (
-      
-      <KeyboardAvoidingView>
-        <ScrollView style={styles.listContainer} keyboardShouldPersistTaps='never' showsVerticalScrollIndicator={false}>
-          {dataResults.map((item, index) => {
-            return (            
-              <PlaceCard 
-                key={index}
-                data={item}
-                navigation={navigation}
-               />
-            );
-          })}
-        </ScrollView>
-      </KeyboardAvoidingView>
-    );
-  }
-}
-
-class PlaceCard extends Component {
+export default class PlaceCard extends Component {
   
   calculateDistance(destCoords) {
     const currPosition = navigator.geolocation.getCurrentPosition (

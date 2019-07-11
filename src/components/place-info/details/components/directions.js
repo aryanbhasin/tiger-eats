@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import getDirections from 'react-native-google-maps-directions';
 
-import {defaultStyles} from '../index.js'
+import {placeInfoStyles} from 'TigerEats/src/styles/index.js'
 
 export default class Directions extends Component {
   
@@ -67,7 +67,7 @@ export default class Directions extends Component {
     
     return (
       <View style={styles.button}>
-        <Button raised title="Get Directions" titleStyle={[styles.buttonText, defaultStyles.defaultFont]} onPress={() => this.handlePress(destCoords)} />
+        <Button raised title="Get Directions" titleStyle={[styles.buttonText, placeInfoStyles.defaultFont]} onPress={() => this.handlePress(destCoords)} />
       </View>
     );
   }

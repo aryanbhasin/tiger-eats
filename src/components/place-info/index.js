@@ -9,27 +9,6 @@ import Details from './details';
 
 const data = PLACES_DATA;
 
-export var defaultStyles = StyleSheet.create({
-  defaultFont: {
-    fontFamily: Platform.OS === 'ios' ? 'System' : 'Roboto', 
-  },
-  defaultHeader: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: 'darkgrey',
-    paddingVertical: 4,
-  },
-  defaultSubHeader: {
-    fontSize: 16,
-    color: 'cornflowerblue',
-    fontWeight: '700'
-  },
-  defaultContainer: {
-    marginLeft: 20,
-    marginRight: 20,
-  }
-});
-
 export default class PlaceInfo extends Component {
   
   constructor(props) {
@@ -78,7 +57,7 @@ export default class PlaceInfo extends Component {
     })
     
     return (
-      <View style={styles.container}>
+      <View>
         <ScrollView>
           <Frontal 
             uri={placeInformation.uri} 
@@ -101,13 +80,4 @@ export default class PlaceInfo extends Component {
       
     );
   }
-  
 }
-
-var styles = StyleSheet.create({
-  container: {
-    
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'grey'
-  },
-});

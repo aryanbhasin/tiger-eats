@@ -4,9 +4,9 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import {PLACES_DATA} from 'TigerEats/src/assets/data/places-data.js';
 import {styles} from './styles.js';
 
-import TagCarousel from './TagCarousel';
+import TagCarousel from './components/tag-carousel';
 import Search from 'TigerEats/src/components/search';
-import CardList from './CardList';
+import CardList from './components/card-list';
 
 import {connect} from 'react-redux'
 

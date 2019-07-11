@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 
 import OpeningHrs from './OpeningHrs';
 
-import {styles} from './styles.js'
+import {styles} from './styles'
 
 export default class Description extends Component {
   

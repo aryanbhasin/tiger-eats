@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 
-import Directions from './Directions';
-import CallCard from './CallCard';
-import ReviewStars from './ReviewStars';
+import Directions from './components/directions';
+import CallCard from './components/call-card.js';
+import ReviewStars from './components/review-stars';
 
-import {defaultStyles} from '../index.js'
+import {placeInfoStyles} from 'TigerEats/src/styles/index.js'
 import {styles} from './styles.js'
 
 export default class Details extends Component {
@@ -29,8 +29,8 @@ export default class Details extends Component {
 
 function Menu ({itemList}) {
   return (
-    <View style={defaultStyles.defaultContainer}>
-      <Text style={defaultStyles.defaultHeader}>Main Items</Text>
+    <View style={placeInfoStyles.defaultContainer}>
+      <Text style={placeInfoStyles.defaultHeader}>Main Items</Text>
       <View style={{height: 100}}>{itemList.map((item) => 
         (<Text key={item} style={styles.mainItemStyle}>{item}</Text>)
       )}</View>

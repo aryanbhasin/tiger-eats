@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 
-import {defaultStyles} from '../index.js';
+import {placeInfoStyles} from 'TigerEats/src/styles/index.js';
 
 export default class ReviewStars extends Component {
   
@@ -33,8 +33,8 @@ export default class ReviewStars extends Component {
     }
     
     return (
-      <View style={defaultStyles.defaultContainer}>
-        <Text style={defaultStyles.defaultHeader}>Rate</Text>
+      <View style={placeInfoStyles.defaultContainer}>
+        <Text style={placeInfoStyles.defaultHeader}>Rate</Text>
         <View style={styles.reviewContainer}>
           {buttonArray}
         </View>

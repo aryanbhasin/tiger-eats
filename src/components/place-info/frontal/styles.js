@@ -1,14 +1,14 @@
 import {StyleSheet, Dimensions} from 'react-native';
 const {width} = Dimensions.get('window');
 
-var styles = StyleSheet.create({
+export var styles = StyleSheet.create({
   rating: {
     position: 'absolute',
     bottom: 0,
     right: 10,
   },
   image: {
-    height: width * 0.6,
+    height: width * 0.7,
     width: null,
   },
   ratingContainer: {
@@ -23,7 +23,7 @@ var styles = StyleSheet.create({
     backgroundColor: 'yellowgreen',
     borderTopLeftRadius: 6,
   },
-  rating: {
+  ratingText: {
     textAlign: 'center',
     fontSize: 20,
     color: 'white',

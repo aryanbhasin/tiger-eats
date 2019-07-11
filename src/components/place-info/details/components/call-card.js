@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-elements';
 import call from 'react-native-phone-call';
 
-import {defaultStyles} from '../index.js';
+import {placeInfoStyles} from 'TigerEats/src/styles/index.js';
 
 export default class CallCard extends Component {
   
@@ -30,8 +30,8 @@ export default class CallCard extends Component {
     return (
       <View style={styles.callCardContainer}>
         <View style={styles.textContainer}>
-          <Text style={defaultStyles.defaultHeader}>Have a question?</Text>
-          <Text style={defaultStyles.defaultSubHeader}>Call the place to find out more</Text>
+          <Text style={placeInfoStyles.defaultHeader}>Have a question?</Text>
+          <Text style={placeInfoStyles.defaultSubHeader}>Call the place to find out more</Text>
         </View>
         <TouchableOpacity onPress={() => this.handleCallPress(number)} >
           <View style={styles.buttonContainer}>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
-import PlaceInfo from '../features/place-info';
+import PlaceInfo from '../components/place-info';
 import Explore from '../features/explore';
 
 export default createStackNavigator(
