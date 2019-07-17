@@ -21,6 +21,16 @@ export default class MealStatus extends Component {
     );
   }
   
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+  
+  updateState(openStatus, nextMeal, mealTimings) {
+    this.setState({
+      openStatus, nextMeal, mealTimings
+    });
+  }
+  
   getTime() {
     var currDate = new Date();
     var currHrs = currDate.getHours();
@@ -36,6 +46,9 @@ export default class MealStatus extends Component {
       this.updateState((hrs < 17) ? 'Closed' : 'Open', 'Dinner', [17, 20])
     }
     else {
+    
+    // ********************** STILL NEED TO ADD CONDITIONS FOR OTHER MEALS AND DAYS **********************
+    
       this.updateState('Open', 'Breakfast', [10, 14])
     }
     // halls closed, next meal breakfast
@@ -47,23 +60,25 @@ export default class MealStatus extends Component {
     // }
   }
   
-  updateState(openStatus, nextMeal, mealTimings) {
-    this.setState({
-      openStatus, nextMeal, mealTimings
-    });
-  }
-  
-  componentWillUnmount() {
-    clearInterval(this.timerId);
-  }
-  
-  buildMealTimingString(hr1, hr2, period) {
-    return `${hr1}:00 - ${hr2}:00 ${period}`
-  }
-  
   buildMealTimingString(hr1, hr2, period1, period2) {
-    
-    return `${hr1}:00 ${period1} - ${hr2}:00 ${period2}`
+    if (arguments.length === 3) {
+      return `${hr1}:00 - ${hr2}:00 ${period1}`
+    } else {
+      return `${hr1}:00 ${period1} - ${hr2}:00 ${period2}`  
+    }
+  }
+  
+  openStatusIcon(openStatus) {
+    return (
+      <Icon name='circle'
+        color={(openStatus === 'Open') ? 'green' : 'red'}
+        size={15}
+      />
+    );
+  }
+  
+  renderNextMeal(nextMeal) {
+    return (<Text style={{fontWeight: 'bold'}}> {nextMeal}: </Text>);
   }
   
   renderMealTimings(mealTimings) {
@@ -91,22 +106,17 @@ export default class MealStatus extends Component {
     }
   }
   
-  openStatusIcon(openStatus) {
-    return (
-      <Icon name='circle'
-        color={(openStatus === 'Open') ? 'green' : 'red'}
-        size={15}
-      />
-    );
-  }
-  
   render() {
     let {openStatus, nextMeal, mealTimings} = this.state;
     console.log(mealTimings);
     if (mealTimings !== null) {
       return (
         <View>
-          <Text style={styles.dHallMealStatusText}>{this.openStatusIcon(openStatus)}  {nextMeal}: {this.renderMealTimings(mealTimings)}</Text>
+          <Text style={styles.dHallMealStatusText}>
+            {this.openStatusIcon(openStatus)}
+            {this.renderNextMeal(nextMeal)}
+            {this.renderMealTimings(mealTimings)}
+          </Text>
         </View>
       );
     } else {
