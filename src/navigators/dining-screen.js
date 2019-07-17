@@ -1,28 +1,23 @@
-import React, {Component} from 'react';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
-import {Text, View} from 'react-native';
+import {createStackNavigator} from 'react-navigation';
 
-class DiningHallScreen extends Component {
-  render() {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Hello World</Text>
-      </View>
-    );
-  }
-}
+import DiningHalls from '../features/dining-halls'
 
 export default createStackNavigator(
   {
     Dining: {
-      screen: DiningHallScreen,
-      navigationOptions: {
-        title: "Dining Hall"
-      }
+      screen: DiningHalls,
     },
   },
   {
-    initialRouteName: 'Dining'
+    initialRouteName: 'Dining',
+    defaultNavigationOptions: {
+      title: 'TigerEats',
+      headerTitleStyle: {
+        color: '#ff8f00',
+        fontWeight: '700',
+        fontSize: 28,
+      }
+    }
   }
 );
 

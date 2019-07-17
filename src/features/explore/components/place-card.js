@@ -6,7 +6,6 @@ import {Rating} from 'TigerEats/src/components/place-info/frontal';
 import {OpenOrClosed} from 'TigerEats/src/components/place-info/description/OpeningHrs';
 import {styles} from '../styles';
 
-
 export default class PlaceCard extends Component {
   
   calculateDistance(destCoords) {

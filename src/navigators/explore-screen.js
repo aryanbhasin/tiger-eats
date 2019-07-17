@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 
 import PlaceInfo from '../components/place-info';
 import Explore from '../features/explore';
