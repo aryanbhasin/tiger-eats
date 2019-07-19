@@ -1,11 +1,12 @@
 import {createStackNavigator} from 'react-navigation';
 
 import DiningHalls from '../features/dining-halls'
+import DHallInfoScreen from '../components/dhall-info'
 
 export default createStackNavigator(
   {
     Dining: {
-      screen: DiningHalls,
+      screen: DHallInfoScreen,
     },
   },
   {

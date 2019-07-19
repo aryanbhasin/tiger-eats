@@ -3,6 +3,7 @@ package com.tigereats;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReanimatedPackage(),
             new NetInfoPackage(),
             new RNGestureHandlerPackage(),
             new VectorIconsPackage()
