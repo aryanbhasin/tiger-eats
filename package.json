@@ -26,6 +26,7 @@
     "react-navigation": "^3.11.0",
     "react-redux": "^7.1.0",
     "redux": "^4.0.3",
+    "redux-thunk": "^2.3.0",
     "util": "^0.12.1"
   },
   "devDependencies": {

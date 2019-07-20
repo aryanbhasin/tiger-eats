@@ -40,11 +40,3 @@ function DHallFrontalHeader ({name, address}) {
     </View>
   );
 }
-
-function DHallTabViewMenu ({imageUrl}) {
-  return (
-    <View style={styles.dHallTabViewContainer}>
-      <Text>Tab View</Text>
-    </View>
-  );
-}

@@ -2,6 +2,7 @@ import {createStackNavigator} from 'react-navigation';
 
 import DiningHalls from '../features/dining-halls'
 import DHallInfoScreen from '../components/dhall-info'
+// import FetchMenu from '../components/extract-menu/fetch-menu'
 
 export default createStackNavigator(
   {

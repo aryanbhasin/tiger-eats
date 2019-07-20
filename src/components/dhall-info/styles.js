@@ -32,10 +32,11 @@ export var styles = StyleSheet.create({
     fontSize: 17,
   },
   dHallTabViewContainer: {
+    borderWidth: 1,
     flex: 2.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1
   },
+  tabViewScene: {
+    flex: 1,
+  }
   
 })
