@@ -1,7 +1,6 @@
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const FETCH_ERROR = 'FETCH_ERROR';
-export const GET_MEALS_HTML = 'GET_MEALS_HTML';
-export const SAVE_DISHES = 'SAVE_DISHES';
+export const GET_DISHES = 'GET_DISHES';
 
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
@@ -29,7 +28,10 @@ import JSSoup from 'jssoup';
 import {extractMealData} from '../components/extract-menu/get-dishes'
 
 // uses thunk
-export function getMenu(menuUrl) {
+export function getDishes(menuUrl) {
+
+  // add validation for URL
+  
   return (dispatch) => {
     fetch(menuUrl)
       .then(response => response.text())
@@ -37,23 +39,16 @@ export function getMenu(menuUrl) {
       .then(htmlText => {
         var soup = new JSSoup(htmlText);
         var meals = soup.findAll('div', 'mealCard');
+        dishes = new Object();
+        meals.forEach(mealCard => extractMealData(mealCard, dishes));
         dispatch({
-          type: GET_MEALS_HTML,
+          type: GET_DISHES,
           payload: {
             meals: meals,
+            dishes: dishes,
             loading: false
           }
         })
       })
-  }
-}
-
-export function getDishesFromMenu(mealCardArray) {
-  mealData = new Object();
-  mealCardArray.forEach(mealCard => extractMealData(mealCard, mealData));
-  console.log(mealCardArray)
-  return {
-    type: SAVE_DISHES,
-    payload: mealData
   }
 }

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, ActivityIndicator} from 'react-native';
 import {styles} from '../styles';
-import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class MealStatus extends Component {
