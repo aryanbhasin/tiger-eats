@@ -1,7 +1,10 @@
 import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import PropTypes from 'prop-types'
-import {styles} from '../styles'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import {colors} from 'TigerEats/src/styles'
+
+import {styles, dishesStyles} from '../styles'
 
 export default class TabPage extends React.PureComponent {
   
@@ -13,16 +16,56 @@ export default class TabPage extends React.PureComponent {
     routeKey : PropTypes.string.isRequired
   }
   
-  render() {
-    switch (this.props.routeKey) {
-      case 'breakfast':
-        return <View style={[styles.tabViewScene, { backgroundColor: '#f1d881' }]} />
-      case 'lunch':
-        return <View style={[styles.tabViewScene, { backgroundColor: '#ff4081' }]} />
-      case 'dinner':
-        return <View style={[styles.tabViewScene, { backgroundColor: 'blue' }]} />
-      default:
-        return null
-    }
+  
+  // showDishItems and showDishCategories are helper functions for showMeal
+  showDishItems(itemsArray) {
+    return itemsArray.map((item, index) => {
+      return (
+        <Text key={index} style={dishesStyles.dishItems}>{item}</Text>
+      );
+    })
   }
+  
+  showDishCategories(categoriesArray) {
+    return categoriesArray.map((category, index) => {
+      return (
+        <View key={index} style={dishesStyles.dishCategoryContainer}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Icon name='paw' size={20} color={colors.orange} style={{marginRight: 5}} />
+            <Text style={dishesStyles.dishCategory}>{category.title}</Text>
+          </View>
+          {this.showDishItems(category.items)}
+        </View>
+      );
+    })
+  }
+  
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  
+  showMeal() {
+    // show dishes of the meal corresponding to routeKey (e.g. breakfast dishes if routeKey='breakfast')
+    let {routeKey, dishes} = this.props;
+    let mealRoute = this.capitalizeFirstLetter(routeKey);
+    this.props.routeKey.charAt(0).toUpperCase();
+    return this.showDishCategories(dishes[mealRoute])
+  }
+  
+  render() {
+    return (
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={dishesStyles.container}>
+        {this.showMeal()}
+        <Spacer />
+      </ScrollView>
+    );
+  }
+}
+
+function Spacer() {
+  return (
+    <View style={{height: 20}} />
+  );
 }

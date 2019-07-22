@@ -32,7 +32,7 @@ function getCategoryDishes(category, mealItems) {
     let dish = items[key].contents[0]._text;
     dishes.push(dish)
   }
-  categoryObj['dishes'] = dishes;
+  categoryObj['items'] = dishes;
   mealItems.push(categoryObj)
 }
 
@@ -56,14 +56,4 @@ export function extractMealData(mealCard, mealData) {
   mealName = getMealName(mealCard);
   mealData[mealName] = getMealItems(mealCard);
 }
-
-// export default function DHallDishesExtractor({mealCardArray}) {
-//   mealData = new Object();
-//   mealCardArray.forEach(mealCard => extractMealData(mealCard, mealData));
-//   return (
-//     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-//       <Text>done</Text>
-//     </View>
-//   );
-// }
 

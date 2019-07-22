@@ -20,3 +20,10 @@ export var placeInfoStyles = StyleSheet.create({
     marginRight: 20,
   }
 })
+
+export var colors = {
+  orange: '#ff8f00',
+  grey: 'dimgrey',
+  lightGrey: 'darkgrey',
+  black: 'black'
+}

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {colors} from 'TigerEats/src/styles'
 
 export var styles = StyleSheet.create({
   screenContainer: {
@@ -8,7 +9,6 @@ export var styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1
   },
   dHallCoverImage: {
     flex: 1,
@@ -19,11 +19,10 @@ export var styles = StyleSheet.create({
     flex: 0.5,
     justifyContent: 'center',
     alignItems: 'flex-start',
-    borderWidth: 1,
     paddingLeft: 10
   },
   dHallFrontalName: {
-    fontSize: 34,
+    fontSize: 32,
     fontWeight: 'bold',
     paddingBottom: 2,
   },
@@ -32,11 +31,34 @@ export var styles = StyleSheet.create({
     fontSize: 17,
   },
   dHallTabViewContainer: {
-    borderWidth: 1,
     flex: 2.5,
   },
   tabViewScene: {
     flex: 1,
   }
-  
+})
+
+export var dishesStyles = StyleSheet.create({
+  container: {
+    paddingLeft: 20,
+    paddingTop: 10,
+  },
+  dishCategoryContainer: {
+    paddingVertical: 12,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'dimgrey'
+  },
+  dishCategory: {
+    fontSize: 23,
+    fontWeight: 'bold',
+    paddingBottom: 3,
+  },
+  dishItems: {
+    fontSize: 18,
+    paddingVertical: 1
+  },
+  pawIcon: {
+    marginRight: 3,
+    borderWidth: 2
+  }
 })

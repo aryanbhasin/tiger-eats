@@ -1,5 +1,7 @@
 import {createStackNavigator} from 'react-navigation';
+import React, {Component} from 'react';
 
+import HeaderTitle from './custom-header'
 import DiningHalls from '../features/dining-halls'
 import DHallInfoScreen from '../components/dhall-info'
 // import FetchMenu from '../components/extract-menu/fetch-menu'
@@ -13,12 +15,7 @@ export default createStackNavigator(
   {
     initialRouteName: 'Dining',
     defaultNavigationOptions: {
-      title: 'TigerEats',
-      headerTitleStyle: {
-        color: '#ff8f00',
-        fontWeight: '700',
-        fontSize: 28,
-      }
+      headerTitle: <HeaderTitle />
     }
   }
 );

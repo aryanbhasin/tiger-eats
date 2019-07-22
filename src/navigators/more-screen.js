@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {View, Text} from 'react-native'
 import {createStackNavigator} from 'react-navigation';
 
+import HeaderTitle from './custom-header'
+
 class Temp extends Component {
   render() {
     return (
@@ -17,6 +19,9 @@ export default createStackNavigator(
     More: Temp
   },
   {
-    initialRouteName: 'More'
+    initialRouteName: 'More',
+    defaultNavigationOptions: {
+      headerTitle: <HeaderTitle />
+    }
   }
 );
