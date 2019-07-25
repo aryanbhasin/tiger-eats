@@ -51,3 +51,11 @@ function dHallConstructor(dHallName) {
   
   return `&locationNum=${locNum}&locationName=${locName}`  
 }
+
+// backup URL Constructor function for dummy testing
+function URLConstructor() {
+  let base = 'https://menus.princeton.edu/dining/_Foodpro/online-menu/menuDetails.asp?myaction=read&sName=Princeton+University+Campus+Dining';
+  let date = '&dtdate=7%2F25%2F2019';
+  let dhall = '&locationNum=02&locationName=%20Butler+%26+Wilson+Colleges&naFlag=1'
+  return base + date + dhall;
+}

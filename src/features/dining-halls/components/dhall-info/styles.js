@@ -71,3 +71,15 @@ export var dishesStyles = StyleSheet.create({
     borderWidth: 2
   }
 })
+
+export var cornerCaseStyles = StyleSheet.create({
+  cornerCaseContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  cornerCaseText: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
+})

@@ -8,7 +8,7 @@ import TabPage from './tab-menu-page'
 import constructDiningUrl from 'TigerEats/src/components/extract-menu/dining-url-constructor'
 import {getDishes} from 'TigerEats/src/actions'
 import LoadingSpinner from 'TigerEats/src/components/loading-spinner'
-
+import {FetchErrorComponent} from './corner-case-components.js'
 
 const {width, height} = Dimensions.get('window');
 
@@ -29,15 +29,18 @@ class DHallTabView extends Component {
     }
   }
   
-  URLConstructor() {
-    let base = 'https://menus.princeton.edu/dining/_Foodpro/online-menu/menuDetails.asp?myaction=read&sName=Princeton+University+Campus+Dining';
-    let date = '&dtdate=7%2F25%2F2019';
-    let dhall = '&locationNum=02&locationName=%20Butler+%26+Wilson+Colleges&naFlag=1'
-    return base + date + dhall;
-  }
-  
   _renderScene = ({route}) => {
-    return (this.props.loading) ? <LoadingSpinner /> : <TabPage {...this.props} routeKey={route.key}  />
+    // if error message present, show fetch-error text component
+    if (this.props.error.length > 1) {
+      console.log(this.props.error);
+      return (<FetchErrorComponent />);
+    } else {
+      if (this.props.loading) {
+        return( <LoadingSpinner />);
+      } else {
+        return (<TabPage {...this.props} routeKey={route.key}  />);
+      }
+    }
   }
   
   _renderTabBar = (props) => {
@@ -72,6 +75,7 @@ const mapStateToProps = (state) => {
     meals: state.dishes.meals,
     dishes: state.dishes.dishes,
     loading: state.dishes.loading,
+    error: state.dishes.error
   }
 }
 
