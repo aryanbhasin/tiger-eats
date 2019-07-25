@@ -35,6 +35,15 @@ export var styles = StyleSheet.create({
   },
   tabViewScene: {
     flex: 1,
+  },
+  tabBar: {
+    backgroundColor: colors.darkGrey,
+  },
+  tabBarIndicator: {
+    backgroundColor: colors.orange
+  },
+  tabBarLabel: {
+    color: 'white'
   }
 })
 

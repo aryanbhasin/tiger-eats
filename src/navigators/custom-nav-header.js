@@ -15,13 +15,16 @@ export default class HeaderTitle extends Component {
 
 var styles = StyleSheet.create({
   headerText: {
-    fontWeight: '700',
+    fontWeight: 'bold',
     fontSize: 28,
   },
   textTiger: {
     color: colors.orange,
   },
   textEats: {
-    color: colors.black
+    color: colors.black,
+    fontSize: 29,
+    fontFamily: 'Courgette-Regular',
+    fontWeight: 'bold'
   }
 })

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, Dimensions, ActivityIndicator} from 'react-native';
-import {TabView, SceneMap} from 'react-native-tab-view';
+import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {connect} from 'react-redux'
 
 import {getDishes} from 'TigerEats/src/actions'
@@ -26,13 +26,24 @@ class DHallTabView extends Component {
   
   URLConstructor() {
     let base = 'https://menus.princeton.edu/dining/_Foodpro/online-menu/menuDetails.asp?myaction=read&sName=Princeton+University+Campus+Dining';
-    let date = '&dtdate=7%2F12%2F2019';
+    let date = '&dtdate=7%2F25%2F2019';
     let dhall = '&locationNum=02&locationName=%20Butler+%26+Wilson+Colleges&naFlag=1'
     return base + date + dhall;
   }
   
-  _renderScene= ({route}) => {
+  _renderScene = ({route}) => {
     return (this.props.loading) ? <LoadingSpinner /> : <TabPage {...this.props} routeKey={route.key}  />
+  }
+  
+  _renderTabBar = (props) => {
+    return (
+      <TabBar 
+        {...props}
+        style={styles.tabBar}
+        indicatorStyle={styles.tabBarIndicator}
+        labelStyle={styles.tabBarLabel}
+      />
+    );
   }
 
   render() {
@@ -43,6 +54,7 @@ class DHallTabView extends Component {
           onIndexChange={(index) => this.setState({index: index})}
           initalLayout={{flex: 3, width: width, height: height * 0.5}}
           renderScene={this._renderScene}
+          renderTabBar={this._renderTabBar}
         />
       </View>
     );

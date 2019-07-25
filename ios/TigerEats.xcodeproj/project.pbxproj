@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -64,6 +63,7 @@
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F87A026B717C4C58878C19B3 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD03D96A742A4D4395DBF168 /* libRNGestureHandler-tvOS.a */; };
 		FDF67F536B3A49DCB13D789B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0159D76CB8634F5E8CC74227 /* EvilIcons.ttf */; };
+		6CD7EB776C894D1ABED84044 /* Courgette-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 824F1F5E4347431C8DCAEF90 /* Courgette-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -454,6 +454,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FD8D0EE4A06D44B6ACDB0BCC /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		824F1F5E4347431C8DCAEF90 /* Courgette-Regular.ttf */ = {isa = PBXFileReference; name = "Courgette-Regular.ttf"; path = "../src/assets/fonts/Courgette-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -665,6 +666,7 @@
 				3485D15B068E43CB8ACA9455 /* Octicons.ttf */,
 				7ADF5757EAFB4ADF98A616D7 /* SimpleLineIcons.ttf */,
 				447E4FC89B5343218076078F /* Zocial.ttf */,
+				824F1F5E4347431C8DCAEF90 /* Courgette-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1339,6 +1341,7 @@
 				CE4AFD982EC84807ACE10892 /* Octicons.ttf in Resources */,
 				665A107537394BA3A7A009FD /* SimpleLineIcons.ttf in Resources */,
 				DC706768EEE44AAC8040A7F5 /* Zocial.ttf in Resources */,
+				6CD7EB776C894D1ABED84044 /* Courgette-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

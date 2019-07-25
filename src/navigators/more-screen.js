@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {View, Text} from 'react-native'
 import {createStackNavigator} from 'react-navigation';
 
-import HeaderTitle from './custom-header'
+import HeaderTitle from './custom-nav-header'
 
 class Temp extends Component {
   render() {

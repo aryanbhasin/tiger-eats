@@ -1,7 +1,7 @@
 import {createStackNavigator} from 'react-navigation';
 import React, {Component} from 'react';
 
-import HeaderTitle from './custom-header'
+import HeaderTitle from './custom-nav-header'
 import PlaceInfo from '../components/place-info';
 import Explore from '../features/explore';
 

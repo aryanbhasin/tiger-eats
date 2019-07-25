@@ -26,6 +26,7 @@ export function updateSearch(text, initData) {
 // **************************************** ACTION CREATORS FOR UPDATING MENU ****************************************
 import JSSoup from 'jssoup';
 import {extractMealData} from '../components/extract-menu/get-dishes'
+import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
 
 // uses thunk
 export function getDishes(menuUrl) {
@@ -33,6 +34,13 @@ export function getDishes(menuUrl) {
   // add validation for URL
   
   return (dispatch) => {
+    
+    let isInternetConnected = checkInternetConnection();
+    
+    if (!isInternetConnected) {
+      dispatch({type: FETCH_ERROR, payload: 'Internet not connected'})
+    }
+    
     fetch(menuUrl)
       .then(response => response.text())
       .catch(error => {dispatch({type: FETCH_ERROR, payload: error})})

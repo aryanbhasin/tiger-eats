@@ -25,5 +25,6 @@ export var colors = {
   orange: '#ff8f00',
   grey: 'dimgrey',
   lightGrey: 'darkgrey',
-  black: 'black'
+  black: 'black',
+  darkGrey: 'rgb(51,51,51)'
 }
