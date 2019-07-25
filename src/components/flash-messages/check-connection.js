@@ -10,7 +10,6 @@ export default function checkInternetConnection() {
     if (!isInternetConnected) {
       showMessage({
         message: "No internet connection",
-        description: "Connect to a network to use this feature",
         type: "danger",
         icon: "warning"
       })

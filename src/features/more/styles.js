@@ -23,7 +23,7 @@ export var styles = StyleSheet.create({
   sectionHeaderIcon: {
     color: colors.orange,
     marginRight: 7,
-    fontSize: 20
+    fontSize: 20,
   },
   text: {
     fontSize: 15,
