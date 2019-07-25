@@ -1,7 +1,8 @@
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const FETCH_ERROR = 'FETCH_ERROR';
-export const INTERNET_ERROR = 'INTERNET_ERROR';
+export const CONNECTION_ERROR = 'CONNECTION_ERROR';
 export const GET_DISHES = 'GET_DISHES';
+export const NO_DATA = 'NO_DATA';
 
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
@@ -39,20 +40,24 @@ export function getDishes(menuUrl) {
     
     let isInternetConnected = checkInternetConnection();
     if (!isInternetConnected) {
-      dispatch({type: INTERNET_ERROR, payload: 'Internet not connected'})
+      dispatch({type: CONNECTION_ERROR})
     }
     
     // overcomes 'Access to fetch from origin blocked due to CORS policy'
     const corsProxyurl = 'https://cors-anywhere.herokuapp.com/';
     axios.get(menuUrl)
-      .then(response => response.data)
+      .then(response => {console.log(response); return(response.data)})
       .catch(error => {console.log(error); dispatch({type: FETCH_ERROR, payload: 'Can’t access url response'})})
       .then(data => {
+        if (!!data && data.includes("No Data Available")) {
+          console.log('No Data Available');
+          dispatch({type: NO_DATA})
+        }
+        
         var soup = new JSSoup(data);
         var meals = soup.findAll('div', 'mealCard');
         dishes = new Object();
         meals.forEach(mealCard => extractMealData(mealCard, dishes));
-        console.log(corsProxyurl + menuUrl, data)
         dispatch({
           type: GET_DISHES,
           payload: {
@@ -62,6 +67,6 @@ export function getDishes(menuUrl) {
           }
         })
       })
-      .catch(error => {console.log(error); dispatch({type: FETCH_ERROR, payload: 'Can’t access url response'})})
+      .catch(error => {console.log(error); dispatch({type: FETCH_ERROR, payload: 'Can’t access url'})})
   }
 }

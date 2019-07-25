@@ -4,6 +4,7 @@ import {createStackNavigator} from 'react-navigation';
 import More from '../features/more'
 
 import HeaderTitle from './custom-nav-header'
+import {colors} from '../styles'
 
 export default createStackNavigator(
   {
@@ -12,7 +13,8 @@ export default createStackNavigator(
   {
     initialRouteName: 'More',
     defaultNavigationOptions: {
-      headerTitle: <HeaderTitle />
+      headerTitle: <HeaderTitle />,
+      headerTintColor: colors.darkGrey,
     }
   }
 );

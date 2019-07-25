@@ -36,7 +36,7 @@ function dHallConstructor(dHallName) {
       locNum = '01';
       locName = 'Rockefeller+%26+Mathey+Colleges&naFlag=1'
       break;
-    case 'Wu / Wilcox':
+    case 'Whitman':
       locNum = '08';
       locName = 'Whitman+College&naFlag=1'
       break;

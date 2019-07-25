@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import HeaderTitle from './custom-nav-header'
 import DiningHalls from '../features/dining-halls'
 import DHallInfoScreen from '../features/dining-halls/components/dhall-info'
+import {colors} from '../styles'
 // import FetchMenu from '../components/extract-menu/fetch-menu'
 
 export default createStackNavigator(
@@ -18,7 +19,8 @@ export default createStackNavigator(
   {
     initialRouteName: 'Dining',
     defaultNavigationOptions: {
-      headerTitle: <HeaderTitle />
+      headerTitle: <HeaderTitle />,
+      headerTintColor: colors.darkGrey,
     }
   }
 );

@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {UPDATE_SEARCH} from '../actions'
-import {GET_DISHES, FETCH_ERROR, INTERNET_ERROR} from '../actions'
+import {GET_DISHES, FETCH_ERROR, CONNECTION_ERROR, NO_DATA} from '../actions'
 
 import {PLACES_DATA} from 'TigerEats/src/assets/data/places-data.js';
 
@@ -35,8 +35,10 @@ function dishes(state = initialDishesState, action) {
       return {...state, meals: meals, dishes: dishes, loading: false}
     case FETCH_ERROR:
       return {...state, error: action.payload}
-    case INTERNET_ERROR:
-      return {...state, connectionError: action.payload}
+    case CONNECTION_ERROR:
+      return {...state, connectionError: 'Internet not connected'}
+    case NO_DATA:
+      return {...state, error: 'No Data Available'}
     default:
       return state;
   }
