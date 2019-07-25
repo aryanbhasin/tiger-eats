@@ -82,17 +82,17 @@ export default class MealStatus extends Component {
   
   renderMealTimings(mealTimings) {
     if (typeof mealTimings !== 'Array') {
-      console.log(mealTimings)
+      // console.log(mealTimings)
     }
     var openHr = mealTimings[0];
     var closingHr = mealTimings[1];
     if (openHr >= 12) {
       // opening hr is p.m., checking for closing hr period
       if (closingHr >= 12) {
-        console.log('hello');
+        // console.log('hello');
         return (this.buildMealTimingString(openHr % 12, closingHr % 12, 'pm'));
       } else {
-        console.log('lolol');
+        // console.log('lolol');
         return (this.buildMealTimingString(openHr % 12, closingHr, 'pm', 'am'));
       }
     } else {
@@ -107,7 +107,7 @@ export default class MealStatus extends Component {
   
   render() {
     let {openStatus, nextMeal, mealTimings} = this.state;
-    console.log(mealTimings);
+    // console.log(mealTimings);
     if (mealTimings !== null) {
       return (
         <View>

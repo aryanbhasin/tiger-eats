@@ -3,17 +3,22 @@ import {View, Text, Dimensions, ActivityIndicator} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {connect} from 'react-redux'
 
+import {styles} from '../styles'
+import TabPage from './tab-menu-page'
+import constructDiningUrl from 'TigerEats/src/components/extract-menu/dining-url-constructor'
 import {getDishes} from 'TigerEats/src/actions'
 import LoadingSpinner from 'TigerEats/src/components/loading-spinner'
-import TabPage from './tab-menu-page'
+
+
 const {width, height} = Dimensions.get('window');
-import {styles} from '../styles'
+
 
 class DHallTabView extends Component {
   
   constructor(props) {
     super(props);
-    this.props.getDishes(this.URLConstructor());
+    let URL = constructDiningUrl(this.props.dHallName);
+    this.props.getDishes(URL);
     this.state = {
       index: 0,
       routes: [

@@ -15,9 +15,12 @@ export default class DHallCard extends Component {
   }
   
   render() {
-    let {name, imgUrl} = this.props;
+    let {name, imgUrl, navigation} = this.props;
     return (
-      <Touchable onPress={() => alert('pressed')}>
+      <Touchable onPress={() => navigation.navigate('DHallInfo', {
+        dHallName: name,
+        dHallImg: imgUrl
+      })}>
         <View style={styles.dHallCardContainer}>
           <Image style={styles.dHallCardImage} source={imgUrl} />
           <View style={styles.dHallInfoContainer}>

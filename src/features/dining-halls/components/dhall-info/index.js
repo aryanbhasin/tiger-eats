@@ -13,11 +13,14 @@ import DHallTabView from './components/dhall-tab-view'
 export default class DHallInfoScreen extends Component {
   
   render() {
+    let {navigation} = this.props;
+    let dHallName = navigation.getParam('dHallName', 'Wu / Wilcox')
+    let dHallImg = navigation.getParam('dHallImg')
     return (
       <View style={styles.screenContainer}>
-        <DHallCoverImage imageSrc={require('TigerEats/src/assets/images/wu-wilcox-dhall.jpg')}/>
-        <DHallFrontalHeader name='Wu / Wilcox' address='Some dummy address line # 1' />
-        <DHallTabView />
+        <DHallCoverImage imageSrc={dHallImg}/>
+        <DHallFrontalHeader name={dHallName} address='Some dummy address line # 1' />
+        <DHallTabView dHallName={dHallName} />
       </View>
     );
   }

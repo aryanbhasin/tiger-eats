@@ -25,6 +25,7 @@ export function updateSearch(text, initData) {
 
 // **************************************** ACTION CREATORS FOR UPDATING MENU ****************************************
 import JSSoup from 'jssoup';
+import axios from 'axios'
 import {extractMealData} from '../components/extract-menu/get-dishes'
 import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
 
@@ -36,19 +37,21 @@ export function getDishes(menuUrl) {
   return (dispatch) => {
     
     let isInternetConnected = checkInternetConnection();
-    
     if (!isInternetConnected) {
       dispatch({type: FETCH_ERROR, payload: 'Internet not connected'})
     }
     
-    fetch(menuUrl)
-      .then(response => response.text())
-      .catch(error => {dispatch({type: FETCH_ERROR, payload: error})})
-      .then(htmlText => {
-        var soup = new JSSoup(htmlText);
+    // overcomes 'Access to fetch from origin blocked due to CORS policy'
+    const corsProxyurl = 'https://cors-anywhere.herokuapp.com/';
+    axios.get(corsProxyurl + menuUrl)
+      .then(response => response.data)
+      .catch(error => console.log(error))
+      .then(data => {
+        var soup = new JSSoup(data);
         var meals = soup.findAll('div', 'mealCard');
         dishes = new Object();
         meals.forEach(mealCard => extractMealData(mealCard, dishes));
+        console.log(data, meals)
         dispatch({
           type: GET_DISHES,
           payload: {
@@ -58,5 +61,6 @@ export function getDishes(menuUrl) {
           }
         })
       })
+      .catch(error => {console.log(error); dispatch({type: FETCH_ERROR, payload: 'Can’t access url response'})})
   }
 }
