@@ -42,8 +42,6 @@ export default class MealStatus extends Component {
   
   checkOpenStatus() {
     let [hrs, mins, day, month] = getTime();
-    hrs = 9
-    day = 0
     decimalHrs = hrs + (mins / 60);
     decimalHrs = Math.round(decimalHrs * 100) / 100
     let {codeName} = this.props;
