@@ -6,7 +6,7 @@ import {styles} from './styles'
 import DHallCard from './components/dhall-card'
 import constructDiningUrl from 'TigerEats/src/components/extract-menu/dining-url-constructor'
 import {getDishes} from 'TigerEats/src/actions'
-import {DHallList} from './constants'
+import {DHallList} from 'TigerEats/src/constants/dhall-list'
 
 class DiningHalls extends Component {
   

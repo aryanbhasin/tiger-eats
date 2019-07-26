@@ -26,7 +26,6 @@ class DHallTabView extends Component {
   indexIntoHallData() {
     let codeName = this.props.dHallCodeName;
     let hallDataArray = this.props.halls;
-    console.log(hallDataArray, codeName)
     filteredData = hallDataArray.filter((hall) => (codeName === Object.keys(hall)[0]));
     return filteredData[0][codeName];
   }

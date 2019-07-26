@@ -1,4 +1,5 @@
-export const DHallList = [{
+export const DHallList = [
+  {
     name: 'Wu / Wilcox',
     codeName: 'wucox',
     imgUrl: require('TigerEats/src/assets/images/wu-wilcox-dhall.jpg')

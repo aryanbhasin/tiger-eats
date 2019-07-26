@@ -27,5 +27,6 @@ export var colors = {
   lightGrey: 'darkgrey',
   black: 'black',
   darkGrey: 'rgb(51,51,51)',
-  almostWhite: 'rgb(250, 250, 250)'
+  almostWhite: 'rgb(250, 250, 250)',
+  red: 'rgb(217, 10, 22)'
 }
