@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import HeaderTitle from './custom-nav-header'
 import PlaceInfo from '../components/place-info';
 import Explore from '../features/explore';
+import {colors} from '../styles'
 
 export default createStackNavigator(
   {
@@ -13,7 +14,8 @@ export default createStackNavigator(
   {
     initialRouteName: 'Explore',
     defaultNavigationOptions: {
-      headerTitle: <HeaderTitle />
+      headerTitle: <HeaderTitle />,
+      headerTintColor: colors.darkGrey,
     }
   }
 );

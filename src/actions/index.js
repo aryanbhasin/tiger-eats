@@ -1,8 +1,7 @@
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
-export const FETCH_ERROR = 'FETCH_ERROR';
+export const ERROR = 'ERROR';
 export const CONNECTION_ERROR = 'CONNECTION_ERROR';
 export const GET_DISHES = 'GET_DISHES';
-export const NO_DATA = 'NO_DATA';
 
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
@@ -31,8 +30,18 @@ import axios from 'axios'
 import {extractMealData} from '../components/extract-menu/get-dishes'
 import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
 
+function dispatchError(codeName, message) {
+  return {
+    type: ERROR,
+    payload: {
+      message,
+      codeName,
+    }
+  }
+}
+
 // uses thunk
-export function getDishes(menuUrl) {
+export function getDishes(menuUrl, dHallCodeName) {
 
   // add validation for URL
   
@@ -46,27 +55,34 @@ export function getDishes(menuUrl) {
     // overcomes 'Access to fetch from origin blocked due to CORS policy'
     const corsProxyurl = 'https://cors-anywhere.herokuapp.com/';
     axios.get(menuUrl)
-      .then(response => {console.log(response); return(response.data)})
-      .catch(error => {console.log(error); dispatch({type: FETCH_ERROR, payload: 'Can’t access url response'})})
+      .then(response => {
+        return(response.data)
+      })
+      .catch(error => {
+        console.log(error); 
+        return dispatch(dispatchError(dHallCodeName, error))
+      })
       .then(data => {
         if (!!data && data.includes("No Data Available")) {
-          console.log('No Data Available');
-          dispatch({type: NO_DATA})
+          return dispatch(dispatchError(dHallCodeName, 'No Data Available'))
         }
         
         var soup = new JSSoup(data);
         var meals = soup.findAll('div', 'mealCard');
         dishes = new Object();
         meals.forEach(mealCard => extractMealData(mealCard, dishes));
-        dispatch({
+        return dispatch({
           type: GET_DISHES,
           payload: {
-            meals: meals,
-            dishes: dishes,
-            loading: false
+            dHallCodeName,
+            meals,
+            dishes
           }
         })
       })
-      .catch(error => {console.log(error); dispatch({type: FETCH_ERROR, payload: 'Can’t access url'})})
+      .catch(error => {
+        console.log(error); 
+        return dispatch(dispatchError(dHallCodeName, error))
+      })
   }
 }

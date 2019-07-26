@@ -11,14 +11,16 @@ export default class DHallCard extends Component {
   
   static propTypes = {
     name: PropTypes.string.isRequired,
+    codeName: PropTypes.string.isRequired,
     imgUrl: PropTypes.any.isRequired
   }
   
   render() {
-    let {name, imgUrl, navigation} = this.props;
+    let {name, codeName, imgUrl, navigation} = this.props;
     return (
       <Touchable onPress={() => navigation.navigate('DHallInfo', {
         dHallName: name,
+        dHallCodeName: codeName,
         dHallImg: imgUrl
       })}>
         <View style={styles.dHallCardContainer}>

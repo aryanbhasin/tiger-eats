@@ -6,9 +6,6 @@
 */
 import React, {Component} from 'react';
 import {View, Text, Image} from 'react-native';
-import {connect} from 'react-redux'
-import {getDishes} from 'TigerEats/src/actions'
-import constructDiningUrl from 'TigerEats/src/components/extract-menu/dining-url-constructor'
 
 import {styles} from './styles'
 import DHallTabView from './components/dhall-tab-view'
@@ -35,12 +32,13 @@ export default class DHallInfoScreen extends Component {
   render() {
     let {navigation} = this.props;
     dHallName = navigation.getParam('dHallName')
+    dHallCodeName = navigation.getParam('dHallCodeName')
     dHallImg = navigation.getParam('dHallImg')
     return (
       <View style={styles.screenContainer}>
         <DHallCoverImage imageSrc={dHallImg}/>
         <DHallFrontalHeader name={dHallName} address='Some dummy address line # 1' />
-        <DHallTabView dHallName={dHallName} />
+        <DHallTabView dHallCodeName={dHallCodeName} />
       </View>
     );
   }

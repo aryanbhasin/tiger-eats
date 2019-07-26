@@ -1,14 +1,10 @@
 import {combineReducers} from 'redux';
 import {UPDATE_SEARCH} from '../actions'
-import {GET_DISHES, FETCH_ERROR, CONNECTION_ERROR, NO_DATA} from '../actions'
+import {GET_DISHES, ERROR, CONNECTION_ERROR} from '../actions'
 
-import {PLACES_DATA} from 'TigerEats/src/assets/data/places-data.js';
+import {initialSearchState, initialMealsState} from './constants'
 
 // **************************************** REDUCER FOR SEARCH ****************************************
-const initialSearchState = {
-  searchTerm: '',
-  searchResults: PLACES_DATA,
-}
 
 function search(state = initialSearchState, action) {
   switch (action.type) {
@@ -20,25 +16,29 @@ function search(state = initialSearchState, action) {
 }
 
 // **************************************** REDUCER FOR GETTING DISHES ****************************************
-const initialDishesState = {
-  error: '',
-  connectionError: '',
-  meals: [],
-  dishes: [],
-  loading: true,
-}
+// const initialDishesState = {
+//   error: '',
+//   connectionError: '',
+//   meals: [],
+//   dishes: [],
+//   loading: true,
+// }
 
-function dishes(state = initialDishesState, action) {
+import {updateHallDishes, updateErrorMessage} from './functions'
+
+function dishes(state = initialMealsState, action) {
   switch (action.type) {
     case GET_DISHES:
-      const {meals, loading, dishes} = action.payload
-      return {...state, meals: meals, dishes: dishes, loading: false}
-    case FETCH_ERROR:
-      return {...state, error: action.payload}
+      const {dHallCodeName, meals, dishes} = action.payload
+      const updatedHallData = {meals, dishes, error: '', loading: false};
+      let newHallState = updateHallDishes(state.halls, dHallCodeName, updatedHallData);
+      return {...state, halls: newHallState}
+    case ERROR:
+      const {codeName, message} = action.payload
+      let newState = updateErrorMessage(state.halls, codeName, message);
+      return {...state, halls: newState}
     case CONNECTION_ERROR:
       return {...state, connectionError: 'Internet not connected'}
-    case NO_DATA:
-      return {...state, error: 'No Data Available'}
     default:
       return state;
   }

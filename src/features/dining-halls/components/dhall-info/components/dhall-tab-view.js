@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 
 import {getDishes} from 'TigerEats/src/actions'
 import {styles} from '../styles'
-import constructDiningUrl from 'TigerEats/src/components/extract-menu/dining-url-constructor'
 import TabPage from './tab-menu-page'
 import LoadingSpinner from 'TigerEats/src/components/loading-spinner'
 import {FetchErrorComponent, NoFoodDataComponent} from './corner-case-components.js'
@@ -15,35 +14,40 @@ const {width, height} = Dimensions.get('window');
 
 class DHallTabView extends Component {
   
-  constructor(props) {
-    super(props);
-    
-    let URL = constructDiningUrl(this.props.dHallName);
-    this.props.getDishes(URL);
-    
-    this.state = {
-      index: 0,
-      routes: [
-        {key: 'breakfast', title: 'Breakfast'},
-        {key: 'lunch', title: 'Lunch'},
-        {key: 'dinner', title: 'Dinner'},
-      ],
-    }
+  state = {
+    index: 0,
+    routes: [
+      {key: 'breakfast', title: 'Breakfast'},
+      {key: 'lunch', title: 'Lunch'},
+      {key: 'dinner', title: 'Dinner'},
+    ],
+  }
+  
+  indexIntoHallData() {
+    let codeName = this.props.dHallCodeName;
+    let hallDataArray = this.props.halls;
+    console.log(hallDataArray, codeName)
+    filteredData = hallDataArray.filter((hall) => (codeName === Object.keys(hall)[0]));
+    return filteredData[0][codeName];
   }
   
   _renderScene = ({route}) => {
+    
+    hallData = this.indexIntoHallData();
+    let {dishes, meals, error, loading} = hallData;
     // if error message present, show fetch-error text component
-    if (this.props.error.length > 1) {
-      if (this.props.error === 'No Data Available') {
+    
+    if (error.length > 1) {
+      if (error === 'No Data Available') {
         return (<NoFoodDataComponent />);
       } else {
         return (<FetchErrorComponent />);
       }
     } else {
-      if (this.props.loading) {
+      if (loading) {
         return( <LoadingSpinner />);
       } else {
-        return (<TabPage {...this.props} routeKey={route.key}  />);
+        return (<TabPage dishes={dishes} meals={meals} loading={loading} routeKey={route.key}  />);
       }
     }
   }
@@ -77,15 +81,8 @@ class DHallTabView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    meals: state.dishes.meals,
-    dishes: state.dishes.dishes,
-    loading: state.dishes.loading,
-    error: state.dishes.error
+    halls: state.dishes.halls
   }
 }
 
-const mapDispatchToProps = {
-  getDishes,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DHallTabView)
+export default connect(mapStateToProps)(DHallTabView)
