@@ -3,7 +3,8 @@ import {View, Text, StyleSheet, FlatList} from 'react-native';
 import PropTypes from 'prop-types'
 
 import Directions from './components/directions';
-import CallCard from './components/call-card.js';
+import CallButton from './components/call-button.js';
+import WebsiteButton from './components/website-button'
 import ReviewStars from './components/review-stars';
 
 import {placeInfoStyles} from 'TigerEats/src/styles/index.js'
@@ -17,19 +18,24 @@ export default class Details extends Component {
       longitude: PropTypes.number,
     }).isRequired,
     phone_number: PropTypes.string,
+    website: PropTypes.string
   }
   
   render() {
     
-    const {reviewPlace, location, phone_number} = this.props;
+    let {reviewPlace, location, phone_number, website} = this.props;
     
-    const hasPhoneNumber = !!phone_number ? true : false;
+    let hasPhoneNumber = !!phone_number ? true : false;
+    let hasWebsite = !!website ? true : false;
     
     return (
-      <View>
-        <Directions destCoords={location} />
-        {hasPhoneNumber ? (<CallCard number={phone_number} />) : null}
+      <View style={{flex: 1, borderWidth: 3}}>
         <ReviewStars reviewPlace={reviewPlace} />
+        <Directions destCoords={location} />
+        <View style={styles.buttonsRowContainer}>
+          {hasWebsite && <WebsiteButton website={website} />}
+          {hasPhoneNumber && <CallButton number={phone_number} />}
+        </View>
       </View>
       
     );

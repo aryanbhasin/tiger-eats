@@ -1,14 +1,13 @@
 import React from 'react';
-import {View, Text, Linking} from 'react-native';
+import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-import InAppBrowser from 'react-native-inappbrowser-reborn';
+
 import Touchable from 'react-native-platform-touchable'; 
 import PropTypes from "prop-types";
 
+import {openLink} from 'TigerEats/src/functions/general'
 import {styles} from '../styles'
-import {colors} from 'TigerEats/src/styles'
-import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
 
 export default function LinksList() {
   return (
@@ -24,7 +23,6 @@ export default function LinksList() {
     </View>
   )
 }
-
 
 function Link({name, description, url}) {
   return (
@@ -42,34 +40,10 @@ function Link({name, description, url}) {
   );
 }
 
+// openLink function moved to src/functions/general
+
 Link.propTypes = {
   name: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   description: PropTypes.string
-}
-
-async function openLink(url) {
-  let isInternetConnected = checkInternetConnection();
-  if (isInternetConnected) {
-    try {
-      if (await InAppBrowser.isAvailable()) {
-        await InAppBrowser.open(url, {
-          // iOS Properties
-          dismissButtonStyle: 'done',
-          preferredControlTintColor: colors.orange,
-          // android Properties
-          showTitle: true,
-          enableUrlBarHiding: true,
-          enableDefaultShare: true,
-        });
-      } else {
-        Linking.canOpenURL(url)
-          .then(() => Linking.openURL(url))
-          .catch(error => console.error('An error occurred while opening this URL: ', error))
-      }
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
 }

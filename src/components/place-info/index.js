@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Platform, ScrollView, StatusBar} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
 
@@ -61,8 +61,7 @@ export default class PlaceInfo extends Component {
     var opening_hours = indexIntoOpeningHrs(placeInformation);
     
     return (
-      <View>
-        <ScrollView>
+      <View style={{flex: 1}}>
           <Frontal 
             uri={uri} 
             rating={placeInformation.rating} 
@@ -77,8 +76,8 @@ export default class PlaceInfo extends Component {
             reviewPlace={this.updateRating} 
             phone_number={placeInformation.phone_number}
             location={placeInformation.location}
+            website={placeInformation.website}
           />
-        </ScrollView>
       </View>
       
     );

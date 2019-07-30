@@ -100,6 +100,16 @@ export const EATERY_DATA = {
               "day": 0, 
               "time": "0800"
            }
+        },
+        {
+           "close": {
+              "day": 1, 
+              "time": "1600"
+           }, 
+           "open": {
+              "day": 1, 
+              "time": "0800"
+           }
         }, 
         {
            "close": {
