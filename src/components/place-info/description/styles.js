@@ -1,12 +1,26 @@
 import {StyleSheet} from 'react-native'
+import {colors} from 'TigerEats/src/styles'
 
 export var styles = StyleSheet.create({
-  locationText: {
-    color: 'darkgrey',
+  descriptionContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  titleAndAddressContainer: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    marginLeft: 10,
+  },
+  titleText: {
+    color: colors.darkGrey,
+    fontSize: 44,
+    fontWeight: '700'
+  },
+  addressText: {
+    color: colors.grey,
     fontSize: 17,
     fontWeight: 'bold',
-    marginTop: 10,
-    marginLeft: 10
   },
   tagText: {
     fontWeight: '700',
@@ -24,4 +38,27 @@ export var styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: 10,
   },
+});
+
+export var openStatusStyles = StyleSheet.create({
+  openStatusContainer: {
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  openStatus: {
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  openingHrsText: {
+    fontSize: 17,
+    fontWeight: '500',
+    color: 'slategray'
+
+  },
+  open: {
+    color: 'forestgreen'
+  }, 
+  closed: {
+    color: 'tomato'
+  }
 });

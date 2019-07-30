@@ -10,11 +10,21 @@ export function updateSearch(text, initData) {
   let searchData;
   (text === '') 
     ? searchData = initData
-    : searchData = initData.filter((place) => {
-        const searchTerm = text.toUpperCase();
-        const placeName = place.name.toUpperCase();
-        return (placeName.indexOf(searchTerm) > -1);
-      })
+    : searchData = Object.assign(...
+        Object.keys(initData)
+        .filter((key) => {
+          const searchTerm = text.toUpperCase();
+          const placeName = initData[key].name.toUpperCase();
+          return (placeName.indexOf(searchTerm) > -1);
+        })
+        .map(key => ({ [key]: initData[key] }) )
+      );
+    
+    // initData.filter((place) => {
+    //     const searchTerm = text.toUpperCase();
+    //     const placeName = place.name.toUpperCase();
+    //     return (placeName.indexOf(searchTerm) > -1);
+    //   })
   return {
     type: UPDATE_SEARCH,
     payload: {

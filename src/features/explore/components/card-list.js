@@ -12,7 +12,16 @@ export default class CardList extends Component {
     return (
       <KeyboardAvoidingView>
         <ScrollView style={styles.listContainer} keyboardShouldPersistTaps='never' showsVerticalScrollIndicator={false}>
-          {dataResults.map((item, index) => {
+          {Object.keys(dataResults).map((key, index) => {
+            return (            
+              <PlaceCard 
+                key={index}
+                data={dataResults[key]}
+                navigation={navigation}
+               />
+            );
+          })}
+          {/* {dataResults.map((item, index) => {
             return (            
               <PlaceCard 
                 key={index}
@@ -20,7 +29,7 @@ export default class CardList extends Component {
                 navigation={navigation}
                />
             );
-          })}
+          })} */}
         </ScrollView>
       </KeyboardAvoidingView>
     );

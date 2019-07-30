@@ -1,38 +1,51 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import PropTypes from 'prop-types'
 
-import OpeningHrs from './OpeningHrs';
-
+import OpeningHrs from './opening-hrs';
+import {toTitleCase} from 'TigerEats/src/functions/general'
 import {styles} from './styles'
 
 export default class Description extends Component {
   
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    opening_hours: PropTypes.arrayOf(PropTypes.number),
+  }
+  
   render() {
     
-    const {location, tags, openHrs} = this.props;
-    const openingHr = openHrs[0];
-    const closingHr = openHrs[1];
+                                // Should tag strip be in description or detail???
+    const {address, tags, opening_hours, name} = this.props;
+    const openingHr = opening_hours[0];
+    const closingHr = opening_hours[1];
     
     return (
-      <View style={styles.container}>
-        <Location location={location} />
-        <TagRow tags={tags} />
-        <OpeningHrs openingHr={openingHr} closingHr={closingHr} />
+      <View>
+        <View style={styles.descriptionContainer}>
+          <View style={styles.titleAndAddressContainer}>
+            <Title name={toTitleCase(name)} />
+            <Text style={styles.addressText}>{address}</Text>
+          </View>
+          <View style={{flex: 1, marginRight: 10}}>
+            <OpeningHrs openingHr={openingHr} closingHr={closingHr} />
+          </View>
+        </View>
+        <TagStrip tags={tags} />
       </View>
-
     );
   }
 }
 
-function Location ({location}) {
-  return (
-    <View>
-      <Text style={styles.locationText}>{location}</Text>
-    </View>
+function Title ({name}) {
+  return(
+    <Text style={styles.titleText}>{name}</Text>
   );
 }
 
-function TagRow ({tags}) {
+function TagStrip ({tags}) {
   return (
     <View style={styles.tagRow}>
       {tags.map((item) => (

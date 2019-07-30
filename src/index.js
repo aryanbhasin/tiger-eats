@@ -6,8 +6,6 @@ import ExploreScreen from './navigators/explore-screen'
 import DiningHallScreen from './navigators/dining-screen';
 import MoreScreen from './navigators/more-screen';
 
-import {PLACES_DATA} from './assets/data/places-data.js';
-
 const RootTabNav = createBottomTabNavigator(
   {
     Explore: {
@@ -37,7 +35,7 @@ const RootTabNav = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: 'More',
+    initialRouteName: 'Explore',
     tabBarOptions: {
       activeTintColor: '#ff8f00',
       labelStyle: {

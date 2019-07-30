@@ -3,12 +3,18 @@ import {View, Text, TouchableOpacity, StatusBar, Image} from 'react-native';
 import {getDistance} from 'geolib';
 
 import {Rating} from 'TigerEats/src/components/place-info/frontal';
-import {OpenOrClosed} from 'TigerEats/src/components/place-info/description/OpeningHrs';
+import {OpenOrClosed} from 'TigerEats/src/components/place-info/description/opening-hrs';
+import {indexIntoOpeningHrs} from 'TigerEats/src/functions/explore-functions'
 import {styles} from '../styles';
+import {toTitleCase} from 'TigerEats/src/functions/general'
 
 export default class PlaceCard extends Component {
   
-  calculateDistance(destCoords) {
+  constructor() {
+    super();
+  }
+  
+  calculateDistance(location) {
     const currPosition = navigator.geolocation.getCurrentPosition (
       (position) => {position.coords},
       (error) => {alert(error)},
@@ -21,21 +27,22 @@ export default class PlaceCard extends Component {
       longitude: -74.656353
     }
     
-    let distance = getDistance(currPosition2, destCoords);
+    let distance = getDistance(currPosition2, location);
     distance = Math.ceil(distance / 10) * 10;
     return (distance);
   }
   
   render() {
-    const {uri, name, ratingNum, openHrs, destCoords} = this.props.data
-    const openingHr = openHrs[0];
-    const closingHr = openHrs[1];
+    let {name, rating, location} = this.props.data;
+    let uri = require('TigerEats/src/assets/images/Tacoria-banner.png')
+    let [openingHr, closingHr] = indexIntoOpeningHrs(this.props.data)
+    
     const currHr = parseInt(new Date().getHours());
     const isOpen = ((currHr >= openingHr) && (currHr <= closingHr));
-    const distance = this.calculateDistance(destCoords);
+    
+    const distance = this.calculateDistance(location);
     
     StatusBar.setBarStyle('dark-content', true);
-    
     return (
       <View>
         <View style={styles.cardContainer}>
@@ -44,11 +51,11 @@ export default class PlaceCard extends Component {
           }}>
             <View style={styles.cardImageContainer}>
               <Image source={uri} style={styles.cardImage} />
-              <Rating ratingNum={ratingNum} customStyle={{marginBottom: 0}} />
+              <Rating rating={rating} customStyle={{marginBottom: 0}} />
             </View>
             <View style={styles.cardInfo}>
               <View style={{flexDirection: 'row', flex: 3}}>
-                <Text style={styles.cardTitle}>{name}</Text>
+                <Text style={styles.cardTitle}>{toTitleCase(name)}</Text>
               </View>
               <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                 <OpenOrClosed openingHr={openingHr} closingHr={closingHr} customStyle={{marginBottom: 3}}/>

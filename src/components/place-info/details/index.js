@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
+import PropTypes from 'prop-types'
 
 import Directions from './components/directions';
 import CallCard from './components/call-card.js';
@@ -9,24 +10,33 @@ import {placeInfoStyles} from 'TigerEats/src/styles/index.js'
 import {styles} from './styles.js'
 
 export default class Details extends Component {
+  
+  static propTypes = {
+    location: PropTypes.shape({
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+    }).isRequired,
+    phone_number: PropTypes.string,
+  }
+  
   render() {
     
-    const {reviewPlace, itemList, destCoords, number} = this.props;
+    const {reviewPlace, location, phone_number} = this.props;
     
-    const hasPhoneNumber = !!number ? true : false;
+    const hasPhoneNumber = !!phone_number ? true : false;
     
     return (
       <View>
-        <Directions destCoords={destCoords} />
-        {hasPhoneNumber ? (<CallCard number={number} />) : null}
+        <Directions destCoords={location} />
+        {hasPhoneNumber ? (<CallCard number={phone_number} />) : null}
         <ReviewStars reviewPlace={reviewPlace} />
-        <Menu itemList={itemList} />
       </View>
       
     );
   }
 }
 
+// Renders list of items (not to be added) 
 function Menu ({itemList}) {
   return (
     <View style={placeInfoStyles.defaultContainer}>

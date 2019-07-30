@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
-import {PLACES_DATA} from 'TigerEats/src/assets/data/places-data.js';
+import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
 import {styles} from './styles.js';
 
 import TagCarousel from './components/tag-carousel';
@@ -10,7 +10,7 @@ import CardList from './components/card-list';
 
 import {connect} from 'react-redux'
 
-const data = PLACES_DATA;
+const data = EATERY_DATA;
 
 class Explore extends Component {
   
@@ -47,15 +47,13 @@ class Explore extends Component {
     }  
       
     render() {      
-      const {searchData} = this.state;
-
+    
       return (
           <View>
-            <Search updateSearchTerm={this.updateSearchTerm} applySort={this.applySort} searchTerm={this.state.searchTerm} />
+            <Search />
             <TagCarousel handleTagPress={this.handleTagPress} handleTagDeselect={this.handleTagDeselect} />
             <CardList dataResults={this.props.searchResults} navigation={this.props.navigation} />
           </View>
-  
       );
     }
 }

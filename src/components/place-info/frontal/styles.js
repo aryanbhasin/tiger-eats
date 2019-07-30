@@ -1,5 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
-const {width} = Dimensions.get('window');
+const {height} = Dimensions.get('window');
 
 export var styles = StyleSheet.create({
   rating: {
@@ -8,12 +8,11 @@ export var styles = StyleSheet.create({
     right: 10,
   },
   image: {
-    height: width * 0.7,
+    height: height * 0.3,
     width: null,
   },
   ratingContainer: {
     position: 'absolute',
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     bottom: 0,
@@ -28,18 +27,5 @@ export var styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     fontWeight: '700',
-  },
-  titleContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 12,
-    width: 200,
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-  },
-  name: {
-    color: 'white',
-    fontSize: 44,
-    fontWeight: '700'
   }
 });

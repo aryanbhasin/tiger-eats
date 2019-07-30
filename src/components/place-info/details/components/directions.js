@@ -63,11 +63,11 @@ export default class Directions extends Component {
   
   render() {
     
-    const {destCoords} = this.props
+    const {location} = this.props
     
     return (
       <View style={styles.button}>
-        <Button raised title="Get Directions" titleStyle={[styles.buttonText, placeInfoStyles.defaultFont]} onPress={() => this.handlePress(destCoords)} />
+        <Button raised title="Get Directions" titleStyle={[styles.buttonText, placeInfoStyles.defaultFont]} onPress={() => this.handlePress(location)} />
       </View>
     );
   }

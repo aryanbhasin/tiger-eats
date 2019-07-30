@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Platform, ScrollView, StatusBar} from 'react-native';
 
-import {PLACES_DATA} from 'TigerEats/src/assets/data/places-data.js';
+import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
+
+import {indexIntoOpeningHrs} from 'TigerEats/src/functions/explore-functions'
 
 import Frontal from './frontal';
 import Description from './description';
 import Details from './details';
 
-const data = PLACES_DATA;
+const data = EATERY_DATA;
 
 export default class PlaceInfo extends Component {
   
@@ -46,34 +48,35 @@ export default class PlaceInfo extends Component {
   static navigationOptions = {
     header: null
   }
-  
+
   render() {
     
     const {navigation} = this.props;
     const placeName = navigation.getParam('placeName', 'Tandoori Palace');
     
-    var placeInformation = data.find((item) => {
-      return item.name === placeName;
-    })
+    var placeInformation = data[placeName]
+    var uri = require('TigerEats/src/assets/images/Tacoria-banner.png')
+    var tags = ['Mexican', 'Tacos'];
+
+    var opening_hours = indexIntoOpeningHrs(placeInformation);
     
     return (
       <View>
         <ScrollView>
           <Frontal 
-            uri={placeInformation.uri} 
-            name={placeInformation.name}
-            ratingNum={this.state.rating.toFixed(1)} 
+            uri={uri} 
+            rating={placeInformation.rating} 
           />
           <Description 
-            location={placeInformation.location}
-            tags={placeInformation.tags} 
-            openHrs={placeInformation.openHrs} 
+            address={placeInformation.address}
+            tags={tags} 
+            name={placeInformation.name}
+            opening_hours={opening_hours} 
           />
           <Details 
             reviewPlace={this.updateRating} 
-            itemList={placeInformation.itemList} 
-            number={placeInformation.number}
-            destCoords={placeInformation.destCoords}
+            phone_number={placeInformation.phone_number}
+            location={placeInformation.location}
           />
         </ScrollView>
       </View>

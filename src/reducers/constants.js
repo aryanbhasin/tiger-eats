@@ -1,8 +1,8 @@
-import {PLACES_DATA} from 'TigerEats/src/assets/data/places-data.js';
+import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
 
 export const initialSearchState = {
   searchTerm: '',
-  searchResults: PLACES_DATA,
+  searchResults: EATERY_DATA,
 }
 
 export const initialMealsState = {
