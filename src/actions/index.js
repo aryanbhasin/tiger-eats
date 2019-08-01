@@ -2,6 +2,8 @@ export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const ERROR = 'ERROR';
 export const CONNECTION_ERROR = 'CONNECTION_ERROR';
 export const GET_DISHES = 'GET_DISHES';
+export const GET_LOCATION = 'GET_LOCATION';
+export const LOCATION_ERROR = 'LOCATION_ERROR';
 
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
@@ -34,6 +36,33 @@ export function updateSearch(text, initData) {
   }
 }
 
+// **************************************** ACTION CREATOR FOR GETTING LOCATION ****************************************
+
+export function getLocation() {
+  // geolocation.getCurrentPosition() is asynchronous so need to use redux-thunk
+  return (dispatch) => {
+    navigator.geolocation.requestAuthorization();
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        dispatch({
+          type: GET_LOCATION,
+          payload: {
+            latitude: parseFloat(position.coords.latitude),
+            longitude: parseFloat(position.coords.longitude)
+          }
+        })
+      },
+      (error) => {
+        dispatch({
+          type: LOCATION_ERROR,
+          payload: error
+        })
+      },
+      {enableHighAccuracy: true}
+    );
+  }
+}
+
 // **************************************** ACTION CREATORS FOR UPDATING MENU ****************************************
 import JSSoup from 'jssoup';
 import axios from 'axios'
@@ -53,7 +82,7 @@ function dispatchError(codeName, message) {
 // uses thunk
 export function getDishes(menuUrl, dHallCodeName) {
 
-  // add validation for URL
+                                        // add validation for URL
   
   return (dispatch) => {
     

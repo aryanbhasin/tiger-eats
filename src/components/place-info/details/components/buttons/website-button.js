@@ -1,5 +1,4 @@
-import React, {Component} from 'react'
-import {View, Text} from 'react-native'
+import React, {Component} from 'react';
 import {Button} from 'react-native-elements';
 import PropTypes from 'prop-types'
 

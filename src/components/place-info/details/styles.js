@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+const {width, height} = Dimensions.get('window');
 
 export var styles = StyleSheet.create({
   mainItemStyle: {
@@ -27,4 +28,12 @@ export var styles = StyleSheet.create({
     borderRadius: 7,
     justifyContent: 'center',
   },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  mapContainer: {
+    alignSelf: 'center',
+    height: height * 0.25, 
+    width: width, 
+  }
 });

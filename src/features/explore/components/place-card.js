@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, StatusBar, Image} from 'react-native';
 import {getDistance} from 'geolib';
+import PropTypes from 'prop-types'
 
 import {Rating} from 'TigerEats/src/components/place-info/frontal';
 import {OpenOrClosed} from 'TigerEats/src/components/place-info/description/opening-hrs';
@@ -10,16 +11,24 @@ import {toTitleCase} from 'TigerEats/src/functions/general'
 
 export default class PlaceCard extends Component {
   
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+  }
+  
+  static propTypes = {
+    position: PropTypes.exact({
+      latitude: PropTypes.any,
+      longitude: PropTypes.any
+    }).isRequired,
+    data: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      rating: PropTypes.number.isRequired,
+      location: PropTypes.object.isRequired
+    })
   }
   
   calculateDistance(location) {
-    const currPosition = navigator.geolocation.getCurrentPosition (
-      (position) => {position.coords},
-      (error) => {alert(error)},
-      {enableHighAccuracy: true}
-    );
+    const currPosition = this.props.position
     
     // The Nest Coordinates
     const currPosition2 = {
@@ -27,6 +36,7 @@ export default class PlaceCard extends Component {
       longitude: -74.656353
     }
     
+            // Replace currPosition2 with currPosition in real-time testing
     let distance = getDistance(currPosition2, location);
     distance = Math.ceil(distance / 10) * 10;
     return (distance);

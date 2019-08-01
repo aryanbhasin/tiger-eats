@@ -138,6 +138,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-maps')
+    implementation project(':react-native-share')
     implementation project(':react-native-inappbrowser-reborn')
     implementation project(':react-native-reanimated')
     implementation project(':@react-native-community_netinfo')

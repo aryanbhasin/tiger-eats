@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-elements';
+import PropTypes from 'prop-types'
 import call from 'react-native-phone-call';
 
-import {placeInfoStyles} from 'TigerEats/src/styles/index.js';
-import {styles} from '../styles'
-
 export default class CallButton extends Component {
+  
+  static propTypes = {
+    // number prop is a string (e.g. '(609) 123 456')
+    number: PropTypes.string.isRequired
+  }
   
   async handleCallPress(number) {
     const callData = {
@@ -27,13 +29,3 @@ export default class CallButton extends Component {
     );
   }
 }
-
-/* 
-<TouchableOpacity onPress={() => this.handleCallPress(number)} >
-  <View style={styles.callButtonContainer}>
-    <Text style={styles.callButtonText}>Call</Text>  
-  </View>
-</TouchableOpacity> 
-*/
-
-

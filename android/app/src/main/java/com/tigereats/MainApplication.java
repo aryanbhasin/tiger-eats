@@ -3,6 +3,8 @@ package com.tigereats;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
+import cl.json.RNSharePackage;
 import com.proyecto26.inappbrowser.RNInAppBrowserPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
@@ -28,6 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new MapsPackage(),
+            new RNSharePackage(),
             new RNInAppBrowserPackage(),
             new ReanimatedPackage(),
             new NetInfoPackage(),

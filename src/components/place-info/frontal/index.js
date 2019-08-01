@@ -15,10 +15,8 @@ export default class Frontal extends Component {
   render() {
     const {uri, rating} = this.props;
     return (
-      <View>
-        <View>
-          <Image style={styles.image} source={uri}/>
-        </View>
+      <View>      
+        <Image style={styles.image} source={uri}/>
         <Rating rating={rating} customStyle={styles.rating} />
       </View>
     );
@@ -29,7 +27,7 @@ export class Rating extends Component {
   render() {
     let {rating, customStyle} = this.props;
     return (
-      <View style={[styles.ratingContainer, customStyle]}>
+      <View style={[customStyle, styles.ratingContainer]}>
         <Text style={styles.ratingText}>{rating}</Text>
       </View>
     );

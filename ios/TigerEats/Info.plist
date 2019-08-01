@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>TigerEats uses your location to show you nearby restaurants give directions to them</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

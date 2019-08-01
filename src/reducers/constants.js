@@ -5,6 +5,14 @@ export const initialSearchState = {
   searchResults: EATERY_DATA,
 }
 
+export const initialLocationState = {
+  coordinates: {
+    latitude: '',
+    longitude: '',
+  },
+  error: 'null'
+}
+
 export const initialMealsState = {
   halls: [
     {

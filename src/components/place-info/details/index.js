@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
-import Directions from './components/directions';
-import CallButton from './components/call-button.js';
-import WebsiteButton from './components/website-button'
+import GetDirectionsButton from './components/buttons/get-directions-button';
+import WebsiteButton from './components/buttons/website-button';
+import CallButton from './components/buttons/call-button';
+
 import ReviewStars from './components/review-stars';
+import MapBox from './components/place-info-map-box'
 
 import {placeInfoStyles} from 'TigerEats/src/styles/index.js'
 import {styles} from './styles.js'
 
-export default class Details extends Component {
+class Details extends Component {
   
   static propTypes = {
     location: PropTypes.shape({
@@ -24,14 +27,19 @@ export default class Details extends Component {
   render() {
     
     let {reviewPlace, location, phone_number, website} = this.props;
+    // position: our current position; location: destination coords of the place whose details are open
+    let {position} = this.props
     
     let hasPhoneNumber = !!phone_number ? true : false;
     let hasWebsite = !!website ? true : false;
     
     return (
-      <View style={{flex: 1, borderWidth: 3}}>
+      <View style={{flex: 1}}>
         <ReviewStars reviewPlace={reviewPlace} />
-        <Directions destCoords={location} />
+        <View style={styles.mapContainer}>
+          <MapBox destination={location} position={position} />
+          <GetDirectionsButton position={position} destination={location}/>
+        </View>
         <View style={styles.buttonsRowContainer}>
           {hasWebsite && <WebsiteButton website={website} />}
           {hasPhoneNumber && <CallButton number={phone_number} />}
@@ -41,6 +49,13 @@ export default class Details extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return ({
+    position: state.location.coordinates
+  });
+}
+export default connect(mapStateToProps)(Details);
+
 
 // Renders list of items (not to be added) 
 function Menu ({itemList}) {
