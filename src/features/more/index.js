@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Linking} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import Ionicon from 'react-native-vector-icons/Ionicons'
 import LinksList from './components/links-list'
 import Feedback from './components/feedback-section'
@@ -8,12 +8,12 @@ import {styles} from './styles'
 export default class More extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Spacer />
         <About />
         <LinksList />
         <Feedback />
-      </View>
+      </ScrollView>
     );
   }
 }

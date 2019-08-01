@@ -16,9 +16,11 @@ export default function LinksList() {
         <Icon name='external-link' style={styles.sectionHeaderIcon} />
         <Text style={styles.sectionHeader}>Links</Text>
       </View>
-      <View>
-        <Link name='TigerMenus' description='View dining hall menus' url='https://tigermenus.herokuapp.com/'/>
-        <Link name='TigerMeal' description='View restaurants around campus' url='https://tigermenus.herokuapp.com/'/>  
+      <View> 
+        <Link name='My TigerCard Balance' description='Meal swipes, student charges, guest meals' url='https://fed.princeton.edu/cas/login?service=https%3A//services.jsatech.com/login.php?cid=69'/>  
+        <Link name='FreeFood Listserv' url='https://lists.princeton.edu/cgi-bin/wa?A0=freefood&X=O5DB3A70D79AAC8C16E&Y'/>  
+        <Link name='TigerMeals Delivery' description='View restaurants around campus' url='https://tigermeals-delivery.herokuapp.com/'/> 
+        <Link name='CalcuLateMeal' description='Frist late meal calculator' url='http://calculatemeal.herokuapp.com/'/> 
       </View>
     </View>
   )
@@ -30,7 +32,7 @@ function Link({name, description, url}) {
       <View style={styles.linkContainer}>
         <View>
           <Text style={styles.link}>{name}</Text>
-          <Text style={styles.text}>{description}</Text>
+          {(!!description) && <Text style={styles.text}>{description}</Text>}
         </View>
         <View>
           <Icon name='chevron-right' style={styles.chevron}/>
