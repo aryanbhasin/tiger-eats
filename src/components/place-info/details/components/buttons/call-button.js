@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import {Button} from 'react-native-elements';
+import {TouchableOpacity, Text} from 'react-native'
 import PropTypes from 'prop-types'
 import call from 'react-native-phone-call';
+import Icon from 'react-native-vector-icons/FontAwesome5'
+
+import {styles} from './styles'
 
 export default class CallButton extends Component {
   
@@ -25,7 +28,10 @@ export default class CallButton extends Component {
   render() {
     const {number} = this.props;
     return (
-      <Button title='Call' raised type='outline' onPress={() => this.handleCallPress(number)}/>
+      <TouchableOpacity onPress={() => this.handleCallPress(number)} style={[styles.button, styles.buttonContainer, styles.callButtonContainer]}>
+        <Icon name='phone' style={styles.icon}/>
+        <Text style={[styles.buttonText]}>Call</Text>
+      </TouchableOpacity>
     );
   }
 }

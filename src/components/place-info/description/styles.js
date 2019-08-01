@@ -4,7 +4,8 @@ import {colors} from 'TigerEats/src/styles'
 export var styles = StyleSheet.create({
   descriptionContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 5
   },
   titleAndAddressContainer: {
     flex: 3,

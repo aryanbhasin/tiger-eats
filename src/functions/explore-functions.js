@@ -39,6 +39,6 @@ export function getRegionForCoordinates(points) {
     latitude: midX,
     longitude: midY,
     latitudeDelta: deltaX,
-    longitudeDelta: deltaY + 0.02,
+    longitudeDelta: deltaY + 0.014,
   };
 }

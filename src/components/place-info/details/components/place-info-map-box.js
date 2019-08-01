@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import PropTypes from 'prop-types'
+import {colors} from 'TigerEats/src/styles'
 import {getRegionForCoordinates} from 'TigerEats/src/functions/explore-functions'
 
 import {styles} from '../styles'
@@ -39,12 +41,10 @@ export default class MapBox extends Component {
         // showsUserLocation={true}
         // followsUserLocation={true}
       >
-        <Marker
-          coordinate={destination}
-        />
-        <Marker
-          coordinate={this.nest_location}
-        />
+        <Marker coordinate={destination}>
+          <Icon name='map-pin' color={colors.orange} size={27}/>
+        </Marker> 
+        <Marker coordinate={this.nest_location} />
       </MapView>
     );
   }

@@ -15,25 +15,13 @@ export var styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10
   },
-  callButtonText: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    textAlign: 'center',
-    color: 'white',
-  },
-  callButtonContainer: {
-    backgroundColor: 'darkgreen',
-    width: 60,
-    height: 30,
-    borderRadius: 7,
-    justifyContent: 'center',
-  },
   map: {
     ...StyleSheet.absoluteFillObject,
+    borderRadius: 8
   },
   mapContainer: {
     alignSelf: 'center',
     height: height * 0.25, 
-    width: width, 
+    width: width * 0.92,
   }
 });

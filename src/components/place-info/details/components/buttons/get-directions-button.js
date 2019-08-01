@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native'
+import {View, Text, TouchableOpacity} from 'react-native'
 import {Button} from 'react-native-elements';
 import getDirections from 'react-native-google-maps-directions';
 import PropTypes from 'prop-types'
@@ -40,9 +40,9 @@ export default class GetDirectionsButton extends Component {
   
   render() {
     return (
-      <View style={styles.directionsButtonContainer}>
-        <Button raised type='outline' title="Get Directions" onPress={() => this.handlePress()} />
-      </View>
+      <TouchableOpacity onPress={() => this.handlePress()} style={[styles.button, styles.directionsButtonContainer]}>
+        <Text style={styles.directionsButtonText}>Get Directions</Text>
+      </TouchableOpacity>
     );
   }
 }

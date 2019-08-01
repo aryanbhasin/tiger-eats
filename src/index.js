@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {createStackNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {colors} from './styles'
 
 import ExploreScreen from './navigators/explore-screen'
 import DiningHallScreen from './navigators/dining-screen';
@@ -37,7 +38,7 @@ const RootTabNav = createBottomTabNavigator(
   {
     initialRouteName: 'Explore',
     tabBarOptions: {
-      activeTintColor: '#ff8f00',
+      activeTintColor: colors.orange,
       labelStyle: {
         fontSize: 14,
         fontWeight: '500',
