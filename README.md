@@ -1,4 +1,8 @@
 # TigerEats
+[![Platforms](https://img.shields.io/badge/platforms-Android%20|%20iOS-blue.svg)](https://shields.io/)
+[![GitHub issues](https://img.shields.io/github/issues/aryanbhasin/tiger-eats)](https://github.com/aryanbhasin/tiger-eats/issues)
+![In Development](https://img.shields.io/badge/-currently%20in%20development-red)
+
 Your one-stop guide to eating at princeton
 
 ## About
