@@ -24,16 +24,16 @@ export default class Description extends Component {
     
     return (
       <View>
+        <View style={styles.titleAndAddressContainer}>
+          <Title name={toTitleCase(name)} />
+          <Text style={styles.addressText}>{address}</Text>
+        </View>
         <View style={styles.descriptionContainer}>
-          <View style={styles.titleAndAddressContainer}>
-            <Title name={toTitleCase(name)} />
-            <Text style={styles.addressText}>{address}</Text>
-          </View>
-          <View style={{flex: 1, marginRight: 10}}>
+          <TagStrip tags={tags} />
+          <View>
             <OpeningHrs openingHr={openingHr} closingHr={closingHr} />
           </View>
         </View>
-        <TagStrip tags={tags} />
       </View>
     );
   }
@@ -41,7 +41,7 @@ export default class Description extends Component {
 
 function Title ({name}) {
   return(
-    <Text style={styles.titleText}>{name}</Text>
+    <Text style={[styles.titleText, (name.length > 12) && {fontSize: 34}]}>{name}</Text>
   );
 }
 

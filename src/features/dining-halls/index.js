@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, View} from 'react-native'
+import {ScrollView, FlatList, View} from 'react-native'
 import {connect} from 'react-redux'
 
 import {styles} from './styles'
@@ -17,19 +17,20 @@ class DiningHalls extends Component {
   
   render() {
     return (
-      <ScrollView>
-        {DHallList.map((DHall, index) => {
-          
-          this.getDHallDishes(DHall.name, DHall.codeName)
-          
+      <FlatList
+        data={DHallList}
+        renderItem={(DHall) => {
+          let {name, codeName, info, imgUrl} = DHall.item;
+          this.getDHallDishes(name, codeName)
           return (
-            <View key={index}>
-              <DHallCard name={DHall.name} codeName={DHall.codeName} imgUrl={DHall.imgUrl} navigation={this.props.navigation} />
+            <View>
+              <DHallCard name={name} codeName={codeName} info={info} imgUrl={imgUrl} navigation={this.props.navigation} />
               <View style={styles.lineStyle} />
             </View>
           );
-        })}
-      </ScrollView>
+        }}
+        keyExtractor={(item, index) => index}
+      />
     );
   }
 }

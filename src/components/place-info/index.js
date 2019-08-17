@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {ScrollView, View, Text, StyleSheet} from 'react-native';
 
 import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
 
@@ -66,18 +66,20 @@ export default class PlaceInfo extends Component {
             uri={uri} 
             rating={placeInformation.rating} 
           />
-          <Description 
-            address={placeInformation.address}
-            tags={tags} 
-            name={placeInformation.name}
-            opening_hours={opening_hours} 
-          />
-          <Details 
-            reviewPlace={this.updateRating} 
-            phone_number={placeInformation.phone_number}
-            location={placeInformation.location}
-            website={placeInformation.website}
-          />
+          <ScrollView style={{flex: 1}}>
+            <Description 
+              address={placeInformation.address}
+              tags={tags} 
+              name={placeInformation.name}
+              opening_hours={opening_hours} 
+            />
+            <Details 
+              reviewPlace={this.updateRating} 
+              phone_number={placeInformation.phone_number}
+              location={placeInformation.location}
+              website={placeInformation.website}
+            />
+          </ScrollView>
       </View>
       
     );

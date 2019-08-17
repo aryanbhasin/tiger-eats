@@ -34,10 +34,11 @@ export default class DHallInfoScreen extends Component {
     dHallName = navigation.getParam('dHallName')
     dHallCodeName = navigation.getParam('dHallCodeName')
     dHallImg = navigation.getParam('dHallImg')
+    dHallInfo = navigation.getParam('dHallInfo')
     return (
       <View style={styles.screenContainer}>
         <DHallCoverImage imageSrc={dHallImg}/>
-        <DHallFrontalHeader name={dHallName} address='Some dummy address line # 1' />
+        <DHallFrontalHeader name={dHallName} address={dHallInfo} />
         <DHallTabView dHallCodeName={dHallCodeName} />
       </View>
     );

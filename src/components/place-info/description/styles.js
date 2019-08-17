@@ -5,13 +5,16 @@ export var styles = StyleSheet.create({
   descriptionContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 5
+    justifyContent: 'space-between',
+    marginTop: 5,
+    marginHorizontal: 10,
+    marginRight: 15
   },
   titleAndAddressContainer: {
-    flex: 3,
     justifyContent: 'center',
     alignItems: 'flex-start',
-    marginLeft: 10,
+    marginTop: 5,
+    marginHorizontal: 10,
   },
   titleText: {
     color: colors.darkGrey,

@@ -17,7 +17,7 @@ export var styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 13,
     paddingHorizontal: 9,
-    paddingVertical: 3,
+    paddingVertical: 5,
   },
   directionsButtonText: {
     fontSize: 17,

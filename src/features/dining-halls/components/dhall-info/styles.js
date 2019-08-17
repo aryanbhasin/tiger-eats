@@ -24,11 +24,13 @@ export var styles = StyleSheet.create({
   dHallFrontalName: {
     fontSize: 32,
     fontWeight: 'bold',
-    paddingBottom: 2,
+    paddingVertical: 2,
+    paddingTop: 4
   },
   dHallFrontalAddress: {
     color: 'dimgrey',
-    fontSize: 17,
+    fontSize: 15,
+    paddingBottom: 4,
   },
   dHallTabViewContainer: {
     flex: 2.5,
