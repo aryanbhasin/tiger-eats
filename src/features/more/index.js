@@ -34,7 +34,7 @@ function About() {
       <View>
         <Text style={styles.text}>
           TigerEats is your one-stop guide to eating at Princeton. Explore restaurants and cafés around the campus, 
-          check out dining hall menus, and be notified of when your favorite dish is being served.
+          check out dining hall menus, and access useful links related to meals.
         </Text>
       </View>
     </View>

@@ -18,7 +18,8 @@ export default function LinksList() {
       </View>
       <View> 
         <Link name='My TigerCard Balance' description='Meal swipes, student charges, guest meals' url='https://fed.princeton.edu/cas/login?service=https%3A//services.jsatech.com/login.php?cid=69'/>  
-        <Link name='FreeFood Listserv' url='https://lists.princeton.edu/cgi-bin/wa?A0=freefood&X=O5DB3A70D79AAC8C16E&Y'/>  
+        <Link name='Meal Exchange' description='Dine with your friends at eating clubs' url='https://daspraxis.princeton.edu/mex/home.aspx'/>  
+        <Link name='FreeFood Listserv' description='Check for free food without subscribing to the Listserv' url='https://lists.princeton.edu/cgi-bin/wa?A0=freefood&X=O5DB3A70D79AAC8C16E&Y'/>  
         <Link name='TigerMeals Delivery' description='View restaurants around campus' url='https://tigermeals-delivery.herokuapp.com/'/> 
         <Link name='CalcuLateMeal' description='Frist late meal calculator' url='http://calculatemeal.herokuapp.com/'/> 
       </View>
