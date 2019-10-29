@@ -46,7 +46,6 @@ export default class PlaceCard extends Component {
     let {name, rating, location} = this.props.data;
     let uri = require('TigerEats/src/assets/images/Tacoria-banner.png')
     let [openingHr, closingHr] = indexIntoOpeningHrs(this.props.data)
-    console.log(name, openingHr, closingHr)
     
     const currHr = parseInt(new Date().getHours());
     const isOpen = ((currHr >= openingHr) && (currHr <= closingHr));

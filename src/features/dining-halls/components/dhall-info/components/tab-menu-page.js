@@ -45,11 +45,9 @@ export default class TabPage extends React.PureComponent {
   }
   
   showMeal() {
-    // show dishes of the meal corresponding to routeKey (e.g. breakfast dishes if routeKey='breakfast')
+    // show dishes of the meal corresponding to routeKey (e.g. breakfast dishes if routeKey='Breakfast')
     let {routeKey, dishes} = this.props;
-    let mealRoute = this.capitalizeFirstLetter(routeKey);
-    this.props.routeKey.charAt(0).toUpperCase();
-    return this.showDishCategories(dishes[mealRoute])
+    return this.showDishCategories(dishes[routeKey])
   }
   
   render() {

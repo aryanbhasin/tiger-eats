@@ -22,3 +22,11 @@ export class NoFoodDataComponent extends Component {
     )
   }
 }
+
+export function NoMealAvailableComponent({meal}) {
+  return (
+    <View style={cornerCaseStyles.cornerCaseContainer}>
+      <Text style={cornerCaseStyles.cornerCaseText}>No {meal} available. Swipe to check for other meals</Text>
+    </View>
+  );
+}

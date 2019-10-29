@@ -7,7 +7,7 @@ import {getDishes} from 'TigerEats/src/actions'
 import {styles} from '../styles'
 import TabPage from './tab-menu-page'
 import LoadingSpinner from 'TigerEats/src/components/loading-spinner'
-import {FetchErrorComponent, NoFoodDataComponent} from './corner-case-components.js'
+import {FetchErrorComponent, NoFoodDataComponent, NoMealAvailableComponent} from './corner-case-components.js'
 
 const {width, height} = Dimensions.get('window');
 
@@ -17,9 +17,9 @@ class DHallTabView extends Component {
   state = {
     index: 0,
     routes: [
-      {key: 'breakfast', title: 'Breakfast'},
-      {key: 'lunch', title: 'Lunch'},
-      {key: 'dinner', title: 'Dinner'},
+      {key: 'Breakfast', title: 'Breakfast'},
+      {key: 'Lunch', title: 'Lunch'},
+      {key: 'Dinner', title: 'Dinner'},
     ],
   }
   
@@ -34,20 +34,26 @@ class DHallTabView extends Component {
     
     hallData = this.indexIntoHallData();
     let {dishes, meals, error, loading} = hallData;
-    // if error message present, show fetch-error text component
     
+    // if error message present, show error-message text component
     if (error.length > 1) {
       if (error === 'No Data Available') {
-        return (<NoFoodDataComponent />);
+        return (<NoFoodDataComponent/>);
       } else {
-        return (<FetchErrorComponent />);
+        return (<FetchErrorComponent/>);
       }
-    } else {
-      if (loading) {
-        return( <LoadingSpinner />);
-      } else {
-        return (<TabPage dishes={dishes} meals={meals} loading={loading} routeKey={route.key}  />);
-      }
+    } 
+    
+    // otherwise, spinner if still loading...
+    if (loading) {
+      return( <LoadingSpinner />);
+    } 
+    // or tab page if not loading and data for the meal available
+    if (route.key in dishes) {
+      return (<TabPage dishes={dishes} meals={meals} loading={loading} routeKey={route.key}  />);
+    }
+    else {
+      return (<NoMealAvailableComponent meal={route.key}/>);
     }
   }
   

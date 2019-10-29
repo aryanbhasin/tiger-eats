@@ -93,9 +93,16 @@ export function getDishes(menuUrl, dHallCodeName) {
     
     // overcomes 'Access to fetch from origin blocked due to CORS policy'
     const corsProxyurl = 'https://cors-anywhere.herokuapp.com/';
-    axios.get(menuUrl)
+    
+    // for fetch, use fetch() and .then((response) => response.text())
+    // for axios, use axios.get() and .then((response) => response.data)
+    fetch(menuUrl, {
+      mode: "no-cors",
+      method: "GET"
+    })
       .then(response => {
-        return(response.data)
+        console.log(menuUrl);
+        return(response.text())
       })
       .catch(error => {
         console.log(error); 
@@ -105,7 +112,6 @@ export function getDishes(menuUrl, dHallCodeName) {
         if (!!data && data.includes("No Data Available")) {
           return dispatch(dispatchError(dHallCodeName, 'No Data Available'))
         }
-        
         var soup = new JSSoup(data);
         var meals = soup.findAll('div', 'mealCard');
         dishes = new Object();

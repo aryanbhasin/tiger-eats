@@ -24,7 +24,7 @@ function dHallConstructor(dHallName) {
       locNum = '02';
       locName = '%20Butler+%26+Wilson+Colleges&naFlag=1'
       break;
-    case 'CJL':
+    case 'Center for Jewish Life':
       locNum = '05';
       locName = 'Center+for+Jewish+Life&naFlag=1'
       break;
