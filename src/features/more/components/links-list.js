@@ -1,31 +1,17 @@
-import React from 'react';
+// Library Imports
+import React, {Component} from 'react';
 import {View, Text} from 'react-native';
+import {connect} from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-
-
 import Touchable from 'react-native-platform-touchable'; 
 import PropTypes from "prop-types";
 
+// Local Imports
+import {getLinksList} from 'TigerEats/src/actions'
 import {openLink} from 'TigerEats/src/functions/general'
 import {styles} from '../styles'
 
-export default function LinksList() {
-  return (
-    <View style={styles.sectionContainer}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Icon name='external-link' style={styles.sectionHeaderIcon} />
-        <Text style={styles.sectionHeader}>Links</Text>
-      </View>
-      <View> 
-        <Link name='My TigerCard Balance' description='Meal swipes, student charges, guest meals' url='https://fed.princeton.edu/cas/login?service=https%3A//services.jsatech.com/login.php?cid=69'/>  
-        <Link name='Meal Exchange' description='Dine with your friends at eating clubs' url='https://daspraxis.princeton.edu/mex/home.aspx'/>  
-        <Link name='FreeFood Listserv' description='Check for free food without subscribing to the Listserv' url='https://lists.princeton.edu/cgi-bin/wa?A0=freefood&X=O5DB3A70D79AAC8C16E&Y'/>  
-        <Link name='TigerMeals Delivery' description='View restaurants around campus' url='https://tigermeals-delivery.herokuapp.com/'/> 
-        <Link name='CalcuLateMeal' description='Frist late meal calculator' url='http://calculatemeal.herokuapp.com/'/> 
-      </View>
-    </View>
-  )
-}
+import LoadingSpinner from 'TigerEats/src/components/loading-spinner'
 
 function Link({name, description, url}) {
   return (
@@ -43,10 +29,66 @@ function Link({name, description, url}) {
   );
 }
 
-// openLink function moved to src/functions/general
-
 Link.propTypes = {
   name: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   description: PropTypes.string
 }
+
+// openLink function moved to src/functions/general
+
+class LinksList extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.props.getLinksList();
+  }
+  
+  renderLinks() {
+    let {linksData} = this.props;
+    let keys = Object.keys(linksData)
+    console.log(linksData[0]);
+    if (keys.length > 0) { 
+      return (
+        <View>
+          {keys.map((key) => {
+            link = linksData[key];
+            return (
+              <Link name={link.name} description={link.description} url={link.url} key={key} />
+            );
+          })}
+        </View>
+      );
+    } else {
+      return (
+        <LoadingSpinner />
+      );
+    }
+  }
+  
+  render() {
+    return (
+      <View style={styles.sectionContainer}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Icon name='external-link' style={styles.sectionHeaderIcon} />
+          <Text style={styles.sectionHeader}>Links</Text>
+        </View>
+        <View> 
+          {this.renderLinks()}
+        </View>
+      </View>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return({
+    linksData: state.links.list
+  });
+}
+
+const mapDispatchToProps = {
+  getLinksList
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LinksList)

@@ -1,9 +1,12 @@
+import {db} from 'TigerEats/App'
+
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const ERROR = 'ERROR';
 export const CONNECTION_ERROR = 'CONNECTION_ERROR';
 export const GET_DISHES = 'GET_DISHES';
 export const GET_LOCATION = 'GET_LOCATION';
 export const LOCATION_ERROR = 'LOCATION_ERROR';
+export const GET_LINKS_LIST = 'GET_LINKS_LIST'
 
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
@@ -63,6 +66,37 @@ export function getLocation() {
   }
 }
 
+// ***************************** ACTION CREATOR FOR GETTING LINKS FROM FIREBASE ****************************************
+
+
+export function getLinksList() {
+  // uses thunk
+  return (dispatch) => {
+    let linksRef = db.ref('links-list');
+    
+    linksRef.once('value', (snapshot) => {
+        var linksData = {};
+        // get list of links from Firebase and push each onto linksData
+        snapshot.forEach((link) => {
+          let data = link.val();
+          var currLink = {
+            name: data.name,
+            description: data.description,
+            url: data.url
+          }
+          linksData[link.key] = currLink;
+        })
+        return dispatch({
+          type: GET_LINKS_LIST,
+          payload: linksData
+        });
+      }), (err) => {return dispatch({type: ERROR})}
+    
+  }
+
+}
+
+
 // **************************************** ACTION CREATORS FOR UPDATING MENU ****************************************
 import JSSoup from 'jssoup';
 import axios from 'axios'
@@ -83,12 +117,11 @@ function dispatchError(codeName, message) {
 export function getDishes(menuUrl, dHallCodeName) {
 
                                         // add validation for URL
-  
   return (dispatch) => {
     
     let isInternetConnected = checkInternetConnection();
     if (!isInternetConnected) {
-      dispatch({type: CONNECTION_ERROR})
+      return dispatch({type: CONNECTION_ERROR})
     }
     
     // overcomes 'Access to fetch from origin blocked due to CORS policy'

@@ -13,6 +13,10 @@ export const initialLocationState = {
   error: 'null'
 }
 
+export const initialLinksList = {
+  list: {}
+}
+
 export const initialMealsState = {
   halls: [
     {
