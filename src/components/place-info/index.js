@@ -55,6 +55,7 @@ export default class PlaceInfo extends Component {
     const placeName = navigation.getParam('placeName', 'Tandoori Palace');
     
     var placeInformation = data[placeName]
+    
     var uri = require('TigerEats/src/assets/images/Tacoria-banner.png')
     var tags = ['Mexican', 'Tacos'];
 

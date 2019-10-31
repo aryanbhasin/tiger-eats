@@ -7,6 +7,7 @@ export const GET_DISHES = 'GET_DISHES';
 export const GET_LOCATION = 'GET_LOCATION';
 export const LOCATION_ERROR = 'LOCATION_ERROR';
 export const GET_LINKS_LIST = 'GET_LINKS_LIST'
+export const GET_EATERY_DATA = 'GET_EATERY_DATA'
 
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
@@ -96,6 +97,20 @@ export function getLinksList() {
 
 }
 
+// ***************************** ACTION CREATOR FOR GETTING EATERY DATA FROM FIREBASE ****************************************
+
+export function getEateryData() {
+  
+  return (dispatch) => {
+    var dataRef = db.ref('eatery-data');
+    dataRef.on('value', (snapshot) => {
+      return dispatch({
+        type: GET_EATERY_DATA,
+        payload: snapshot.val()
+      })
+    }), (err) => {return dispatch({type: ERROR})}
+  }
+}
 
 // **************************************** ACTION CREATORS FOR UPDATING MENU ****************************************
 import JSSoup from 'jssoup';

@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import {UPDATE_SEARCH} from '../actions'
-import {GET_DISHES, ERROR, CONNECTION_ERROR, GET_LOCATION, LOCATION_ERROR, GET_LINKS_LIST} from '../actions'
+import {GET_DISHES, ERROR, CONNECTION_ERROR, GET_LOCATION, LOCATION_ERROR, GET_LINKS_LIST, GET_EATERY_DATA} from '../actions'
 
-import {initialSearchState, initialMealsState, initialLocationState, initialLinksList} from './constants'
+import {initialSearchState, initialMealsState, initialLocationState, initialLinksState, initialEateryState} from './constants'
 
 // **************************************** REDUCER FOR SEARCH ****************************************
 
@@ -33,11 +33,22 @@ function location(state = initialLocationState, action) {
 
 // **************************************** REDUCER FOR GETTING LINKS LIST ****************************************
 
-function links(state = initialLinksList, action) {
+function links(state = initialLinksState, action) {
   switch (action.type) {
     case GET_LINKS_LIST:
       const linksData = action.payload;
       return {...state, list: linksData}
+    default:
+      return state
+  }
+}
+
+// **************************************** REDUCER FOR GETTING EATERY DATA ****************************************
+
+function eatery(state = initialEateryState, action) {
+  switch (action.type) {
+    case GET_EATERY_DATA:
+      return {...state, data: action.payload}
     default:
       return state
   }
@@ -70,5 +81,6 @@ export default combineReducers({
   search,
   location,
   links,
+  eatery,
   dishes
 });

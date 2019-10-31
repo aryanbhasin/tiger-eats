@@ -47,7 +47,7 @@ class Explore extends Component {
     }  
       
     render() {      
-    
+      console.log(this.props.eateryData);
       return (
           <View>
             <Search />
@@ -60,7 +60,8 @@ class Explore extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    searchResults: state.search.searchResults
+    searchResults: state.search.searchResults,
+    eateryData: state.eatery.data
   }
 }
 

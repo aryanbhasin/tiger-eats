@@ -12,6 +12,7 @@ import Main from './src';
 // Adding Firebase SDK
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
 export const db = firebase.database();
+export const storage = firebase.storage();
 
 export default class App extends Component {
   render() {

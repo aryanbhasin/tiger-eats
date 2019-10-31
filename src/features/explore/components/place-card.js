@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, StatusBar, Image} from 'react-native';
 import {getDistance} from 'geolib';
 import PropTypes from 'prop-types'
+// Firebase storage ref
+import {storage} from 'TigerEats/App'
 
 import {Rating} from 'TigerEats/src/components/place-info/frontal';
 import {OpenOrClosed} from 'TigerEats/src/components/place-info/description/opening-hrs';
@@ -45,8 +47,16 @@ export default class PlaceCard extends Component {
   render() {
     let {name, rating, location} = this.props.data;
     let uri = require('TigerEats/src/assets/images/Tacoria-banner.png')
+    
+    // creating image ref
+    var imagePath = name.replace(/ /g, "-");
+    var imageRef = storage.ref().child('eatery-data/' + imagePath + '.jpg');
+    imageRef.getDownloadURL().then((url) => {uri = url});
+    
+    
     let [openingHr, closingHr] = indexIntoOpeningHrs(this.props.data)
     
+    // checking if open using current time
     const currHr = parseInt(new Date().getHours());
     const isOpen = ((currHr >= openingHr) && (currHr <= closingHr));
     

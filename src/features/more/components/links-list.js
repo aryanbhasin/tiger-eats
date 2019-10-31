@@ -3,8 +3,6 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {connect} from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import Touchable from 'react-native-platform-touchable'; 
-import PropTypes from "prop-types";
 
 // Local Imports
 import {getLinksList} from 'TigerEats/src/actions'
@@ -12,30 +10,7 @@ import {openLink} from 'TigerEats/src/functions/general'
 import {styles} from '../styles'
 
 import LoadingSpinner from 'TigerEats/src/components/loading-spinner'
-
-function Link({name, description, url}) {
-  return (
-    <Touchable onPress={() => openLink(url)} style={{marginVertical: 4}}>
-      <View style={styles.linkContainer}>
-        <View>
-          <Text style={styles.link}>{name}</Text>
-          {(!!description) && <Text style={styles.text}>{description}</Text>}
-        </View>
-        <View>
-          <Icon name='chevron-right' style={styles.chevron}/>
-        </View>
-      </View>
-    </Touchable>
-  );
-}
-
-Link.propTypes = {
-  name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  description: PropTypes.string
-}
-
-// openLink function moved to src/functions/general
+import Link from './link'
 
 class LinksList extends Component {
   

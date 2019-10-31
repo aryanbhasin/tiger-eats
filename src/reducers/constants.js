@@ -13,8 +13,12 @@ export const initialLocationState = {
   error: 'null'
 }
 
-export const initialLinksList = {
+export const initialLinksState = {
   list: {}
+}
+
+export const initialEateryState = {
+  data: {}
 }
 
 export const initialMealsState = {
