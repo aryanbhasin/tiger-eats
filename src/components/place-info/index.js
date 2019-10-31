@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {ScrollView, View, Text, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
 
 import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
 
@@ -11,7 +12,7 @@ import Details from './details';
 
 const data = EATERY_DATA;
 
-export default class PlaceInfo extends Component {
+class PlaceInfo extends Component {
   
   constructor(props) {
     super(props);
@@ -50,11 +51,11 @@ export default class PlaceInfo extends Component {
   }
 
   render() {
-    
+    var {eateryData} = this.props;
     const {navigation} = this.props;
     const placeName = navigation.getParam('placeName', 'Tandoori Palace');
     
-    var placeInformation = data[placeName]
+    var placeInformation = eateryData[placeName]
     
     var uri = require('TigerEats/src/assets/images/Tacoria-banner.png')
     var tags = ['Mexican', 'Tacos'];
@@ -86,3 +87,9 @@ export default class PlaceInfo extends Component {
     );
   }
 }
+
+mapStateToProps = (state) => {
+  eateryData: state.eatery.data
+}
+
+export default connect(mapStateToProps)(PlaceInfo)

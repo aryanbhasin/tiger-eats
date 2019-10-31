@@ -27,7 +27,7 @@ export var styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    color: colors.darkGrey, 
+    color: colors.darkGrey,
   },
   linkContainer: {
     flexDirection: 'row',

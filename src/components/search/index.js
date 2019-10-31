@@ -6,8 +6,6 @@ import {connect} from 'react-redux';
 import {styles} from './styles.js';
 import {updateSearch} from 'TigerEats/src/actions';
 
-import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data'
-
 class Search extends Component {
   
   render() {
@@ -16,8 +14,8 @@ class Search extends Component {
       <View style={styles.searchSortRow}>
         <SearchBar           
           placeholder='Search for a place'
-          onChangeText={(text) => {this.props.updateSearch(text, EATERY_DATA)}}
-          onClear={(text) => {this.props.updateSearch('', EATERY_DATA)}}
+          onChangeText={(text) => {this.props.updateSearch(text, this.props.eateryData)}}
+          onClear={(text) => {this.props.updateSearch('', this.props.eateryData)}}
           value={this.props.searchTerm}
           autoCorrect={false}
           lightTheme
@@ -32,6 +30,7 @@ class Search extends Component {
 const mapStateToProps = (state) => {
   return {
     searchTerm: state.search.searchTerm,
+    eateryData: state.eatery.data
   }
 };
 

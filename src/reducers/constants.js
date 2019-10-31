@@ -1,8 +1,7 @@
-import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
 
 export const initialSearchState = {
   searchTerm: '',
-  searchResults: EATERY_DATA,
+  searchResults: {},
 }
 
 export const initialLocationState = {

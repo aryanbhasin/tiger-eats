@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export default function SortByRating(placesData) {
   placesData = placesData.sort((place1, place2) => {
     // sorts in descending order of rating
-    return (place2.ratingNum - place1.ratingNum); 
+    return (place2.rating - place1.rating); 
   });
   return placesData;
 }
