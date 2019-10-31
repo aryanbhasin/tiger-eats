@@ -4,8 +4,8 @@ import {Provider} from 'react-redux';
 import FlashMessage from "react-native-flash-message";
 
 import firebase from 'firebase';
-import 'firebase/firestore';
 import {firebaseConfig} from './config'
+
 
 import Main from './src';
 
