@@ -15,7 +15,7 @@ export default class CallButton extends Component {
   
   async handleCallPress(number) {
     const callData = {
-      number: number,
+      number: number.toString(),
       prompt: true,
     };
     try {

@@ -23,7 +23,7 @@ export default class MapBox extends Component {
   
   constructor(props) {
     super(props);
-    // using dummy location for simulator testing; replace with this.props.position
+                                      // using dummy location for simulator testing; replace with this.props.position
     this.nest_location = {
       latitude: 40.345226,
       longitude: -74.656353
@@ -38,6 +38,7 @@ export default class MapBox extends Component {
       <MapView 
         style={styles.map}
         initialRegion={this.region}
+                                                        // uncomment the two lines below to add user location
         // showsUserLocation={true}
         // followsUserLocation={true}
       >

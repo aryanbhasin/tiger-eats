@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, Linking, Platform} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Share from 'react-native-share'
+
 import {db} from 'TigerEats/App'
 
 import Touchable from 'react-native-platform-touchable'; 
@@ -35,7 +37,7 @@ export default class Feedback extends Component {
         <View>
           <FeedbackRowComponent name={Platform.OS==='ios' ? 'Rate on the App Store' : 'Rate on the Play Store'} url={this.state.appLink}/>
           <FeedbackRowComponent name='Give feedback' url={this.state.appLink}/>
-          <FeedbackRowComponent name='Share the app' url='https://www.google.com'/>
+          <ShareApp url={this.state.appLink} message='Check out TigerEats: a one-stop guide to eating at Princeton'/>
         </View>
       </View>
     );
@@ -48,6 +50,31 @@ function FeedbackRowComponent({name, url}) {
       <View style={styles.linkContainer}>
         <View>
           <Text style={styles.link}>{name}</Text>
+        </View>
+        <View>
+          <Icon name='chevron-right' style={styles.chevron}/>
+        </View>
+      </View>
+    </Touchable>
+  );
+}
+
+function ShareApp({url, message}) {
+  let options = {
+    url: url,
+    message: message,
+  }
+  return (
+    <Touchable 
+      onPress={() => {
+        Share.open(options)
+          .then((res) => { console.log(res) })
+          .catch((err) => { err && console.log(err); })}
+        }
+      style={{marginVertical: 4}}>
+      <View style={styles.linkContainer}>
+        <View>
+          <Text style={styles.link}>Share the app</Text>
         </View>
         <View>
           <Icon name='chevron-right' style={styles.chevron}/>
