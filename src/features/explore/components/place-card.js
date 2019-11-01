@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, StatusBar, Image} from 'react-native';
+import {CachedImage} from 'react-native-cached-image';
 import {getDistance} from 'geolib';
 import PropTypes from 'prop-types'
 // Firebase storage ref
-import {storage} from 'TigerEats/App'
+import {storage, db} from 'TigerEats/App'
+
+import LoadingSpinner from 'TigerEats/src/components/loading-spinner';
 
 import {Rating} from 'TigerEats/src/components/place-info/frontal';
 import {OpenOrClosed} from 'TigerEats/src/components/place-info/description/opening-hrs';
-import {indexIntoOpeningHrs} from 'TigerEats/src/functions/explore-functions'
+import {indexIntoOpeningHrs} from 'TigerEats/src/functions/explore-functions';
 import {styles} from '../styles';
-import {toTitleCase} from 'TigerEats/src/functions/general'
+import {toTitleCase} from 'TigerEats/src/functions/general';
 
 export default class PlaceCard extends Component {
   
@@ -45,15 +48,7 @@ export default class PlaceCard extends Component {
   }
   
   render() {
-    let {name, rating, location} = this.props.data;
-    let uri = require('TigerEats/src/assets/images/Tacoria-banner.png')
-    
-    // creating image ref
-    var imagePath = name.replace(/ /g, "-");
-    var imageRef = storage.ref().child('eatery-data/' + imagePath + '.jpg');
-    imageRef.getDownloadURL().then((url) => {uri = url});
-    
-    
+    let {name, rating, location, imageUri} = this.props.data;
     let [openingHr, closingHr] = indexIntoOpeningHrs(this.props.data)
     
     // checking if open using current time
@@ -70,7 +65,7 @@ export default class PlaceCard extends Component {
             this.props.navigation.navigate('PlaceInfo', {placeName: name})
           }}>
             <View style={styles.cardImageContainer}>
-              <Image source={uri} style={styles.cardImage} />
+              <CachedImage source={{uri: imageUri}} style={styles.cardImage} loadingIndicator={LoadingSpinner} />
               <Rating rating={rating} customStyle={{marginBottom: 0}} />
             </View>
             <View style={styles.cardInfo}>

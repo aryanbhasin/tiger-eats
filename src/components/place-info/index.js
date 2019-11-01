@@ -57,7 +57,6 @@ class PlaceInfo extends Component {
     
     var placeInformation = eateryData[placeName]
     
-    var uri = require('TigerEats/src/assets/images/Tacoria-banner.png')
     var tags = ['Mexican', 'Tacos'];
 
     var opening_hours = indexIntoOpeningHrs(placeInformation);
@@ -65,7 +64,7 @@ class PlaceInfo extends Component {
     return (
       <View style={{flex: 1}}>
           <Frontal 
-            uri={uri} 
+            uri={{uri: placeInformation.imageUri}} 
             rating={placeInformation.rating} 
           />
           <ScrollView style={{flex: 1}}>
@@ -89,7 +88,9 @@ class PlaceInfo extends Component {
 }
 
 mapStateToProps = (state) => {
-  eateryData: state.eatery.data
+  return({
+    eateryData: state.eatery.data
+  })
 }
 
 export default connect(mapStateToProps)(PlaceInfo)

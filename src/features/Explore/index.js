@@ -66,7 +66,6 @@ class Explore extends Component {
       }
       // ... so that now we can use our fetched data under searchResults
       else {
-        console.log(this.props.searchResults);
         return (
             <View>
               <Search />

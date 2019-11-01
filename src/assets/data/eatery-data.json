@@ -1,5 +1,4 @@
 {
-  "eatery-data": {
     "halo pub": {
        "address": "9 Hulfish Street, Princeton", 
        "location": {
@@ -2660,6 +2659,5 @@
        "rating_count": 1, 
        "website": "http://www.mediterrarestaurant.com/"
     }
-  }
   
 }
