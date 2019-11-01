@@ -56,8 +56,6 @@ class PlaceInfo extends Component {
     const placeName = navigation.getParam('placeName', 'Tandoori Palace');
     
     var placeInformation = eateryData[placeName]
-    
-    var tags = ['Mexican', 'Tacos'];
 
     var opening_hours = indexIntoOpeningHrs(placeInformation);
     
@@ -70,7 +68,7 @@ class PlaceInfo extends Component {
           <ScrollView style={{flex: 1}}>
             <Description 
               address={placeInformation.address}
-              tags={tags} 
+              tags={placeInformation.tags} 
               name={placeInformation.name}
               opening_hours={opening_hours} 
             />

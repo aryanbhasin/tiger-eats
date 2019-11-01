@@ -48,9 +48,9 @@ function Title ({name}) {
 function TagStrip ({tags}) {
   return (
     <View style={styles.tagRow}>
-      {tags.map((item) => (
-        <View key={item} style={styles.tagContainer}>
-          <Text style={styles.tagText}>{item}</Text>
+      {Object.keys(tags).map((key) => (
+        <View key={tags[key]} style={styles.tagContainer}>
+          <Text style={styles.tagText}>{tags[key]}</Text>
         </View>
       ))}
     </View>

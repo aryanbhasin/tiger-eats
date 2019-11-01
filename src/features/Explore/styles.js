@@ -7,7 +7,7 @@ export var styles = StyleSheet.create({
   listContainer: {
     alignSelf: 'center',
     width: width,
-    height: height * 0.67,
+    height: height * 0.72,
   },
   cardContainer: {
     backgroundColor: 'white',

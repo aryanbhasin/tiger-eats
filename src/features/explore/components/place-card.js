@@ -4,7 +4,7 @@ import {CachedImage} from 'react-native-cached-image';
 import {getDistance} from 'geolib';
 import PropTypes from 'prop-types'
 // Firebase storage ref
-import {storage, db} from 'TigerEats/App'
+import {db} from 'TigerEats/App'
 
 import LoadingSpinner from 'TigerEats/src/components/loading-spinner';
 

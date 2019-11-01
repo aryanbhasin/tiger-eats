@@ -69,7 +69,7 @@ class Explore extends Component {
         return (
             <View>
               <Search />
-              <TagCarousel handleTagPress={this.handleTagPress} handleTagDeselect={this.handleTagDeselect} />
+              {/* <TagCarousel handleTagPress={this.handleTagPress} handleTagDeselect={this.handleTagDeselect} /> */}
               <CardList dataResults={this.props.searchResults} navigation={this.props.navigation} />
             </View>
         );
