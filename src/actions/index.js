@@ -6,8 +6,9 @@ export const CONNECTION_ERROR = 'CONNECTION_ERROR';
 export const GET_DISHES = 'GET_DISHES';
 export const GET_LOCATION = 'GET_LOCATION';
 export const LOCATION_ERROR = 'LOCATION_ERROR';
-export const GET_LINKS_LIST = 'GET_LINKS_LIST'
-export const GET_EATERY_DATA = 'GET_EATERY_DATA'
+export const GET_LINKS_LIST = 'GET_LINKS_LIST';
+export const GET_EATERY_DATA = 'GET_EATERY_DATA';
+export const SORT_DATA = 'SORT_DATA';
 
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
@@ -37,6 +38,26 @@ export function updateSearch(text, initData) {
       text: text,
       results: searchData
     },
+  }
+}
+
+// **************************************** ACTION CREATORS FOR SORTING ****************************************
+import SortByDistance from 'TigerEats/src/functions/sort/sort-dist'
+import SortByRating from 'TigerEats/src/functions/sort/sort-rating'
+
+export function sortData(sortMetric, dataToSort) {
+  let sortedList = {};
+  switch (sortMetric) {
+    case 'Distance':
+      sortedList = SortByDistance(dataToSort);
+      break;
+    case 'Rating':
+      sortedList = SortByRating(dataToSort);
+      break;
+  }
+  return {
+    type: SORT_DATA,
+    payload: sortedList
   }
 }
 

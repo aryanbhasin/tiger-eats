@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import {connect} from 'react-redux'
 
 import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
 import {styles} from './styles.js';
-import {updateSearch} from 'TigerEats/src/actions'
+import {updateSearch, sortData} from 'TigerEats/src/actions'
 
 import TagCarousel from './components/tag-carousel';
 import Search from 'TigerEats/src/components/search';
@@ -85,7 +85,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  updateSearch: updateSearch
+  updateSearch: updateSearch,
+  sortData: sortData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Explore)

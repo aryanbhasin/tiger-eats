@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {UPDATE_SEARCH} from '../actions'
-import {GET_DISHES, ERROR, CONNECTION_ERROR, GET_LOCATION, LOCATION_ERROR, GET_LINKS_LIST, GET_EATERY_DATA} from '../actions'
+import {GET_DISHES, ERROR, CONNECTION_ERROR, GET_LOCATION, LOCATION_ERROR, GET_LINKS_LIST, GET_EATERY_DATA, SORT_DATA} from '../actions'
 
 import {initialSearchState, initialMealsState, initialLocationState, initialLinksState, initialEateryState} from './constants'
 
@@ -10,6 +10,8 @@ function search(state = initialSearchState, action) {
   switch (action.type) {
     case UPDATE_SEARCH:
       return {...state, searchTerm: action.payload.text, searchResults: action.payload.results};
+    case SORT_DATA:
+      return {...state, searchResults: action.payload}
     default:
       return state;
   }

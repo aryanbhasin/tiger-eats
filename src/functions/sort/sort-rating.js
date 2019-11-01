@@ -1,25 +1,16 @@
 import React, {Component} from 'react';
 
-export default function SortByRating(placesData) {
-  placesData = placesData.sort((place1, place2) => {
-    // sorts in descending order of rating
-    return (place2.rating - place1.rating); 
-  });
-  return placesData;
+// Sorts object of eatery data based on rating
+export default function SortByRating(eateryData) {
+  eateryData = Object.assign(...
+    Object.keys(eateryData)
+      .sort((key1, key2) => {
+        // sorts in descending order of rating
+        return (eateryData[key2].rating - eateryData[key1].rating); 
+      })
+      .map(key => ({ [key]: eateryData[key] }) )
+  );
+  return eateryData;
 }
-
-    // dropdown for sorting
-/*
-<View style={{flex: 1, marginLeft: 10, marginBottom: 10}}>
-  <Dropdown 
-    pickerStyle={{width: 120}} 
-    label='Sort' 
-    data={[{value: 'By Distance'}, {value: 'By Rating'}]} 
-    selectedItemColor='cornflowerblue' 
-    onChangeText={(value) => this.props.applySort(value)}
-    containerStyle={{}}
-  />
-</View>
-*/
 
 
