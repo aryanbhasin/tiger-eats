@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, Button} from 'react-native';
+import {View, Text, StyleSheet, Image, Button, StatusBar} from 'react-native';
 import {connect} from 'react-redux'
 
 import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
@@ -49,7 +49,7 @@ class Explore extends Component {
       });    
     }  
       
-    render() {      
+    render() {    
       let {eateryData, searchResults} = this.props;
       // shows loading spinner if both eateryData and searchResults are empty objects...
       if ((Object.entries(eateryData).length == 0) && (Object.entries(searchResults).length == 0)) {
@@ -68,6 +68,7 @@ class Explore extends Component {
       else {
         return (
             <View>
+              
               <Search />
               {/* <TagCarousel handleTagPress={this.handleTagPress} handleTagDeselect={this.handleTagDeselect} /> */}
               <CardList dataResults={this.props.searchResults} navigation={this.props.navigation} />

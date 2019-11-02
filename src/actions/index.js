@@ -136,6 +136,7 @@ export function getEateryData() {
 // **************************************** ACTION CREATORS FOR UPDATING MENU ****************************************
 import JSSoup from 'jssoup';
 import axios from 'axios'
+import Frisbee from 'frisbee'
 import {extractMealData} from '../components/extract-menu/get-dishes'
 import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
 
@@ -147,6 +148,14 @@ function dispatchError(codeName, message) {
       codeName,
     }
   }
+}
+
+function getDishesHelper(htmlData) {
+  var soup = new JSSoup(htmlData);
+  var meals = soup.findAll('div', 'mealCard');
+  dishes = new Object();
+  meals.forEach(mealCard => extractMealData(mealCard, dishes));
+  return [meals, dishes];
 }
 
 // uses thunk
@@ -165,26 +174,30 @@ export function getDishes(menuUrl, dHallCodeName) {
     
     // for fetch, use fetch() and .then((response) => response.text())
     // for axios, use axios.get() and .then((response) => response.data)
-    fetch(menuUrl, {
-      mode: "no-cors",
-      method: "GET"
+    
+    // fetch(menuUrl, {
+    //   mode: "no-cors", 
+    //   method: "GET",
+    // })
+  
+    const api = new Frisbee({
+      headers: {
+        'Accept': 'application/text',
+        'Content-Type': 'text/html'
+      }
     })
+    
+    api.get(menuUrl)
       .then(response => {
-        console.log(menuUrl);
-        return(response.text())
-      })
-      .catch(error => {
-        console.log(error); 
-        return dispatch(dispatchError(dHallCodeName, error))
+        return (response.body);
       })
       .then(data => {
+        console.log(data.length, dHallCodeName);
         if (!!data && data.includes("No Data Available")) {
+          console.log('no data for' + dHallCodeName);
           return dispatch(dispatchError(dHallCodeName, 'No Data Available'))
-        }
-        var soup = new JSSoup(data);
-        var meals = soup.findAll('div', 'mealCard');
-        dishes = new Object();
-        meals.forEach(mealCard => extractMealData(mealCard, dishes));
+        }     
+        [meals, dishes] = getDishesHelper(data);   
         return dispatch({
           type: GET_DISHES,
           payload: {

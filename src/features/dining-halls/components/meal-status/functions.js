@@ -46,7 +46,9 @@ export function closestMeal(value, object) {
 export function constructCheckPointsArray(object) {
   let checkpoints = [];
   let vals = Object.values(object);
+
   vals.forEach((array) => {
+    if (vals === "c") {return 'closed';}
     array.forEach((chkpt) => {
       checkpoints.push(chkpt)
     })

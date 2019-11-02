@@ -4,6 +4,8 @@ import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Touchable from 'react-native-platform-touchable'; 
 import PropTypes from "prop-types";
+
+import {openLink} from 'TigerEats/src/functions/general'
 import {styles} from '../styles'
 
 export default function Link({name, description, url}) {

@@ -42,32 +42,40 @@ export default class MealStatus extends Component {
   
   checkOpenStatus() {
     let [hrs, mins, day, month] = getTime();
-    decimalHrs = hrs + (mins / 60);
+    let decimalHrs = hrs + (mins / 60);
     decimalHrs = Math.round(decimalHrs * 100) / 100
     let {codeName} = this.props;
-    // indexing into DHallTimings array's right day and hall
-    let mealTimings = DHallTimings[day][codeName];
-    if (mealTimings === 'closed') {
-      this.updateState(false, 'Closed today');
+    
+    let checkpoints = constructCheckPointsArray(DHallTimings[day][codeName]);
+    
+    // corner case for Grad College being closed
+    if (checkpoints === 'closed') {
+      this.updateState(false, 'Closed');
       return;
     }
     
-    let checkpoints = constructCheckPointsArray(mealTimings);
-    
-    // if current hour is past last meal time, next meal should be set for next morning
+    // indexing into DHallTimings array's right day and hall
     if (decimalHrs >= checkpoints[checkpoints.length-1]) {
-      tomorrowTimings = DHallTimings[(day+1) % 7][codeName];
-      closestHr = closestCheckPoint(0, constructCheckPointsArray(tomorrowTimings))
-      mealLetter = closestMeal(closestHr, tomorrowTimings)
-      closestMealName = getMealNameFromLetter(mealLetter);
-      closestMealTimings = tomorrowTimings[mealLetter];
-      openStatus = false
-    } 
-    else {
-      closestHr = closestCheckPoint(decimalHrs, checkpoints)
-      mealLetter = closestMeal(closestHr, mealTimings)
-      closestMealName = getMealNameFromLetter(mealLetter);
-      closestMealTimings = mealTimings[mealLetter];
+      // if current hour is past last meal time (last checkpoint), next meal should be set for next morning
+      mealTimings = DHallTimings[(day+1) % 7][codeName];
+    } else {
+      mealTimings = DHallTimings[day][codeName];
+    }
+    if (mealTimings === 'closed') {
+      this.updateState(false, 'Closed');
+      return;
+    }
+    // construct checkpoints again just in case we're checking for tomorrow's meal
+    checkpoints = constructCheckPointsArray(mealTimings);
+    // constructs closestMealName and closestMealTimings
+    closestHr = closestCheckPoint(decimalHrs, checkpoints);
+    mealLetter = closestMeal(closestHr, mealTimings);
+    closestMealName = getMealNameFromLetter(mealLetter);
+    closestMealTimings = mealTimings[mealLetter];
+    
+    if (decimalHrs >= checkpoints[checkpoints.length-1]) {
+      openStatus = false;
+    } else {
       if ((decimalHrs >= closestMealTimings[0]) && (decimalHrs < closestMealTimings[1])) {
         openStatus = true
       } else {

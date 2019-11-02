@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, StatusBar, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {CachedImage} from 'react-native-cached-image';
 import {getDistance} from 'geolib';
 import PropTypes from 'prop-types'
@@ -57,7 +57,6 @@ export default class PlaceCard extends Component {
     
     const distance = this.calculateDistance(location);
     
-    StatusBar.setBarStyle('dark-content', true);
     return (
       <View>
         <View style={styles.cardContainer}>

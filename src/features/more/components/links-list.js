@@ -22,7 +22,6 @@ class LinksList extends Component {
   renderLinks() {
     let {linksData} = this.props;
     let keys = Object.keys(linksData)
-    console.log(linksData[0]);
     if (keys.length > 0) { 
       return (
         <View>

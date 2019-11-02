@@ -1,5 +1,8 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native'
 import {colors} from 'TigerEats/src/styles'
+
+
+let {width, height} = Dimensions.get('window');
 
 export var styles = StyleSheet.create({
   screenContainer: {
@@ -12,6 +15,7 @@ export var styles = StyleSheet.create({
   },
   dHallCoverImage: {
     flex: 1,
+    width: width,
     resizeMode: 'cover',
     borderRadius: 3
   },

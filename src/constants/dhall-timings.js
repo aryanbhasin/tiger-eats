@@ -93,6 +93,6 @@ export const DHallTimings = [
     forbes: {br: [10, 14], d: [17, 20]},
     roma: {br: [10, 14], d: [17, 20]},
     whitman: {br: [10, 14], d: [17, 20]},
-    grad: 'closed'
+    grad: {d: [17, 20]}
   }
 ]
