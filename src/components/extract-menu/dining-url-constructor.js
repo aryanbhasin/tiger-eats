@@ -14,7 +14,7 @@ function dateConstructor() {
   let month = d.getMonth();
   month++;
   let date = d.getDate();
-  return `&dtdate=${month}%2F04%2F${year}`
+  return `&dtdate=${month}%2F${date}%2F${year}`
 }
 
 function dHallConstructor(dHallName) {

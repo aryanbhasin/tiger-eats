@@ -187,14 +187,22 @@ export function getDishes(menuUrl, dHallCodeName) {
       }
     })
     
-    api.get(menuUrl)
+    fetch(menuUrl, {
+      method: "GET",
+      mode: "no-cors"
+    })
       .then(response => {
-        return (response.body);
+        console.log(dHallCodeName + ". Type: " + response.type + ". Status: " + response.status + ". Headers: " + response.headers.get('Content-Type'));
+        return (response.text());
+      })
+      .catch(error => {
+        console.log(error); 
+        return dispatch(dispatchError(dHallCodeName, error))
       })
       .then(data => {
         console.log(data.length, dHallCodeName);
         if (!!data && data.includes("No Data Available")) {
-          console.log('no data for' + dHallCodeName);
+          console.log('no data for ' + dHallCodeName);
           return dispatch(dispatchError(dHallCodeName, 'No Data Available'))
         }     
         [meals, dishes] = getDishesHelper(data);   
