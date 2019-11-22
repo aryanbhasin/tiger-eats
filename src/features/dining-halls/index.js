@@ -30,6 +30,7 @@ class DiningHalls extends Component {
           );
         }}
         keyExtractor={(item, index) => index}
+        showsHorizontalScrollIndicator={false}
       />
     );
   }

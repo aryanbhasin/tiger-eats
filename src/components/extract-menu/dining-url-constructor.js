@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 
 export default function constructDiningUrl(dHallName) {
 
-  let base = 'https://menus.princeton.edu/dining/_Foodpro/online-menu/menuDetails.asp?sName=Princeton+University+Campus+Dining';
-
+  let base = 'https://menus.princeton.edu/dining/_Foodpro/online-menu/menuDetails.asp?';
   return base + dateConstructor() + dHallConstructor(dHallName);
+  
+  // return CJLUrl();
 }
 
 // constructs date portion of url as per today's date
@@ -14,7 +15,7 @@ function dateConstructor() {
   let month = d.getMonth();
   month++;
   let date = d.getDate();
-  return `&dtdate=${month}%2F${date}%2F${year}`
+  return `dtdate=${month}%2F${date}%2F${year}`
 }
 
 function dHallConstructor(dHallName) {
@@ -49,7 +50,7 @@ function dHallConstructor(dHallName) {
       locName = '%20Butler+%26+Wilson+Colleges&naFlag=1'
   }
   
-  return `&locationNum=${locNum}&locationName=${locName}`  
+  return `&locationNum=${locNum}`  
 }
 
 // backup URL Constructor function for dummy testing
@@ -58,4 +59,9 @@ function URLConstructor() {
   let date = '&dtdate=7%2F25%2F2019';
   let dhall = '&locationNum=02&locationName=%20Butler+%26+Wilson+Colleges&naFlag=1'
   return base + date + dhall;
+}
+
+// URL Constructor for CJL testing
+function CJLUrl() {
+  return 'https://menus.princeton.edu/dining/_Foodpro/online-menu/menuDetails.asp?dtdate=11%2F22%2F2019&locationNum=01';
 }

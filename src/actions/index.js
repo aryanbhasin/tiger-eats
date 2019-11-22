@@ -160,8 +160,7 @@ function getDishesHelper(htmlData) {
 
 // uses thunk
 export function getDishes(menuUrl, dHallCodeName) {
-
-                                        // add validation for URL
+                      
   return (dispatch) => {
     
     let isInternetConnected = checkInternetConnection();
@@ -189,17 +188,24 @@ export function getDishes(menuUrl, dHallCodeName) {
     
     fetch(menuUrl, {
       method: "GET",
-      mode: "no-cors"
+      mode: 'navigate',
+      headers: {
+        'Sec-Fetch-Mode': 'navigate'
+      }
     })
       .then(response => {
-        console.log(dHallCodeName + ". Type: " + response.type + ". Status: " + response.status + ". Headers: " + response.headers.get('Content-Type'));
+        console.log(dHallCodeName + ". Type: " + response.type + ". Status: " + response.status + ". URL: " + menuUrl);
         return (response.text());
       })
       .catch(error => {
-        console.log(error); 
+        console.log("ERROR: " + error); 
         return dispatch(dispatchError(dHallCodeName, error))
       })
       .then(data => {
+        if (!data) {
+          console.log('!data');
+          return dispatch(dispatchError(dHallCodeName, 'No Data Available'))
+        }
         console.log(data.length, dHallCodeName);
         if (!!data && data.includes("No Data Available")) {
           console.log('no data for ' + dHallCodeName);

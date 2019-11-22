@@ -23,12 +23,12 @@ export default class MapBox extends Component {
   
   constructor(props) {
     super(props);
-                                      // using dummy location for simulator testing; replace with this.props.position
-    this.nest_location = {
-      latitude: 40.345226,
-      longitude: -74.656353
-    }
-    coords_array = [this.props.destination, this.nest_location];
+                          // dummy location for simulator testing
+    // this.nest_location = {
+    //   latitude: 40.345226,
+    //   longitude: -74.656353
+    // }
+    coords_array = [this.props.destination, this.props.position];
     this.region = getRegionForCoordinates(coords_array);
   }
   
