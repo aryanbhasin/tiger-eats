@@ -72,5 +72,16 @@ export var styles = StyleSheet.create({
   },
   tagButtonPressed: {
     backgroundColor: 'cornflowerblue',
-  }
+  },
+  
+
+  noSearchResultsText: {
+    color: 'darkgrey',
+    textAlign: 'center'
+  },
+  noSearchResultsContainer: {
+    alignSelf: 'center', 
+    margin: 20, 
+    alignItems: 'center'
+  },  
 });

@@ -16,9 +16,35 @@ export const DHALL_CLOSED = 'DHALL_CLOSED';
 
 export function updateSearch(text, initData) {
   let searchData;
-  (text === '') 
-    ? searchData = initData
-    : searchData = Object.assign(...
+  /*
+  if (text === '') {
+    searchData = initData // empty search string
+  } else {
+    keyArr = Object.keys(initData)
+                   .filter((key) => {
+                      const searchTerm = text.toUpperCase();
+                      const placeName = initData[key].name.toUpperCase();
+                      return (placeName.indexOf(searchTerm) > -1);
+                   })
+    if (keyArr.length > 0) {
+      searchData = Object.assign(... keyArr.map(key => ({ [key]: initData[key] }) ))
+    } else { 
+      searchData = {}; 
+    }
+  }
+  */
+  if (text === '') {
+    searchData = initData
+  } else {
+    keyArr = Object.keys(initData).filter((key) => {
+       const placeName = initData[key].name.toUpperCase();
+       return (placeName.indexOf(text.toUpperCase()) > -1);
+    })
+                   
+    if (keyArr.length == 0) {
+      searchData = null // search string yielded 0 results
+    } else {
+      searchData = Object.assign(...
         Object.keys(initData)
         .filter((key) => {
           const searchTerm = text.toUpperCase();
@@ -27,12 +53,8 @@ export function updateSearch(text, initData) {
         })
         .map(key => ({ [key]: initData[key] }) )
       );
-    
-    // initData.filter((place) => {
-    //     const searchTerm = text.toUpperCase();
-    //     const placeName = place.name.toUpperCase();
-    //     return (placeName.indexOf(searchTerm) > -1);
-    //   })
+    }
+  }
   return {
     type: UPDATE_SEARCH,
     payload: {
@@ -65,6 +87,7 @@ export function sortData(sortMetric, dataToSort) {
 // **************************************** ACTION CREATOR FOR GETTING LOCATION ****************************************
 
 export function getLocation() {
+  checkInternetConnection();
   // geolocation.getCurrentPosition() is asynchronous so need to use redux-thunk
   return (dispatch) => {
     navigator.geolocation.requestAuthorization();

@@ -48,9 +48,29 @@ class Explore extends Component {
         temporaryState: result,
       });    
     }  
+    
+    noResultsText() {
+      return (
+        <View style={[styles.noSearchResultsContainer]}>
+          <Text style={[styles.noSearchResultsText, {fontWeight: 'bold', paddingBottom: 10}]}>No results found</Text>
+          <Text style={styles.noSearchResultsText}>Try searching for something else</Text>
+        </View>
+      );
+    }
       
     render() {    
       let {eateryData, searchResults} = this.props;
+      
+      // if search string yielded zero results
+      if (searchResults == null) {
+        return (
+          <View>
+            <Search />
+            {this.noResultsText()}
+          </View>
+        );
+      }
+      
       // shows loading spinner if both eateryData and searchResults are empty objects...
       if ((Object.entries(eateryData).length == 0) && (Object.entries(searchResults).length == 0)) {
         return (

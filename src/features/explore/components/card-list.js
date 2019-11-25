@@ -15,6 +15,7 @@ class CardList extends Component {
   
   render() {
     const {dataResults, navigation} = this.props;
+    
     return (
       <KeyboardAvoidingView>
         <ScrollView style={styles.listContainer} keyboardShouldPersistTaps='never' showsVerticalScrollIndicator={false}>

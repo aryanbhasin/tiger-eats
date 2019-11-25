@@ -38,9 +38,9 @@ export default class MapBox extends Component {
       <MapView 
         style={styles.map}
         initialRegion={this.region}
-                                                        // uncomment the two lines below to add user location
-        // showsUserLocation={true}
-        // followsUserLocation={true}
+                                        // comment the two lines below to remove live user location
+        showsUserLocation={true}
+        followsUserLocation={true}
       >
         <Marker coordinate={destination}>
           <Icon name='map-pin' color={colors.orange} size={27}/>

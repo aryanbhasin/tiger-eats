@@ -9,14 +9,6 @@ import MoreScreen from './more-screen';
 
 export const RootTabNav = createBottomTabNavigator(
   {
-    Explore: {
-      screen: ExploreScreen,
-      navigationOptions: {
-        tabBarIcon: ({tintColor}) => (
-          <Icon name="binoculars" size={18} color={tintColor} />
-        )
-      }
-    },
     Dining: {
       screen: DiningHallScreen,
       navigationOptions: {
@@ -24,6 +16,14 @@ export const RootTabNav = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="cutlery" size={18} color={tintColor} />
           ),
+      }
+    },
+    Explore: {
+      screen: ExploreScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="binoculars" size={18} color={tintColor} />
+        )
       }
     },
     More: {
@@ -36,7 +36,7 @@ export const RootTabNav = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: 'More',
+    initialRouteName: 'Dining',
     tabBarOptions: {
       activeTintColor: colors.orange,
       labelStyle: {

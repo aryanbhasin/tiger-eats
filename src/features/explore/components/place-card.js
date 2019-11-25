@@ -35,14 +35,13 @@ export default class PlaceCard extends Component {
   calculateDistance(location) {
     const currPosition = this.props.position
     
-    // The Nest Coordinates
+    // The Nest Coordinates for dummy testing
     const currPosition2 = {
       latitude: 40.345226,
       longitude: -74.656353
     }
-    
-            // Replace currPosition2 with currPosition in real-time testing
-    let distance = getDistance(currPosition2, location);
+  
+    let distance = getDistance(currPosition, location);
     distance = Math.ceil(distance / 10) * 10;
     return (distance);
   }
