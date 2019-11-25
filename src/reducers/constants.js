@@ -28,6 +28,7 @@ export const initialMealsState = {
         dishes: [],
         error: '',
         loading: true,
+        closed: false,
       }
     },
     {
@@ -36,6 +37,7 @@ export const initialMealsState = {
         dishes: [],
         error: '',
         loading: true,
+        closed: false,
       }
     },
     {
@@ -44,6 +46,7 @@ export const initialMealsState = {
         dishes: [],
         error: '',
         loading: true,
+        closed: false,
       }
     },
     {
@@ -52,6 +55,7 @@ export const initialMealsState = {
         dishes: [],
         error: '',
         loading: true,
+        closed: false,
       }
     },
     {
@@ -60,6 +64,7 @@ export const initialMealsState = {
         dishes: [],
         error: '',
         loading: true,
+        closed: false,
       }
     },
     {
@@ -68,6 +73,7 @@ export const initialMealsState = {
         dishes: [],
         error: '',
         loading: true,
+        closed: false,
       }
     }
   ],

@@ -12,11 +12,11 @@ export default function Link({name, description, url}) {
   return (
     <Touchable onPress={() => openLink(url)} style={{marginVertical: 4}}>
       <View style={styles.linkContainer}>
-        <View>
+        <View style={{flex: 10}}>
           <Text style={styles.link}>{name}</Text>
           {(!!description) && <Text style={styles.text}>{description}</Text>}
         </View>
-        <View>
+        <View style={{flex: 0.3}}>
           <Icon name='chevron-right' style={styles.chevron}/>
         </View>
       </View>

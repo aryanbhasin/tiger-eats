@@ -48,10 +48,10 @@ function FeedbackRowComponent({name, url}) {
   return (
     <Touchable onPress={() => Linking.openURL(url)} style={{marginVertical: 4}}>
       <View style={styles.linkContainer}>
-        <View>
+        <View style={{flex: 10}}>
           <Text style={styles.link}>{name}</Text>
         </View>
-        <View>
+        <View style={{flex: 0.3}}>
           <Icon name='chevron-right' style={styles.chevron}/>
         </View>
       </View>

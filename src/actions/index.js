@@ -9,6 +9,7 @@ export const LOCATION_ERROR = 'LOCATION_ERROR';
 export const GET_LINKS_LIST = 'GET_LINKS_LIST';
 export const GET_EATERY_DATA = 'GET_EATERY_DATA';
 export const SORT_DATA = 'SORT_DATA';
+export const DHALL_CLOSED = 'DHALL_CLOSED';
 
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
@@ -209,7 +210,7 @@ export function getDishes(menuUrl, dHallCodeName) {
         console.log(data.length, dHallCodeName);
         if (!!data && data.includes("No Data Available")) {
           console.log('no data for ' + dHallCodeName);
-          return dispatch(dispatchError(dHallCodeName, 'No Data Available'))
+          return dispatch(setDhallClosedStatus(dHallCodeName, true))
         }     
         [meals, dishes] = getDishesHelper(data);   
         return dispatch({
@@ -227,3 +228,16 @@ export function getDishes(menuUrl, dHallCodeName) {
       })
   }
 }
+
+// ************************************ ACTION CREATOR FOR DHALL CLOSED STATUS ****************************************
+
+export function setDhallClosedStatus(dHallCodeName, closedStatus) {
+  return {
+    type: DHALL_CLOSED,
+    payload: {
+      codeName: dHallCodeName,
+      closedStatus: closedStatus
+    }
+  }
+}
+

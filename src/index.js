@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {getEateryData} from './actions'
 
 import {RootTabNav} from './navigators/bottom-tab-nav.js'
+import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
 
 const AppContainer = createAppContainer(RootTabNav);
 
@@ -16,7 +17,7 @@ class Main extends Component {
   }
   
   render() {
-    
+    checkInternetConnection();
     return (
       <AppContainer />
     );

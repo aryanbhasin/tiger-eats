@@ -3,8 +3,9 @@ import {View, Text, ActivityIndicator} from 'react-native';
 import {styles} from '../../styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+// local functions
 import {DHallTimings} from 'TigerEats/src/constants/dhall-timings'
-import {getTime, buildMealTimingString, constructCheckPointsArray, closestCheckPoint, closestMeal, getMealNameFromLetter} from './functions'
+import {buildMealTimingString, checkOpenStatusHelper} from './functions'
 import {colors} from 'TigerEats/src/styles'
 
 export default class MealStatus extends Component {
@@ -13,6 +14,7 @@ export default class MealStatus extends Component {
     openStatus: null,
     nextMeal: null,
     nextMealTimings: null,
+    functionCallCount: 0
   }
   
   componentDidMount() {
@@ -35,55 +37,16 @@ export default class MealStatus extends Component {
       });
     } else {
       this.setState({
-        openStatus, nextMeal
+        openStatus, nextMeal, nextMealTimings: null
       });
     }
   }
   
   checkOpenStatus() {
-    let [hrs, mins, day, month] = getTime();
-    let decimalHrs = hrs + (mins / 60);
-    decimalHrs = Math.round(decimalHrs * 100) / 100
-    let {codeName} = this.props;
     
-    let checkpoints = constructCheckPointsArray(DHallTimings[day][codeName]);
-    
-    // corner case for Grad College being closed
-    if (checkpoints === 'closed') {
-      this.updateState(false, 'Closed');
-      return;
-    }
-    
-    // indexing into DHallTimings array's right day and hall
-    if (decimalHrs >= checkpoints[checkpoints.length-1]) {
-      // if current hour is past last meal time (last checkpoint), next meal should be set for next morning
-      mealTimings = DHallTimings[(day+1) % 7][codeName];
-    } else {
-      mealTimings = DHallTimings[day][codeName];
-    }
-    if (mealTimings === 'closed') {
-      this.updateState(false, 'Closed');
-      return;
-    }
-    // construct checkpoints again just in case we're checking for tomorrow's meal
-    checkpoints = constructCheckPointsArray(mealTimings);
-    // constructs closestMealName and closestMealTimings
-    closestHr = closestCheckPoint(decimalHrs, checkpoints);
-    mealLetter = closestMeal(closestHr, mealTimings);
-    closestMealName = getMealNameFromLetter(mealLetter);
-    closestMealTimings = mealTimings[mealLetter];
-    
-    if (decimalHrs >= checkpoints[checkpoints.length-1]) {
-      openStatus = false;
-    } else {
-      if ((decimalHrs >= closestMealTimings[0]) && (decimalHrs < closestMealTimings[1])) {
-        openStatus = true
-      } else {
-        openStatus = false
-      }
-    }
-
+    let [openStatus, closestMealName, closestMealTimings] = checkOpenStatusHelper(this.props.codeName);
     this.updateState(openStatus, closestMealName,closestMealTimings);
+    
     return;
   }
   
@@ -97,7 +60,7 @@ export default class MealStatus extends Component {
   }
   
   renderNextMeal(nextMeal, mealTimings) {
-    // doesn't print the ': ' if Grad College is 'Closed Today' (i.e. its mealTimings is null)
+    // doesn't print the ': ' if a DHall is 'Closed Today' (i.e. its mealTimings is null)
     if (mealTimings!==null) {
       return (<Text style={{fontWeight: 'bold'}}> {nextMeal}: </Text>);
     } else {
@@ -114,7 +77,19 @@ export default class MealStatus extends Component {
   
   render() {
     let {openStatus, nextMeal, nextMealTimings} = this.state;
-    // console.log(mealTimings);
+    let {closed} = this.props;
+    
+    if (closed) {
+      return (
+        <View>
+          <Text style={styles.dHallMealStatusText}>
+            {this.openStatusIcon(false)}
+            {this.renderNextMeal('Closed Today', null)}
+          </Text>
+        </View>
+      );
+    }
+    
     if (nextMeal !== null) {
       return (
         <View>
@@ -134,4 +109,3 @@ export default class MealStatus extends Component {
     }
   }
 }
-
