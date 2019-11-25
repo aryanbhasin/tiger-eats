@@ -21,8 +21,7 @@ export function checkOpenStatusHelper(codeName) {
   
   // corner case for Grad College being closed
   if (checkpoints === 'closed') {
-    this.updateState(false, 'Closed');
-    return;
+    return [false, 'Closed', null];
   }
   
   // indexing into DHallTimings array's right day and hall
@@ -33,8 +32,7 @@ export function checkOpenStatusHelper(codeName) {
     mealTimings = DHallTimings[day][codeName];
   }
   if (mealTimings === 'closed') {
-    this.updateState(false, 'Closed');
-    return;
+    return [false, 'Closed', null];
   }
   // construct checkpoints again just in case we're checking for tomorrow's meal
   checkpoints = constructCheckPointsArray(mealTimings);
@@ -55,6 +53,28 @@ export function checkOpenStatusHelper(codeName) {
   }
   
   return [openStatus, closestMealName,closestMealTimings];
+}
+
+export function returnClosestMealIndex(codeName) {
+  
+  // get current time
+  let [hrs, mins, day, month] = getTime();
+  let decimalHrs = hrs + (mins / 60);
+  decimalHrs = Math.round(decimalHrs * 100) / 100
+  
+  let checkpoints = constructCheckPointsArray(DHallTimings[day][codeName]);
+
+  if (decimalHrs >= checkpoints[checkpoints.length-1]) {  
+    mealTimings = DHallTimings[(day+1) % 7][codeName];
+  } else {
+    mealTimings = DHallTimings[day][codeName];
+  }
+
+  checkpoints = constructCheckPointsArray(mealTimings);
+  closestHr = closestCheckPoint(decimalHrs, checkpoints);
+  mealLetter = closestMeal(closestHr, mealTimings);
+  return getTabIndexFromMealLetter(mealLetter);
+  
 }
 
 export function buildMealTimingString(hr1, hr2) {
@@ -116,5 +136,18 @@ export function getMealNameFromLetter(letter) {
       return 'Lunch';
     case 'd':
       return 'Dinner';
+  }
+}
+
+export function getTabIndexFromMealLetter(letter) {
+  switch (letter) {
+    case 'b':
+      return 0;
+    case 'br':
+      return 1;
+    case 'l':
+      return 1;
+    case 'd':
+      return 2;
   }
 }

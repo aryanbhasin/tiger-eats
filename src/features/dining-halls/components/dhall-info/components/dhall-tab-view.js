@@ -15,7 +15,7 @@ const {width, height} = Dimensions.get('window');
 class DHallTabView extends Component {
   
   state = {
-    index: 1,
+    index: this.props.tabIndex,
     routes: [
       {key: 'Breakfast', title: 'Breakfast'},
       {key: 'Lunch', title: 'Lunch'},

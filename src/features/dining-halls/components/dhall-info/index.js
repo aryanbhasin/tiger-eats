@@ -9,6 +9,7 @@ import {View, Text, Image} from 'react-native';
 
 import {styles} from './styles'
 import DHallTabView from './components/dhall-tab-view'
+import {returnClosestMealIndex} from 'TigerEats/src/features/dining-halls/components/meal-status/functions'
 
 function DHallCoverImage ({imageSrc}) {
   return (
@@ -35,11 +36,15 @@ export default class DHallInfoScreen extends Component {
     dHallCodeName = navigation.getParam('dHallCodeName')
     dHallImg = navigation.getParam('dHallImg')
     dHallInfo = navigation.getParam('dHallInfo')
+    
+    let tabIndex = 0;
+    tabIndex = returnClosestMealIndex(dHallCodeName);
+    
     return (
       <View style={styles.screenContainer}>
         <DHallCoverImage imageSrc={dHallImg}/>
         <DHallFrontalHeader name={dHallName} address={dHallInfo} />
-        <DHallTabView dHallCodeName={dHallCodeName} />
+        <DHallTabView dHallCodeName={dHallCodeName} tabIndex={tabIndex} />
       </View>
     );
   }
