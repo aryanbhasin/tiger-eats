@@ -3,7 +3,6 @@ import {View, Text, Dimensions, ActivityIndicator} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {connect} from 'react-redux'
 
-import {getDishes} from 'TigerEats/src/actions'
 import {styles} from '../styles'
 import TabPage from './tab-menu-page'
 import LoadingSpinner from 'TigerEats/src/components/loading-spinner'

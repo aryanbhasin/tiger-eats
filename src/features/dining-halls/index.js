@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {styles} from './styles'
 import DHallCard from './components/dhall-card'
 import constructDiningUrl from 'TigerEats/src/components/extract-menu/dining-url-constructor'
-import {getDishes} from 'TigerEats/src/actions'
+import {getDishes} from 'TigerEats/src/actions/get-dishes'
 import {DHallList} from 'TigerEats/src/constants/dhall-list'
 
 class DiningHalls extends Component {

@@ -85,6 +85,7 @@ export function sortData(sortMetric, dataToSort) {
 }
 
 // **************************************** ACTION CREATOR FOR GETTING LOCATION ****************************************
+import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
 
 export function getLocation() {
   checkInternetConnection();
@@ -158,99 +159,6 @@ export function getEateryData() {
 }
 
 // **************************************** ACTION CREATORS FOR UPDATING MENU ****************************************
-import JSSoup from 'jssoup';
-import axios from 'axios'
-import Frisbee from 'frisbee'
-import {extractMealData} from '../components/extract-menu/get-dishes'
-import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
-
-function dispatchError(codeName, message) {
-  return {
-    type: ERROR,
-    payload: {
-      message,
-      codeName,
-    }
-  }
-}
-
-function getDishesHelper(htmlData) {
-  var soup = new JSSoup(htmlData);
-  var meals = soup.findAll('div', 'mealCard');
-  dishes = new Object();
-  meals.forEach(mealCard => extractMealData(mealCard, dishes));
-  return [meals, dishes];
-}
-
-// uses thunk
-export function getDishes(menuUrl, dHallCodeName) {
-                      
-  return (dispatch) => {
-    
-    let isInternetConnected = checkInternetConnection();
-    if (!isInternetConnected) {
-      return dispatch({type: CONNECTION_ERROR})
-    }
-    
-    // overcomes 'Access to fetch from origin blocked due to CORS policy'
-    const corsProxyurl = 'https://cors-anywhere.herokuapp.com/';
-    
-    // for fetch, use fetch() and .then((response) => response.text())
-    // for axios, use axios.get() and .then((response) => response.data)
-    
-    // fetch(menuUrl, {
-    //   mode: "no-cors", 
-    //   method: "GET",
-    // })
-  
-    const api = new Frisbee({
-      headers: {
-        'Accept': 'application/text',
-        'Content-Type': 'text/html'
-      }
-    })
-    
-    fetch(menuUrl, {
-      method: "GET",
-      mode: 'navigate',
-      headers: {
-        'Sec-Fetch-Mode': 'navigate'
-      }
-    })
-      .then(response => {
-        console.log(dHallCodeName + ". Type: " + response.type + ". Status: " + response.status + ". URL: " + menuUrl);
-        return (response.text());
-      })
-      .catch(error => {
-        console.log("ERROR: " + error); 
-        return dispatch(dispatchError(dHallCodeName, error))
-      })
-      .then(data => {
-        if (!data) {
-          console.log('!data');
-          return dispatch(dispatchError(dHallCodeName, 'No Data Available'))
-        }
-        console.log(data.length, dHallCodeName);
-        if (!!data && data.includes("No Data Available")) {
-          console.log('no data for ' + dHallCodeName);
-          return dispatch(setDhallClosedStatus(dHallCodeName, true))
-        }     
-        [meals, dishes] = getDishesHelper(data);   
-        return dispatch({
-          type: GET_DISHES,
-          payload: {
-            dHallCodeName,
-            meals,
-            dishes
-          }
-        })
-      })
-      .catch(error => {
-        console.log(error); 
-        return dispatch(dispatchError(dHallCodeName, error))
-      })
-  }
-}
 
 // ************************************ ACTION CREATOR FOR DHALL CLOSED STATUS ****************************************
 

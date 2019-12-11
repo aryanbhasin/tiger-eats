@@ -35,7 +35,7 @@ class Details extends Component {
     
     return (
       <View style={{flex: 1}}>
-        <ReviewStars reviewPlace={reviewPlace} />
+        {/* <ReviewStars reviewPlace={reviewPlace} /> */}
         <View style={styles.mapContainer}>
           <MapBox destination={location} position={position} />
           <GetDirectionsButton position={position} destination={location}/>
