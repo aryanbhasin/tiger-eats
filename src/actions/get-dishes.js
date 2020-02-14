@@ -27,6 +27,18 @@ function getDishesHelper(htmlData) {
   return [meals, dishes];
 }
 
+// Only creates the XMLHttpRequest object
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    xhr.open(method, url, true);
+  } else {
+    xhr = null;
+  }
+  return xhr;
+}
+
+
 // uses thunk
 export function getDishes(menuUrl, dHallCodeName) {
                       
@@ -37,50 +49,44 @@ export function getDishes(menuUrl, dHallCodeName) {
       return dispatch({type: CONNECTION_ERROR})
     }
     
-    // overcomes CORS issues
-    const corsProxyurl = 'https://cors-anywhere.herokuapp.com/';
-    menuUrl = corsProxyurl + menuUrl;
+    var xhr = createCORSRequest('GET', menuUrl);
+    if (!xhr) {
+      alert('CORS not supported');
+      return;
+    }
     
-    axios.get(menuUrl, {
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-        }
-      })
-      .then(res => {
-        
-        let data = res.data;
-
-        console.log(data.length, dHallCodeName, res.headers, res);
-        
-        if (!data) {
-          console.log('!data');
-          return dispatch(dispatchError(dHallCodeName, 'No Data Available'))
-        }
-        
-        if (!!data && data.includes("No Data Available")) {
-          console.log('no data for ' + dHallCodeName);
-          return dispatch(setDhallClosedStatus(dHallCodeName, true))
-        }
-
-        [meals, dishes] = getDishesHelper(data);   
-        return dispatch({
-          type: GET_DISHES,
-          payload: {
-            dHallCodeName,
-            meals,
-            dishes
-          }
-        })
+    xhr.onload = function() {
+      // text is the response HTML returned from the fetch() call
+      var text = xhr.responseText;
+      console.log("From Pure XMLHttpRequest, length of " + dHallCodeName + " is: " + text.length);
       
+      if (!text) {
+        return dispatch(dispatchError(dHallCodeName, 'No Data Available'));
+      }
+      
+      if (!!text && text.includes("No Data Available")) {
+        console.log('no data for ' + dHallCodeName);
+        return dispatch(setDhallClosedStatus(dHallCodeName, true))
+      }
+      
+      [meals, dishes] = getDishesHelper(text);   
+      return dispatch({
+        type: GET_DISHES,
+        payload: {
+          dHallCodeName,
+          meals,
+          dishes
+        }
       })
-      .catch(error => {
-        console.log("ERROR: ", error); 
-        return dispatch(dispatchError(dHallCodeName, error))
-      })
+      
+    };
     
+    xhr.onerror = function() {
+      console.log('Error');
+    };
     
-    
-    
+    xhr.send();
+
     /*
     fetch(menuUrl, {
       method: 'GET',
