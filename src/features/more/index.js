@@ -8,7 +8,7 @@ import {styles} from './styles'
 export default class More extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Spacer />
         <About />
         <LinksList />
@@ -16,7 +16,7 @@ export default class More extends Component {
         <View style={styles.bottomTextContainer}>
           <Text style={[styles.text, styles.bottomText]}>Made with <Ionicon name='md-heart' style={{fontSize: 15, alignSelf: 'flex-end'}}/> for Princeton</Text>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
