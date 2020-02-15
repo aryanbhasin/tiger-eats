@@ -65,20 +65,24 @@ class PlaceInfo extends Component {
             uri={{uri: placeInformation.imageUri}} 
             rating={placeInformation.rating} 
           />
-          <ScrollView style={{flex: 1}}>
-            <Description 
-              address={placeInformation.address}
-              tags={placeInformation.tags} 
-              name={placeInformation.name}
-              opening_hours={opening_hours} 
-            />
-            <Details 
-              reviewPlace={this.updateRating} 
-              phone_number={placeInformation.phone_number}
-              location={placeInformation.location}
-              website={placeInformation.website}
-            />
-          </ScrollView>
+          <View style={{flex: 1, borderWidth: 3}}>
+            <View style={{}}>
+              <Description 
+                address={placeInformation.address}
+                tags={placeInformation.tags} 
+                name={placeInformation.name}
+                opening_hours={opening_hours} 
+              />
+            </View>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: 'orange'}}>
+              <Details 
+                reviewPlace={this.updateRating} 
+                phone_number={placeInformation.phone_number}
+                location={placeInformation.location}
+                website={placeInformation.website}
+              />
+            </View>
+          </View>
       </View>
       
     );

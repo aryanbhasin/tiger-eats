@@ -1,6 +1,8 @@
 const ERROR = 'ERROR';
 const CONNECTION_ERROR = 'CONNECTION_ERROR';
 const GET_DISHES = 'GET_DISHES';
+const UPDATE_DHALL_DATE = 'UPDATE_DHALL_DATE';
+const DHALL_CLOSED = 'DHALL_CLOSED';
 
 // **************************************** ACTION CREATORS FOR UPDATING MENU ****************************************
 import JSSoup from 'jssoup';
@@ -129,5 +131,29 @@ export function getDishes(menuUrl, dHallCodeName) {
       })
     */
     
+  }
+}
+
+// ************************************** ACTION CREATORS FOR UPDATING DHALL DATE **************************************
+
+export function updateDate(dHallCodeName, dateIncrement) {
+  return {
+    type: UPDATE_DHALL_DATE,
+    payload: {
+      dHallCodeName,
+      dateIncrement,
+    }
+  }
+}
+
+// ************************************ ACTION CREATOR FOR DHALL CLOSED STATUS ****************************************
+
+export function setDhallClosedStatus(dHallCodeName, closedStatus) {
+  return {
+    type: DHALL_CLOSED,
+    payload: {
+      codeName: dHallCodeName,
+      closedStatus: closedStatus
+    }
   }
 }

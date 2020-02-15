@@ -8,12 +8,15 @@ import {styles} from './styles'
 export default class More extends Component {
   render() {
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <Spacer />
         <About />
         <LinksList />
         <Feedback />
-      </ScrollView>
+        <View style={styles.bottomTextContainer}>
+          <Text style={[styles.text, styles.bottomText]}>Made with <Ionicon name='md-heart' style={{fontSize: 15, alignSelf: 'flex-end'}}/> for Princeton</Text>
+        </View>
+      </View>
     );
   }
 }

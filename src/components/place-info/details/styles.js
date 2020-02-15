@@ -10,18 +10,22 @@ export var styles = StyleSheet.create({
   },
   buttonsRowContainer: {
     flexDirection: 'row',
-    flex: 1,
+    flex: 0.5,
     justifyContent: 'space-around',
-    alignItems: 'center',
-    marginVertical: 10,
+    alignItems: 'flex-end',
+    borderWidth: 2,
+    borderColor: 'pink'
   },
   map: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 8
   },
   mapContainer: {
-    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     height: height * 0.25, 
     width: width * 0.92,
+    borderWidth: 1,
+    borderColor: 'red'
   }
 });

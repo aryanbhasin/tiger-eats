@@ -1,20 +1,17 @@
 import React, {Component} from 'react';
 
-export default function constructDiningUrl(dHallName) {
+export default function constructDiningUrl(dHallName, inputDate, inputMonth, inputYear) {
 
   let base = 'https://menus.princeton.edu/dining/_Foodpro/online-menu/menuDetails.asp?';
-  return base + dateConstructor() + dHallConstructor(dHallName);
+  return base + dateConstructor(inputDate, inputMonth, inputYear) + dHallConstructor(dHallName);
   // return CJLUrl();
 }
 
 // constructs date portion of url as per today's date
-function dateConstructor() {
-  let d = new Date();
-  let year = d.getFullYear();
-  let month = d.getMonth();
-  month++;
-  let date = d.getDate();
-  return `dtdate=${month}%2F${date}%2F${year}`
+function dateConstructor(inputDate, inputMonth, inputYear) {
+  console.log(inputDate + " " + inputMonth + " " + inputYear);
+
+  return `dtdate=${inputMonth}%2F${inputDate}%2F${inputYear}`
 }
 
 function dHallConstructor(dHallName) {

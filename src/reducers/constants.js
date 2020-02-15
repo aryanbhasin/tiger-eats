@@ -29,6 +29,7 @@ export const initialMealsState = {
         error: '',
         loading: true,
         closed: false,
+        date: new Date(),
       }
     },
     {
@@ -38,6 +39,7 @@ export const initialMealsState = {
         error: '',
         loading: true,
         closed: false,
+        date: new Date(),
       }
     },
     {
@@ -47,6 +49,7 @@ export const initialMealsState = {
         error: '',
         loading: true,
         closed: false,
+        date: new Date(),
       }
     },
     {
@@ -56,6 +59,7 @@ export const initialMealsState = {
         error: '',
         loading: true,
         closed: false,
+        date: new Date(),
       }
     },
     {
@@ -65,6 +69,7 @@ export const initialMealsState = {
         error: '',
         loading: true,
         closed: false,
+        date: new Date(),
       }
     },
     {
@@ -74,6 +79,7 @@ export const initialMealsState = {
         error: '',
         loading: true,
         closed: false,
+        date: new Date(),
       }
     }
   ],

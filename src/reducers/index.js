@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {UPDATE_SEARCH} from '../actions'
-import {GET_DISHES, ERROR, CONNECTION_ERROR, GET_LOCATION, LOCATION_ERROR, GET_LINKS_LIST, GET_EATERY_DATA, SORT_DATA, DHALL_CLOSED} from '../actions'
+import {GET_DISHES, ERROR, CONNECTION_ERROR, GET_LOCATION, LOCATION_ERROR, GET_LINKS_LIST, GET_EATERY_DATA, SORT_DATA, DHALL_CLOSED, UPDATE_DHALL_DATE} from '../actions'
 
 import {initialSearchState, initialMealsState, initialLocationState, initialLinksState, initialEateryState} from './constants'
 
@@ -58,15 +58,20 @@ function eatery(state = initialEateryState, action) {
 
 // **************************************** REDUCER FOR GETTING DISHES ****************************************
 
-import {updateHallDishes, updateErrorMessage, updateHallClosedStatus} from './functions'
+import {updateHallDishes, updateErrorMessage, updateHallClosedStatus, updateHallDate} from './functions'
 
 function dishes(state = initialMealsState, action) {
   switch (action.type) {
     case GET_DISHES:
       let {dHallCodeName, meals, dishes} = action.payload
-      let updatedHallData = {meals, dishes, error: '', loading: false};
+      let updatedHallData = {meals, dishes, error: '', loading: false, date: new Date()};
       let newHallState = updateHallDishes(state.halls, dHallCodeName, updatedHallData);
       return {...state, halls: newHallState}
+    case UPDATE_DHALL_DATE:
+      let dHallCodeName_copy = action.payload.dHallCodeName;
+      let dateIncrement = action.payload.dateIncrement;
+      let newDateState = updateHallDate(state.halls, dHallCodeName_copy, dateIncrement);
+      return {...state, halls: newDateState}
     case ERROR:
       let {codeName, message} = action.payload
       let newState = updateErrorMessage(state.halls, codeName, message);

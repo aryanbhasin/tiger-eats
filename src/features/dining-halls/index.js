@@ -11,8 +11,13 @@ import {DHallList} from 'TigerEats/src/constants/dhall-list'
 class DiningHalls extends Component {
   
   getDHallDishes(name, codeName) {
-    let URL = constructDiningUrl(name);
-    this.props.getDishes(URL, codeName);
+    let dateIncrement = 0; // today's menu
+    let d = new Date();
+    let month = d.getMonth();
+    month++;
+    let url = constructDiningUrl(name, d.getDate(), month, d.getFullYear());
+    console.log(url);
+    this.props.getDishes(url, codeName);
   }
   
   render() {

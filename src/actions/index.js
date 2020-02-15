@@ -10,6 +10,7 @@ export const GET_LINKS_LIST = 'GET_LINKS_LIST';
 export const GET_EATERY_DATA = 'GET_EATERY_DATA';
 export const SORT_DATA = 'SORT_DATA';
 export const DHALL_CLOSED = 'DHALL_CLOSED';
+export const UPDATE_DHALL_DATE = 'UPDATE_DHALL_DATE';
 
 
 // **************************************** ACTION CREATORS FOR SEARCH ****************************************
@@ -157,18 +158,3 @@ export function getEateryData() {
     }), (err) => {return dispatch({type: ERROR})}
   }
 }
-
-// **************************************** ACTION CREATORS FOR UPDATING MENU ****************************************
-
-// ************************************ ACTION CREATOR FOR DHALL CLOSED STATUS ****************************************
-
-export function setDhallClosedStatus(dHallCodeName, closedStatus) {
-  return {
-    type: DHALL_CLOSED,
-    payload: {
-      codeName: dHallCodeName,
-      closedStatus: closedStatus
-    }
-  }
-}
-

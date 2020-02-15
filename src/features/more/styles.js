@@ -42,5 +42,14 @@ export var styles = StyleSheet.create({
   chevron: {
     color: colors.grey,
     fontSize: 17,
+  },
+  bottomTextContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  bottomText: {
+    alignSelf: 'center',
+    marginBottom: 15,
+    color: colors.lightGrey
   }
 })
