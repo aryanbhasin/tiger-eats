@@ -36,7 +36,7 @@ export const RootTabNav = createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: 'More',
+    initialRouteName: 'Dining',
     tabBarOptions: {
       activeTintColor: colors.orange,
       labelStyle: {

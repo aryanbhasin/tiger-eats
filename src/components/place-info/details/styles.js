@@ -13,8 +13,7 @@ export var styles = StyleSheet.create({
     flex: 0.5,
     justifyContent: 'space-around',
     alignItems: 'flex-end',
-    borderWidth: 2,
-    borderColor: 'pink'
+
   },
   map: {
     ...StyleSheet.absoluteFillObject,
@@ -25,7 +24,6 @@ export var styles = StyleSheet.create({
     justifyContent: 'center',
     height: height * 0.25, 
     width: width * 0.92,
-    borderWidth: 1,
-    borderColor: 'red'
+
   }
 });

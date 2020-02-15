@@ -83,5 +83,13 @@ export const initialMealsState = {
       }
     }
   ],
-  connectionError: ''
+  connectionError: '',
+  dates: {
+    wucox: new Date(),
+    cjl: new Date(),
+    whitman: new Date(),
+    forbes: new Date(),
+    roma: new Date(),
+    grad: new Date()
+  }
 }

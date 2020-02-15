@@ -20,13 +20,12 @@ export var styles = StyleSheet.create({
     borderRadius: 3
   },
   dHallFrontalContainer: {
-    flex: 0.5,
     justifyContent: 'center',
-    alignItems: 'flex-start',
-    paddingLeft: 10
+    alignItems: 'center',
+    padding: 5
   },
   dHallFrontalName: {
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: 'bold',
     paddingVertical: 2,
     paddingTop: 4
@@ -35,6 +34,22 @@ export var styles = StyleSheet.create({
     color: 'dimgrey',
     fontSize: 15,
     paddingBottom: 4,
+  },
+  datesContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent:'space-between',
+    marginHorizontal: 20,
+    paddingBottom: 10,
+  },
+  currDateText: {
+    fontSize: 24,
+    color: colors.darkGrey,
+    fontWeight: 'bold',
+  },
+  chevron: {
+    color: colors.grey,
+    fontSize: 24,
   },
   dHallTabViewContainer: {
     flex: 2.5,

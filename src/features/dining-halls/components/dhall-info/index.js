@@ -6,7 +6,8 @@
 */
 import React, {Component} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import {connect} from 'react-redux'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux';
 
 import {styles} from './styles'
 import DHallTabView from './components/dhall-tab-view'
@@ -29,7 +30,7 @@ class DHallFrontalHeader extends Component {
     return (
       <View style={styles.dHallFrontalContainer}>
         <Text style={styles.dHallFrontalName}>{name}</Text>
-        <Text style={styles.dHallFrontalAddress}>{address}</Text>
+        {/* <Text style={styles.dHallFrontalAddress}>{address}</Text> */}
       </View>
     );
   }
@@ -40,31 +41,22 @@ class DHallInfoScreen extends Component {
   // dateIncrement = 1 --> tomorrow's date;
   // dateIncrement = -1 --> yesterday's date
   
-  renderTomorrowMenu(dHallName, dHallCodeName, dHallStateData) {
-    let dateIncrement = 1; // tomorrow's menu
-    this.props.updateDate(dHallCodeName, dateIncrement);
-    let updatedDate = dHallStateData[dHallCodeName]['date'];
-    d = new Date(updatedDate.getTime());
-  
-    let url = constructDiningUrl(dHallName, d.getDate(), d.getMonth()+1, d.getFullYear());
-    console.log(url);
-    this.props.getDishes(url, dHallCodeName);
+  componentDidMount() {
+    dHallCodeName = this.props.navigation.getParam('dHallCodeName');
+    let d = this.props.dates[dHallCodeName];
+    this.setState({
+      date: d
+    })
+  }
+  state = {
+    date: new Date()
   }
   
-  renderYesterdayMenu(dHallName, dHallCodeName, dHallStateData) {
-    let dateIncrement = -1; // tomorrow's menu
+  changeMenu(dHallName, dHallCodeName, dateIncrement, dates) {
     this.props.updateDate(dHallCodeName, dateIncrement);
-    let updatedDate = dHallStateData[dHallCodeName]['date'];
+    let updatedDate = dates[dHallCodeName];
     d = new Date(updatedDate.getTime());
-  
-    let url = constructDiningUrl(dHallName, d.getDate(), d.getMonth()+1, d.getFullYear());
-    console.log(url);
-    this.props.getDishes(url, dHallCodeName);
-  }
-  
-  changeMenu(dHallName, dHallCodeName, dateIncrement, dHallStateData) {
-    this.props.updateDate(dHallCodeName, dateIncrement);
-    let d = dHallStateData[dHallCodeName]['date'];
+    this.setState({date: d})
     let date = d.getDate();
     let month = d.getMonth();
     month++;
@@ -74,31 +66,41 @@ class DHallInfoScreen extends Component {
     
   }
   
+  isToday(someDate) {
+    const today = new Date()
+    return someDate.getDate() == today.getDate() &&
+      someDate.getMonth() == today.getMonth() &&
+      someDate.getFullYear() == today.getFullYear()
+  }
+  
   render() {
-    let {navigation} = this.props;
+    let {navigation, dates} = this.props;
     dHallName = navigation.getParam('dHallName')
     dHallCodeName = navigation.getParam('dHallCodeName')
     dHallImg = navigation.getParam('dHallImg')
     dHallInfo = navigation.getParam('dHallInfo')
-    
-    let dHallStateData = this.props.halls.find(hall => {
-      let currName = Object.keys(hall)[0].toString();
-      return (currName == dHallCodeName);
-    });
-    
+        
     let tabIndex = 0;
     tabIndex = returnClosestMealIndex(dHallCodeName);
+    
+    let currDate = this.state.date.toDateString();
+    currDate = currDate.substring(0, currDate.length - 5);
+    
+    if (this.isToday(this.state.date)) {currDate = 'Today';}
     
     return (
       <View style={styles.screenContainer}>
         <DHallCoverImage imageSrc={dHallImg}/>
         <DHallFrontalHeader name={dHallName} address={dHallInfo}/>
-        <TouchableOpacity onPress={() => this.renderYesterdayMenu(dHallName, dHallCodeName, dHallStateData)}>
-          <Text>Press for yesterday's date</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.renderTomorrowMenu(dHallName, dHallCodeName, dHallStateData)}>
-          <Text>Press for tomorrow's date</Text>
-        </TouchableOpacity>
+        <View style={styles.datesContainer}>
+          <TouchableOpacity onPress={() => this.changeMenu(dHallName, dHallCodeName, -1, dates)}>
+            <Icon name='chevron-left' style={styles.chevron} />
+          </TouchableOpacity>
+          <Text style={styles.currDateText}>{currDate}</Text>
+          <TouchableOpacity onPress={() => this.changeMenu(dHallName, dHallCodeName, 1, dates)}>
+            <Icon name='chevron-right' style={styles.chevron} />
+          </TouchableOpacity>
+        </View>
         <DHallTabView dHallCodeName={dHallCodeName} tabIndex={tabIndex} />
       </View>
     );
@@ -107,7 +109,7 @@ class DHallInfoScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    halls: state.dishes.halls
+    dates: state.dishes.dates
   }
 }
 

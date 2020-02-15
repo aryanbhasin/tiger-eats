@@ -65,7 +65,7 @@ class PlaceInfo extends Component {
             uri={{uri: placeInformation.imageUri}} 
             rating={placeInformation.rating} 
           />
-          <View style={{flex: 1, borderWidth: 3}}>
+          <View style={{flex: 1}}>
             <View style={{}}>
               <Description 
                 address={placeInformation.address}
@@ -74,7 +74,7 @@ class PlaceInfo extends Component {
                 opening_hours={opening_hours} 
               />
             </View>
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: 'orange'}}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <Details 
                 reviewPlace={this.updateRating} 
                 phone_number={placeInformation.phone_number}
