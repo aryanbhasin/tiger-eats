@@ -68,6 +68,7 @@ class DHallTabView extends Component {
   }
 
   render() {
+    
     return (
       <View style={styles.dHallTabViewContainer}>
         <TabView 
