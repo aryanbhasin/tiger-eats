@@ -16,6 +16,8 @@ export default class HeaderTitle extends Component {
 var styles = StyleSheet.create({
   headerText: {
     fontWeight: 'bold',
+    alignSelf: 'center',
+    alignItems: 'center',
     fontSize: 28,
   },
   textTiger: {

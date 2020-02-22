@@ -8,7 +8,7 @@ export var styles = StyleSheet.create({
     right: 10,
   },
   image: {
-    height: height * 0.3,
+    height: height * 0.25,
     width: null,
   },
   ratingContainer: {

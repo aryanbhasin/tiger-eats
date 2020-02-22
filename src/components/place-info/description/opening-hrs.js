@@ -20,7 +20,10 @@ export default class OpeningHrs extends Component {
     }
     if (text < 12) {
       return `until ${text} am`
-    } else {
+    } else if (text == 12) {
+      return `until ${text} pm`
+    }
+    else {
       return `until ${text % 12} pm`
     }
   }

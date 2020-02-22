@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {EATERY_DATA} from 'TigerEats/src/assets/data/eatery-data.js';
 
 import {indexIntoOpeningHrs} from 'TigerEats/src/functions/explore-functions'
+import {getLocation} from 'TigerEats/src/actions'
+import {showMessage} from 'react-native-flash-message'
 
 import Frontal from './frontal';
 import Description from './description';
@@ -16,6 +18,18 @@ class PlaceInfo extends Component {
   
   constructor(props) {
     super(props);
+
+    if (((this.props.position.longitude == -74.656353) 
+        && (this.props.position.latitude == 40.345226)) 
+        ||  (this.props.position.longitude < -90)) {
+      showMessage({
+        message: "Allow location access to get directions and distances to restaurants",
+        type: "danger",
+        icon: "warning",
+        duration: 3000
+      })
+      this.props.getLocation();
+    }
     
     this.state = {
       rating: 4.23,
@@ -46,9 +60,9 @@ class PlaceInfo extends Component {
     })
   }
   
-  static navigationOptions = {
-    header: null
-  }
+  // static navigationOptions = {
+  //   header: null
+  // }
 
   render() {
     var {eateryData} = this.props;
@@ -91,8 +105,13 @@ class PlaceInfo extends Component {
 
 mapStateToProps = (state) => {
   return({
-    eateryData: state.eatery.data
+    eateryData: state.eatery.data,
+    position: state.location.coordinates
   })
 }
 
-export default connect(mapStateToProps)(PlaceInfo)
+const mapDispatchToProps = {
+  getLocation
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceInfo)

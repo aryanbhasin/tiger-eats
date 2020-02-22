@@ -87,6 +87,7 @@ export function sortData(sortMetric, dataToSort) {
 
 // **************************************** ACTION CREATOR FOR GETTING LOCATION ****************************************
 import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
+import {showMessage} from 'react-native-flash-message'
 
 export function getLocation() {
   checkInternetConnection();
@@ -104,6 +105,14 @@ export function getLocation() {
         })
       },
       (error) => {
+        if (error.code == error.PERMISSION_DENIED) {
+          showMessage({
+            message: "Allow location access to get directions and distances to restaurants",
+            type: "danger",
+            icon: "warning",
+            duration: 3000
+          })
+        }
         dispatch({
           type: LOCATION_ERROR,
           payload: error

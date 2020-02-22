@@ -6,8 +6,8 @@ export const initialSearchState = {
 
 export const initialLocationState = {
   coordinates: {
-    latitude: '',
-    longitude: '',
+    latitude: 40.345226,
+    longitude: -74.656353,
   },
   error: 'null'
 }
