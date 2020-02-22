@@ -45,7 +45,6 @@ export default class MapBox extends Component {
         <Marker coordinate={destination}>
           <Icon name='map-pin' color={colors.orange} size={27}/>
         </Marker> 
-        <Marker coordinate={this.nest_location} />
       </MapView>
     );
   }

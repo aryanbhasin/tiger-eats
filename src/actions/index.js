@@ -49,7 +49,14 @@ export function updateSearch(text, initData) {
         Object.keys(initData)
         .filter((key) => {
           const searchTerm = text.toUpperCase();
-          const placeName = initData[key].name.toUpperCase();
+          let tags = initData[key].tags
+          let placeName = initData[key].name;
+          // Append tags to place name
+          for (index in tags) {
+            placeName =  placeName + ' ' + tags[index] 
+          }
+          placeName = placeName.toString().toUpperCase(); 
+            
           return (placeName.indexOf(searchTerm) > -1);
         })
         .map(key => ({ [key]: initData[key] }) )
