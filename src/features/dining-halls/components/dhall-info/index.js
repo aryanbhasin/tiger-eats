@@ -8,6 +8,7 @@ import React, {Component} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {connect} from 'react-redux';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 import {styles} from './styles'
 import DHallTabView from './components/dhall-tab-view'
@@ -92,15 +93,22 @@ class DHallInfoScreen extends Component {
       <View style={styles.screenContainer}>
         <DHallCoverImage imageSrc={dHallImg}/>
         <DHallFrontalHeader name={dHallName} address={dHallInfo}/>
-        <View style={styles.datesContainer}>
-          <TouchableOpacity onPress={() => this.changeMenu(dHallName, dHallCodeName, -1, dates)}>
-            <Icon name='chevron-left' style={styles.chevron} />
-          </TouchableOpacity>
-          <Text style={styles.currDateText}>{currDate}</Text>
-          <TouchableOpacity onPress={() => this.changeMenu(dHallName, dHallCodeName, 1, dates)}>
-            <Icon name='chevron-right' style={styles.chevron} />
-          </TouchableOpacity>
-        </View>
+        <GestureRecognizer
+          onSwipeRight={() => this.changeMenu(dHallName, dHallCodeName, -1, dates)}
+          onSwipeLeft={() => this.changeMenu(dHallName, dHallCodeName, 1, dates)}
+          >
+          <View style={styles.datesContainer}>
+          
+            <TouchableOpacity onPress={() => this.changeMenu(dHallName, dHallCodeName, -1, dates)}>
+              <Icon name='chevron-left' style={styles.chevron} />
+            </TouchableOpacity>
+            <Text style={styles.currDateText}>{currDate}</Text>
+            <TouchableOpacity onPress={() => this.changeMenu(dHallName, dHallCodeName, 1, dates)}>
+              <Icon name='chevron-right' style={styles.chevron} />
+            </TouchableOpacity>
+          
+          </View>
+        </GestureRecognizer>
         <DHallTabView dHallCodeName={dHallCodeName} tabIndex={tabIndex} />
       </View>
     );

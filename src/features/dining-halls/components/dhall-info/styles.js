@@ -22,13 +22,11 @@ export var styles = StyleSheet.create({
   dHallFrontalContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 5
+    padding: 3
   },
   dHallFrontalName: {
     fontSize: 30,
     fontWeight: 'bold',
-    paddingVertical: 2,
-    paddingTop: 4
   },
   dHallFrontalAddress: {
     color: 'dimgrey',
