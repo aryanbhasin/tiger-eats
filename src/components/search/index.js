@@ -14,7 +14,7 @@ class Search extends Component {
     return (
       <View style={styles.searchSortRow}>
         <SearchBar           
-          placeholder='Search for a place'
+          placeholder='Search for a place or cuisine'
           onChangeText={(text) => {this.props.updateSearch(text, this.props.eateryData)}}
           onClear={(text) => {this.props.updateSearch('', this.props.eateryData)}}
           value={this.props.searchTerm}
@@ -23,7 +23,7 @@ class Search extends Component {
           round
           containerStyle={styles.searchBarContainer}
         />
-        <View style={{flex: 1, marginLeft: 0, marginBottom: 10}}>
+        {/* <View style={{flex: 1, marginLeft: 0, marginBottom: 10}}>
           <Dropdown 
             pickerStyle={{width: 100}} 
             label='Sort By' 
@@ -32,7 +32,7 @@ class Search extends Component {
             onChangeText={(value) => this.props.sortData(value, this.props.eateryData)}
             containerStyle={{}}
           />
-        </View>
+        </View> */}
       </View>  
     );
   }

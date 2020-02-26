@@ -9,7 +9,7 @@ export default function constructDiningUrl(dHallName, inputDate, inputMonth, inp
 
 // constructs date portion of url as per today's date
 function dateConstructor(inputDate, inputMonth, inputYear) {
-  console.log(inputDate + " " + inputMonth + " " + inputYear);
+  // console.log(inputDate + " " + inputMonth + " " + inputYear);
 
   return `dtdate=${inputMonth}%2F${inputDate}%2F${inputYear}`
 }

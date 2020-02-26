@@ -15,7 +15,7 @@ export var styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderBottomColor: 'transparent',
     borderTopColor: 'transparent',
-    marginLeft: 5,
+    marginHorizontal: 5,
   },
   
   dropdownContainer: {

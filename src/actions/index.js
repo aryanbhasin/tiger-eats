@@ -37,30 +37,25 @@ export function updateSearch(text, initData) {
   if (text === '') {
     searchData = initData
   } else {
-    keyArr = Object.keys(initData).filter((key) => {
-       const placeName = initData[key].name.toUpperCase();
-       return (placeName.indexOf(text.toUpperCase()) > -1);
-    })
-                   
-    if (keyArr.length == 0) {
-      searchData = null // search string yielded 0 results
-    } else {
-      searchData = Object.assign(...
-        Object.keys(initData)
-        .filter((key) => {
-          const searchTerm = text.toUpperCase();
+    keyArr = Object.keys(initData)
+      .filter((key) => {
+        const searchTerm = text.toUpperCase();
+        let placeName = initData[key].name;
+        if ("tags" in initData[key]) {
           let tags = initData[key].tags
-          let placeName = initData[key].name;
           // Append tags to place name
           for (index in tags) {
             placeName =  placeName + ' ' + tags[index] 
           }
-          placeName = placeName.toString().toUpperCase(); 
-            
-          return (placeName.indexOf(searchTerm) > -1);
-        })
-        .map(key => ({ [key]: initData[key] }) )
-      );
+        }      
+        placeName = placeName.toString().toUpperCase(); 
+        return (placeName.search(searchTerm) > -1);
+      })
+                   
+    if (keyArr.length == 0) {
+      searchData = null // search string yielded 0 results
+    } else {
+      searchData = Object.assign(... keyArr.map(key => ({ [key]: initData[key] }) ))
     }
   }
   return {
