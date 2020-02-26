@@ -23,11 +23,11 @@ function search(state = initialSearchState, action) {
 function location(state = initialLocationState, action) {
   switch (action.type) {
     case GET_LOCATION:
-      return {...state, coordinates: action.payload}
+      return {...state, coordinates: action.payload, warningShown: true}
     case LOCATION_ERROR:
       let error = action.payload
       console.log(error)
-      return {...state, error: error}
+      return {...state, error: error, warningShown: true}
     default:
       return state
   }

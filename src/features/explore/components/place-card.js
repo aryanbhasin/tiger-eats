@@ -10,6 +10,7 @@ import LoadingSpinner from 'TigerEats/src/components/loading-spinner';
 
 import {Rating} from 'TigerEats/src/components/place-info/frontal';
 import {OpenOrClosed} from 'TigerEats/src/components/place-info/description/opening-hrs';
+import OpeningHrs from 'TigerEats/src/components/place-info/description/opening-hrs';
 import {indexIntoOpeningHrs} from 'TigerEats/src/functions/explore-functions';
 import {styles} from '../styles';
 import {openStatusStyles as styles2} from 'TigerEats/src/components/place-info/description/styles'
@@ -85,9 +86,10 @@ export default class PlaceCard extends Component {
                   <Text style={styles.cardTitle}>{toTitleCase(name)}</Text>
                 </View>
                 <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                  <OpenOrClosed openingHr={openingHr} closingHr={closingHr}/>
+                  <OpeningHrs openingHr={openingHr} closingHr={closingHr} />
+                  {/* <OpenOrClosed openingHr={openingHr} closingHr={closingHr}/> */}
                   {/* <Text style={{color: 'darkgrey', fontWeight: '600', fontSize: 15}}>{distance}m</Text> */}
-                  <Text style={styles2.openingHrsText}>{this.renderOpenStatusText(openingHr, closingHr)}</Text>
+                  {/* <Text style={styles2.openingHrsText}>{this.renderOpenStatusText(openingHr, closingHr)}</Text> */}
                 </View>
               </View>
             

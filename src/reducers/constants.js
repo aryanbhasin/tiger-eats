@@ -9,7 +9,8 @@ export const initialLocationState = {
     latitude: 40.345226,
     longitude: -74.656353,
   },
-  error: 'null'
+  error: 'null',
+  warningShown: false
 }
 
 export const initialLinksState = {

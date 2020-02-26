@@ -18,15 +18,18 @@ class PlaceInfo extends Component {
   
   constructor(props) {
     super(props);
-
-    if (((this.props.position.longitude == -74.656353) 
-        && (this.props.position.latitude == 40.345226)) 
-        ||  (this.props.position.longitude < -90)) {
+    
+    if(
+      !this.props.locWarningShown &&
+      (((this.props.position.longitude == -74.656353) 
+          && (this.props.position.latitude == 40.345226)) 
+          ||  (this.props.position.longitude < -90))
+    ) {
       showMessage({
-        message: "Allow location access to get directions and distances to restaurants",
+        message: "Allow location access while using the app to get directions to eateries",
         type: "danger",
         icon: "warning",
-        duration: 3000
+        duration: 4000
       })
       this.props.getLocation();
     }
@@ -106,7 +109,8 @@ class PlaceInfo extends Component {
 mapStateToProps = (state) => {
   return({
     eateryData: state.eatery.data,
-    position: state.location.coordinates
+    position: state.location.coordinates,
+    locWarningShown: state.location.warningShown,
   })
 }
 

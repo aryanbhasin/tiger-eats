@@ -10,7 +10,7 @@ class CardList extends Component {
   
   constructor(props) {
     super(props);
-    this.props.getLocation();
+    // this.props.getLocation();
   }
   
   render() {
