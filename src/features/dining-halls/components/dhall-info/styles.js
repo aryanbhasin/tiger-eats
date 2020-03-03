@@ -1,6 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native'
 import {colors} from 'TigerEats/src/styles'
-
+import { Platform } from 'react-native'
 
 let {width, height} = Dimensions.get('window');
 
@@ -83,7 +83,8 @@ export var dishesStyles = StyleSheet.create({
   },
   dishItems: {
     fontSize: 18,
-    paddingVertical: 1
+    paddingVertical: 1,
+    color: (Platform.OS !== 'ios') && colors.darkGrey
   },
   pawIcon: {
     marginRight: 3,

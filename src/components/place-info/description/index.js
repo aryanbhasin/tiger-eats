@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types'
+import { Platform } from 'react-native'
 
 import OpeningHrs from './opening-hrs';
 import {toTitleCase} from 'TigerEats/src/functions/general'
@@ -41,7 +42,7 @@ export default class Description extends Component {
 
 function Title ({name}) {
   return(
-    <Text style={[styles.titleText, (name.length > 12) && {fontSize: 34}]}>{name}</Text>
+    <Text style={[styles.titleText, (name.length > 14) && (Platform.OS === 'ios') ? {fontSize: 34} : {fontSize: 29}]}>{name}</Text>
   );
 }
 

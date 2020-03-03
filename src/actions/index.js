@@ -90,12 +90,15 @@ export function sortData(sortMetric, dataToSort) {
 // **************************************** ACTION CREATOR FOR GETTING LOCATION ****************************************
 import checkInternetConnection from 'TigerEats/src/components/flash-messages/check-connection'
 import {showMessage} from 'react-native-flash-message'
+import { Platform} from 'react-native'
 
 export function getLocation() {
   checkInternetConnection();
   // geolocation.getCurrentPosition() is asynchronous so need to use redux-thunk
   return (dispatch) => {
-    navigator.geolocation.requestAuthorization();
+    if (Platform.OS === 'ios') {
+      navigator.geolocation.requestAuthorization();
+    }
     navigator.geolocation.getCurrentPosition(
       (position) => {
         dispatch({

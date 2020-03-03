@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native'
 import {colors} from 'TigerEats/src/styles'
+import { Platform } from 'react-native'
 
 export var styles = StyleSheet.create({
   descriptionContainer: {
@@ -18,7 +19,7 @@ export var styles = StyleSheet.create({
   },
   titleText: {
     color: colors.darkGrey,
-    fontSize: 44,
+    fontSize: (Platform.OS === 'ios') ? 44 : 38,
     fontWeight: '700'
   },
   addressText: {
@@ -40,7 +41,7 @@ export var styles = StyleSheet.create({
   },
   tagRow: {
     flexDirection: 'row',
-    marginVertical: 10,
+    marginVertical: (Platform.OS === 'ios') ? 10 : 5,
   },
 });
 

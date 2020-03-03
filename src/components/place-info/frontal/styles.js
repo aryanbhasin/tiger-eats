@@ -1,5 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 const {height} = Dimensions.get('window');
+import { Platform} from 'react-native'
 
 export var styles = StyleSheet.create({
   rating: {
@@ -8,7 +9,7 @@ export var styles = StyleSheet.create({
     right: 10,
   },
   image: {
-    height: height * 0.25,
+    height: (Platform.OS === 'ios') ? height * 0.25 : height * 0.22,
     width: null,
   },
   ratingContainer: {

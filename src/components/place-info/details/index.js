@@ -34,7 +34,7 @@ class Details extends Component {
     let hasWebsite = !!website ? true : false;
     
     return (
-      <View style={{flex: 1, justifyContent: 'center'}}>
+      <View style={{flex: 1, justifyContent: 'space-around'}}>
         {/* <ReviewStars reviewPlace={reviewPlace} /> */}
         <View style={styles.mapContainer}>
           <MapBox destination={location} position={position} />

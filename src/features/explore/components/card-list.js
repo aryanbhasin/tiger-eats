@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ScrollView, KeyboardAvoidingView} from 'react-native';
 import {connect} from 'react-redux'
+import { Platform} from 'react-native'
 
 import PlaceCard from './place-card'
 import {getLocation} from 'TigerEats/src/actions'
@@ -10,7 +11,11 @@ class CardList extends Component {
   
   constructor(props) {
     super(props);
-    // this.props.getLocation();
+    
+    if (Platform.OS !== 'ios') {
+      this.props.getLocation();
+    }
+    
   }
   
   render() {

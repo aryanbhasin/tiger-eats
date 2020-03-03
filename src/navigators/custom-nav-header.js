@@ -19,6 +19,8 @@ var styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     fontSize: 28,
+    textAlign: 'center',
+    flex: 1,
   },
   textTiger: {
     color: colors.orange,

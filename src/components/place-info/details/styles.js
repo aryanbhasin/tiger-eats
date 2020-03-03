@@ -1,5 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 const {width, height} = Dimensions.get('window');
+import { Platform} from 'react-native'
 
 export var styles = StyleSheet.create({
   mainItemStyle: {
@@ -10,7 +11,7 @@ export var styles = StyleSheet.create({
   },
   buttonsRowContainer: {
     flexDirection: 'row',
-    flex: 0.5,
+    flex: (Platform.OS === 'ios') ? 0.5 : 0.4,
     justifyContent: 'space-around',
     alignItems: 'flex-end',
 
