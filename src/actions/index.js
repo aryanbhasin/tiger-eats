@@ -109,10 +109,10 @@ export function getLocation() {
       (error) => {
         if (error.code == error.PERMISSION_DENIED) {
           showMessage({
-            message: "Allow location access to get directions and distances to restaurants",
+            message: "Set location access to 'Allow While Using App' to get directions and distances to restaurants",
             type: "danger",
             icon: "warning",
-            duration: 3000
+            duration: 4000
           })
         }
         dispatch({

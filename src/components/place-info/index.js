@@ -20,42 +20,11 @@ class PlaceInfo extends Component {
   constructor(props) {
     super(props);
     
-    // if(
-    //   !this.props.locWarningShown &&
-    //   (((this.props.position.longitude == -74.656353) 
-    //       && (this.props.position.latitude == 40.345226)) 
-    //       ||  (this.props.position.longitude < -90))
-    // ) {
-    //   showMessage({
-    //     message: "Allow location access while using the app to get directions to eateries",
-    //     type: "danger",
-    //     icon: "warning",
-    //     duration: 4000
-    //   })
-    //   this.props.getLocation();
-    // }
-    
+    this.props.getLocation();
+
     this.state = {
-      rating: 4.23,
-      ratingCount: 1,
+      firstLaunch: null
     }
-  }
-  
-  componentDidMount(){
-    AsyncStorage.getItem("alreadyLaunched").then((value) => {
-      if (value == null) {
-        AsyncStorage.setItem('alreadyLaunched', true);
-        showMessage({
-          message: "Allow location access while using the app to get directions to eateries",
-          type: "danger",
-          icon: "warning",
-          duration: 4000
-        })
-        this.props.getLocation();
-      } else {
-        this.props.getLocation();
-      }
-    })
   }
   
   updateRating = (latestReview) => {
@@ -80,10 +49,6 @@ class PlaceInfo extends Component {
       ratingCount: newRatingCount,
     })
   }
-  
-  // static navigationOptions = {
-  //   header: null
-  // }
 
   render() {
     var {eateryData} = this.props;
