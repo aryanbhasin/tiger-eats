@@ -8,3 +8,5 @@ export const firebaseConfig = {
     appId: "1:191542565565:web:00306b6555895c8a51f5d4",
     measurementId: "G-FPEZZ0B2PJ"
 };
+
+export const googleApiKey = 'AIzaSyAOAqp4FWCVy-ZLy8NPYWEkcljlD5YVCkI';
