@@ -30,6 +30,9 @@ function getCategoryDishes(category, mealItems) {
   let items = category.contents[1].contents;
   for (var key in items) {
     let dish = items[key].contents[0]._text;
+    if (dish.startsWith("Saut")) {
+      dish = dish.replace(/[^\s]*/, 'Sautéed');
+    }
     dishes.push(dish)
   }
   categoryObj['items'] = dishes;
