@@ -2,12 +2,14 @@
 [![Platforms](https://img.shields.io/badge/platforms-Android%20|%20iOS-blue.svg)](https://shields.io/)
 [![GitHub issues](https://img.shields.io/github/issues/aryanbhasin/tiger-eats)](https://github.com/aryanbhasin/tiger-eats/issues)
 
-#### Release Links
-[**App Store**](https://apps.apple.com/app/tigereats/id1488886363)
-
-[**Play Store**](https://play.google.com/store/apps/details?id=com.tigereats)
-
 Your one-stop guide to eating at princeton
+
+#### Release Links
+
+<a href="https://apps.apple.com/app/tigereats/id1488886363"><img src="./src/assets/images/download-app-store-logo.png" height="40"></a>
+
+<a href="https://play.google.com/store/apps/details?id=com.tigereats"><img src="./src/assets/images/google-play-logo.png" height="40"></a>
+
 
 ## About
 React Native app helping Princeton students check dining hall menus, explore eateries and restaurants around campus, and access useful links instantly
