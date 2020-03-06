@@ -20,11 +20,20 @@ export default class Feedback extends Component {
   constructor(props) {
     super(props);
     
-    db.ref('app-store-link').once('value', (snapshot) => {
-      this.setState({
-        appLink: snapshot.val()
+    if (Platform.OS==='ios') {
+      db.ref('app-store-link').once('value', (snapshot) => {
+        this.setState({
+          appLink: snapshot.val()
+        })
       })
-    })
+    } 
+    else {
+      db.ref('play-store-link').once('value', (snapshot) => {
+        this.setState({
+          appLink: snapshot.val()
+        })
+      })
+    }
   }
   
   render() {
