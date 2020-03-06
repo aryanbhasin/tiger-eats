@@ -7,7 +7,6 @@ Your one-stop guide to eating at princeton
 #### Release Links
 
 <a href="https://apps.apple.com/app/tigereats/id1488886363"><img src="./src/assets/images/download-app-store-logo.png" height="40"></a>
-
 <a href="https://play.google.com/store/apps/details?id=com.tigereats"><img src="./src/assets/images/google-play-logo.png" height="40"></a>
 
 
